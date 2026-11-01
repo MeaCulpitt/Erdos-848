@@ -1,6 +1,6 @@
 # Erdős Problem 848: an independent all-N proof, with stability, rigidity and the second-best density
 
-[Erdős Problem 848](https://www.erdosproblems.com/848) asks whether the largest A ⊆ {1, …, N} with ab + 1 never squarefree (for all a, b ∈ A, including a = b) is the residue class 7 mod 25. Sawhney proved this for all sufficiently large N, with no explicit threshold. A. C. Li gave the first Lean-verified proof for every N ([SSRN 7230480](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7230480)).
+[Erdős Problem 848](https://www.erdosproblems.com/848) asks whether the largest A ⊆ {1, …, N} with ab + 1 never squarefree (for all a, b ∈ A, including a = b) is the residue class 7 mod 25. Sawhney proved this for all sufficiently large N, with no explicit threshold. Several all-N proofs followed in 2026, among them A. C. Li's, which comes with a Lean formalisation ([SSRN 7230480](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7230480)). None of these, including this one, has yet been refereed.
 
 This repository contains a second, independent proof for every N, together with new structural results, and all the code, certificates and logs needed to check them. The paper is [`paper/erdos848_paper.md`](paper/erdos848_paper.md).
 
@@ -8,12 +8,16 @@ This repository contains a second, independent proof for every N, together with 
 
 - **Theorem A** (Li; independent proof here). For every N, every valid A ⊆ [N] has |A| ≤ c7(N) = #{n ≤ N : n ≡ 7 mod 25}. This uses an explicit threshold N₀ = 6.7838·10⁶ and computation below it.
 - **Theorem B** (stability). For N ≥ N₀, a valid set not inside one class has at most (N − 7)/25 elements, and at most (0.029289 + o(1))N.
-- **Theorem C** (rigidity and extremisers). A valid set with one element outside C7 keeps at most a fraction 0.3667… of C7, and this is sharp. The maximisers are exactly C7 (and C18 when it has the same size), plus four small sets for 41 ≤ N ≤ 81.
-- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 680·N^0.81 for every N. The bound is attained, up to an additive constant, by F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
+- **Theorem C** (rigidity and extremisers). A valid set with one element outside C7 keeps asymptotically at most a fraction 0.3667… of C7, and this is sharp. The maximisers are exactly C7 (and C18 when it has the same size), plus four small sets for 41 ≤ N ≤ 81.
+- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 680·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
 
 ## Status
 
 Every proof step is backed by computation, and the key certificates are cross-checked by independent implementations. The constructions and the certificate for Theorem 8.1 (Proposition 8.6) are verified in Lean 4. **The paper has not yet been refereed or read in full by a human expert.** Reports of errors are welcome as GitHub issues.
+
+## How this was made
+
+The arguments, code and certificates were developed with AI assistance (Anthropic's Claude), directed by the author. Every computational step was re-run, and the main ones were re-implemented independently (see `referee/`). An AI-run consistency review of the paper found and fixed several slips before release. None of this replaces human review, which is the main thing this work still needs.
 
 ## Layout
 
@@ -82,4 +86,4 @@ cd mathlib4 && lake env lean /path/to/lean/LamCert.lean
 
 ## Licence
 
-Code: MIT (see `LICENSE`).
+Code: MIT (see `LICENSE`). Paper: CC BY 4.0 (see `paper/LICENSE.md`).
