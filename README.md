@@ -78,6 +78,8 @@ cd mathlib4 && lake env lean /path/to/lean/LamCert.lean
 
 ## Related work
 
+The forum thread for Problem 848 records the earlier steps: van Doorn's bound 0.108N and Weisenberg's improvement to about 0.105N, StijnC's early computations, Sawhney's large-N proof, and the AI-assisted explicit thresholds led by N. Sothanaphan, down to 2.64·10¹⁷.
+
 - T. F. Bloom, [Erdős Problem #848](https://www.erdosproblems.com/848) and the [discussion thread](https://www.erdosproblems.com/forum/thread/848).
 - M. Sawhney, [note on Problem 848](https://www.math.columbia.edu/~msawhney/Problem_848.pdf).
 - A. C. Li, *The Exact Extremal Bound in Erdős Problem 848* ([SSRN 7230480](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7230480); [code and Lean](https://github.com/crabsatellite/erdos-848-squarefree-product)).

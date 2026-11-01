@@ -19,7 +19,7 @@ The constructions and the certificate for the second-best density are verified i
 
 Call A ⊆ \[N\] = {1, …, N} **valid** if ab + 1 is not squarefree for all a, b ∈ A, including a = b. Erdős and Sárközy asked whether the maximum of |A| over valid sets is attained by {n ≤ N : n ≡ 7 (mod 25)} ([Erdős Problem #848](https://www.erdosproblems.com/848)). This class is valid because 7² + 1 = 50, so 25 | ab + 1 whenever a ≡ b ≡ 7 (mod 25). The class 18 ≡ −7 works for the same reason.
 
-Van Doorn gave |A| ≤ (0.108… + o(1))N. Sawhney ([note](https://www.math.columbia.edu/~msawhney/Problem_848.pdf)) proved the conjecture for N ≥ N₀, with N₀ not computed, and noted a qualitative stability property. Sawhney and Sellke discuss the problem in Section IV.1 of arXiv:2511.16072, and Alexeev, Mixon and Sawin treat the companion problem where ab is never squarefree (arXiv:2507.01928). Later attempts made N₀ explicit, reaching exp(1420) ([forum](https://www.erdosproblems.com/forum/thread/848)). That is far beyond the range of computation.
+Van Doorn gave |A| ≤ (0.108… + o(1))N, and Weisenberg improved the constant to about 0.105 by inclusion–exclusion. Early computations posted by StijnC already pointed to stability, and found small valid sets avoiding both classes, such as {41, 70, 239, 437} at N = 606. Sawhney ([note](https://www.math.columbia.edu/~msawhney/Problem_848.pdf)) proved the conjecture for N ≥ N₀, with N₀ not computed, and noted a qualitative stability property. Sawhney and Sellke discuss the problem in Section IV.1 of arXiv:2511.16072, and Alexeev, Mixon and Sawin treat the companion problem where ab is never squarefree (arXiv:2507.01928). As Alexeev pointed out, Erdős's original question has no restriction to large N. Later AI-assisted work on the forum, led by Sothanaphan, made N₀ explicit, reaching exp(1420) ([forum](https://www.erdosproblems.com/forum/thread/848)). That is far beyond the range of computation.
 
 Since mid-2026 several unrefereed, AI-assisted all-N claims have appeared. Sothanaphan reached N₀ = 2.64·10¹⁷, and full claims came from Pitchford with Codex ([Zenodo](https://zenodo.org/records/21647629)), A. C. Li (SSRN, with Lean; analytic range reportedly from 5·10⁶), Zanghi ([GitHub](https://github.com/bzanghi/erdos-848), N₀ = 5·10⁸) and Durfee ([GitHub](https://github.com/AstroCat93/erdos-848-verification), N₀ = 4.2·10⁷). All of these follow Sawhney's case split, and most cover small N with colouring certificates. The argument here is independent of them. Its new ingredients are the type-matrix witness game, which gives N₀ = 6.78·10⁶, and Theorems B and C, which none of those claims state.
 
@@ -218,7 +218,7 @@ Two independent implementations agree. The referee grid uses only (z\_A, z\_B) =
 
 Robin's bound ω(n) ≤ 1.38402·ln n/ln ln n gives 2^k ≤ N^{0.95933/ln L} ≤ N^{0.1947}. The prime counts use π(x) < 1.25506x/ln x. Each term divided by N decreases for N ≥ 10⁶⁰, and the total at N = 10⁶⁰ is 1.02·10⁻⁸·N. ∎
 
-**Corollary 5.2.** Theorem A holds for all N ≥ 6.7838·10⁶, and every valid set not inside one class has |A| ≤ (N − 7)/25.
+**Corollary 5.2.** Theorem A holds for all N ≥ 6.7838·10⁶, and every valid set not inside one class has |A| ≤ (N − 7)/25. (Sawhney suggested on the forum that large-sieve methods should bring N₀ down to about 10⁶. The witness game reaches the same order by a different route.)
 
 ## 6. Small N
 
@@ -469,4 +469,4 @@ The full package (code, logs and certificates) accompanies this paper.
 
 ## Acknowledgements
 
-The argument, code and certificates were developed with AI assistance (Claude) and checked by independent re-implementation. Every computation above can be re-run from the accompanying package. We welcome expert review, especially of Sections 3–5.
+The argument, code and certificates were developed with AI assistance (Claude) and checked by independent re-implementation. Every computation above can be re-run from the accompanying package. We thank the contributors to the forum thread for Problem 848, especially W. van Doorn, D. Weisenberg, StijnC, B. Alexeev, M. Sawhney and N. Sothanaphan, whose comments shaped this work. We welcome expert review, especially of Sections 3–5 and 8.
