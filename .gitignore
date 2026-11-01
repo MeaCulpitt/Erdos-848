@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.npy
+# C binaries
+*.o
+*.out.bin
+a.out
+computation/fast848
+computation/e848cases
+li_check/fastli
+lambda_star/lamcert
+referee/bb
+referee/kom
+lemma/omegaV
+margins/typemat
+# Lean / Lake
+lean/.lake/
+lean/lake-manifest.json

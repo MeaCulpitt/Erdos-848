@@ -1,0 +1,8 @@
+decade 1e6: min slack 329.8 at Nlo=6.7838e+06 (k0=5) slack/N=0.00005
+decade 1e7: min slack 1.552e+04 at Nlo=1.00002e+07 (k0=5) slack/N=0.00155
+decade 1e8: min slack 5.348e+05 at Nlo=1.00592e+08 (plain) slack/N=0.00532
+decade 1e9: min slack 7.872e+06 at Nlo=1.00185e+09 (plain) slack/N=0.00786
+decade 1e10: min slack 9.212e+07 at Nlo=1.00777e+10 (plain) slack/N=0.00914
+decade 1e11: min slack 9.986e+08 at Nlo=1.00369e+11 (plain) slack/N=0.00995
+decade 1e12: min slack 1.034e+10 at Nlo=1.00962e+12 (plain) slack/N=0.01025
+decade 1e13: min slack 1.046e+11 at Nlo=1.00553e+13 (plain) slack/N=0.01040

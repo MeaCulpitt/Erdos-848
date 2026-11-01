@@ -1,0 +1,11 @@
+name = "Erdos848"
+defaultTargets = ["Erdos848"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "a2f96aabcf72be9e18bece4b5c7c54fcc0c029f4"
+
+[[lean_lib]]
+name = "Erdos848"
+roots = ["Erdos848Constructions", "LamCert"]

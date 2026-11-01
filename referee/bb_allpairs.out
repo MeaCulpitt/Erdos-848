@@ -1,0 +1,32 @@
+17 13 v2grid=0.02940592119825204 :: nodes 1339011 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0294059212 
+17 17 v2grid=0.02939643954819632 :: nodes 1339011 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293964395 
+17 19 v2grid=0.02938810843510764 :: nodes 1472973 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293881084 
+17 23 v2grid=0.029382019952387522 :: nodes 1472973 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293820200 
+29 13 v2grid=0.029365067430267112 :: nodes 1470557 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293650674 
+29 17 v2grid=0.029355585780208745 :: nodes 1470641 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293555858 
+29 19 v2grid=0.02934725466712004 :: nodes 1470641 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293472547 
+29 23 v2grid=0.02934116618440178 :: nodes 1470641 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293411662 
+37 13 v2grid=0.029336833643194983 :: nodes 1524627 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293368336 
+37 17 v2grid=0.02932735199313494 :: nodes 1524627 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293273520 
+37 19 v2grid=0.029319020880045878 :: nodes 1524657 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293190209 
+37 23 v2grid=0.029312932397324215 :: nodes 1524657 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293129324 
+41 13 v2grid=0.029312274642344007 :: nodes 1522535 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293122746 
+41 17 v2grid=0.029302792992287503 :: nodes 1522535 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0293027930 
+41 19 v2grid=0.02929446187919742 :: nodes 1522535 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0292944619 
+41 23 v2grid=0.029288373396476077 :: nodes 1522535 PROVED: V_2 <= F (exact integer arithmetic) F = 0.0292883734 
+17 13 F-v2grid = 2.972e-14 OK
+17 17 F-v2grid = 2.984e-14 OK
+17 19 F-v2grid = 2.988e-14 OK
+17 23 F-v2grid = 2.7598e-14 OK
+29 13 F-v2grid = 2.6768e-14 OK
+29 17 F-v2grid = 2.9535e-14 OK
+29 19 F-v2grid = 2.96e-14 OK
+29 23 F-v2grid = 2.546e-14 OK
+37 13 F-v2grid = 2.5137e-14 OK
+37 17 F-v2grid = 2.958e-14 OK
+37 19 F-v2grid = 3.0002e-14 OK
+37 23 F-v2grid = 2.9265e-14 OK
+41 13 F-v2grid = 2.6033e-14 OK
+41 17 F-v2grid = 2.6937e-14 OK
+41 19 F-v2grid = 2.838e-14 OK
+41 23 F-v2grid = 2.7323e-14 OK

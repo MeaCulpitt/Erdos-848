@@ -1,0 +1,25 @@
+Lemma 3 (Pell): actual = #{x<=N, x mod 25 not in {7,18}: p^2|x^2+1 for a prime p>Y}
+  N=20000 Y=20: actual=161 bound=169532 ok=True
+  N=20000 Y=60: actual=56 bound=18898 ok=True
+  N=20000 Y=200: actual=14 bound=1761 ok=True
+  N=20000 Y=1000: actual=2 bound=141 ok=True
+  N=20000 Y=5000: actual=1 bound=16 ok=True
+  N=100000 Y=20: actual=810 bound=4236840 ok=True
+  N=100000 Y=60: actual=287 bound=470906 ok=True
+  N=100000 Y=200: actual=71 bound=42533 ok=True
+  N=100000 Y=1000: actual=20 bound=1861 ok=True
+  N=100000 Y=5000: actual=3 bound=164 ok=True
+  N=300000 Y=300: actual=145 bound=169794 ok=True
+  N=300000 Y=1000: actual=55 bound=15582 ok=True
+  N=300000 Y=5000: actual=7 bound=943 ok=True
+  N=300000 Y=20000: actual=3 bound=106 ok=True
+Lemma 4 (lattice): actual = #{a<=N in T_b : p^2|ab+1, p prime > Y}; bound with b's own profile/omega and b itself
+  N=3000 Y=10: 313 witnesses, max actual/bound = 0.0087
+  N=3000 Y=20: 313 witnesses, max actual/bound = 0.0074
+  N=3000 Y=50: 313 witnesses, max actual/bound = 0.0107
+  N=3000 Y=150: 313 witnesses, max actual/bound = 0.0261
+  N=20000 Y=15: 164 witnesses, max actual/bound = 0.0036
+  N=20000 Y=40: 164 witnesses, max actual/bound = 0.0063
+  N=20000 Y=120: 164 witnesses, max actual/bound = 0.0099
+  N=20000 Y=400: 164 witnesses, max actual/bound = 0.0057
+worst ratio 0.026082120182379067
