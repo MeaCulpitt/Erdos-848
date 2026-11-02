@@ -11,7 +11,7 @@ Our main new results describe valid sets beyond the maximum:
 - **Explicit stability.** For N ≥ 6.7838·10⁶, every valid set not inside one class has at most (N − 7)/25 elements, and at most 0.0293N asymptotically. This makes Sawhney's qualitative η explicit: η = 0.0016 at N = 10⁷, rising to about 0.0107 as N → ∞.
 - **Sharp rigidity.** One element outside 7 mod 25 leaves at most a fraction 0.3667… of that class. This is the sharp form of the degree estimate in Li's proof.
 - **Exact maximisers for every N.** They are the classes 7 and 18 mod 25, plus four small sets not inside one class when 41 ≤ N ≤ 81.
-- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. The same method also settles the cube-free analogue, ab + 1 never cube-free, for every N: the maximum is the class 57 mod 125 (Section 9).
+- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. The same method settles the k-free analogues, ab + 1 never k-free, for every k ≥ 3 and large N, and completely for k ≤ 100: the maximum is a class mod 5^k, for example 57 mod 125 when k = 3 (Section 9).
 
 The constructions and the certificate for the second-best density are verified in Lean 4. Every computation is reproducible and was cross-checked by an independent implementation. This includes a check of the key degree proposition of Li's proof for 5·10⁶ ≤ N ≤ 10⁷.
 
@@ -502,11 +502,32 @@ So for N ≥ 700 every cube-valid set not inside one class has fewer than c57(N)
 
 The comparison is instructive. The method needs a self-forcing class, a positive local gap, and a way to count the large-prime events. For squares the first two were easy and the third was the main difficulty. For cubes all three are easy.
 
+### Higher powers
+
+The same argument works for every k ≥ 3. Call A ⊆ \[N\] *k-valid* if ab + 1 is never k-free, for all a, b ∈ A including a = b. Let q = 5^k, let r\_k be the smaller root of x² ≡ −1 (mod q), and write c\_k(N) = #{n ≤ N : n ≡ r\_k (mod q)}. For example, r₃ = 57, r₄ = 182, r₅ = r₆ = 1068 and r₇ = 32318.
+
+**Theorem 9.3.**
+
+1. For every k ≥ 3 there is an explicit N\_k such that for N ≥ N\_k, every k-valid A ⊆ \[N\] not inside one of the classes ±r\_k (mod q) has fewer than c\_k(N) elements. So for N ≥ N\_k the maximum is c\_k(N), and only the full classes attain it. Here N\_k/5^k is about 15,400 for k = 3, 555 for k = 4, at most 214 for k ≥ 5, and at most 60 for k ≥ 40.
+2. For 3 ≤ k ≤ 100 the maximum is c\_k(N) for every N, and only the full classes attain it, with exactly two exceptions. For k = 3 and 193 ≤ N ≤ 306, the mixed sets of Theorem 9.1 also attain it. For k = 4 and 239 ≤ N ≤ 806, the set {239} also attains the maximum 1, because 239² + 1 = 2·13⁴.
+
+*Proof of part 1.* Lemma 9.2 holds with 2^k, 3^k and p^k in place of 8, 27 and p³. A witness outside C\_{r\_k} forces at most a fraction Z\_k = 2^{−k} + 3^{−k} + Σ\_{p≥7} p^{−k} of that class, plus one element for each prime p with p^k ≤ N² + 1. The rest of V\_k has at most 2Nσ\_k + 2π((N²+1)^{1/k}) elements, where σ\_k = Σ p^{−k} over primes p ≡ 1 (mod 4) with p ≥ 13. The main term 2Z\_k + 2qσ\_k is largest at k = 3, where it is 0.52, and it falls to 0.21 at k = 4 and 0.09 at k = 5.
+
+For 3 ≤ k ≤ 40, `kfree_analytic.py` finds N\_k by checking cells of ratio 1.01. For k > 40 and N = λq with λ ≥ 60, the requirement reduces to λ(1 − 10⁻¹¹) − 1 > 4π(25.01·λ^{0.05}) + 4. This holds because the right side is at most 52 for λ ≤ 10⁴, and grows only like λ^{0.05}. ∎
+
+*Proof of part 2.* Below N\_k the vertex set V\_k ∩ \[N\_k\] can be listed directly, as the roots of x² ≡ −1 (mod p^k) for the few primes with p^k ≤ N\_k² + 1. Testing an edge only needs those same primes. The vertex set is small: 1,143 vertices for k = 4, 432 for k = 5, and between 90 and 155 for 9 ≤ k ≤ 100. Above k = 30 there are no vertices outside the two classes at all.
+
+For 5 ≤ k ≤ 100, `kfree_exact.py` enumerates all maximum cliques at every vertex value up to N\_k; the graph is constant between consecutive vertices. For k = 4 it does this up to 30,000 and then checks the one-witness bound on 14 cells up to N\_4, where the bound is at most a third of c₄. The case k = 3 is Theorem 9.1.
+
+The graphs are not trivial: for k = 5 there are 844 edges between the two classes and 5 extra vertices. An independent brute force, factorising x² + 1 and ab + 1 directly, reproduces every maximum set for k = 4 up to 3000 and k = 5 up to 20,000. ∎
+
+So the extremal answer is the same for every k ≥ 3: the class r\_k mod 5^k, with occasional small exceptions at the start. Part 2 cannot be checked for all k at once, because whether a stray vertex such as 239 falls below the second element of the class depends on the particular roots. For 5 ≤ k ≤ 100 none does.
+
 ## 10. Open problems
 
 1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 7, proof of Theorem C(2)) are small sets unrelated to F, so some lower bound on N is needed.
 2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of about 38 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
-3. **A general witness-game theorem.** Section 9 shows that the method carries over to ab + 1 never cube-free, where it becomes much simpler. Is there a general theorem? Suppose "f(a, b) has a k-th power factor" admits a self-forcing residue class and the local game has a positive gap. Is that class then extremal for all large N, with an effective threshold?
+3. **A general witness-game theorem.** Section 9 shows that the method carries over to ab + 1 never k-free for every k ≥ 3, completely for k ≤ 100. Two questions remain. Does part 2 of Theorem 9.3 hold for every k, with exceptions only where c\\\_k(N) ≤ 1? And is there a general theorem for other forms? Suppose "f(a, b) has a k-th power factor" admits a self-forcing residue class and the local game has a positive gap. Is that class then extremal for all large N, with an effective threshold?
 4. **Formalisation.** The constructions (`Erdos848Constructions.lean`), the certificate of Proposition 8.6 (`LamCert.lean`) and the strict gap of Lemma 8.10 (`LamGap.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
 
 ## Appendix: verification and reproducibility
