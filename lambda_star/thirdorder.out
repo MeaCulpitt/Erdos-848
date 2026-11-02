@@ -1,0 +1,3 @@
+GAP = 0.00105429
+delta = 0.0008: all cells pass from N = 10^23.56 on (largest E/((GAP-delta)N) after that: 0.996 at 10^23.56)
+delta = 0.0005: all cells pass from N = 10^22.27 on (largest E/((GAP-delta)N) after that: 0.992 at 10^22.27)

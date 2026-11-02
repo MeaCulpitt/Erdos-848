@@ -11,7 +11,7 @@ Our main new results describe valid sets beyond the maximum:
 - **Explicit stability.** For N ≥ 6.7838·10⁶, every valid set not inside one class has at most (N − 7)/25 elements, and at most 0.0293N asymptotically. This makes Sawhney's qualitative η explicit: η = 0.0016 at N = 10⁷, rising to about 0.0107 as N → ∞.
 - **Sharp rigidity.** One element outside 7 mod 25 leaves at most a fraction 0.3667… of that class. This is the sharp form of the degree estimate in Li's proof.
 - **Exact maximisers for every N.** They are the classes 7 and 18 mod 25, plus four small sets not inside one class when 41 ≤ N ≤ 81.
-- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50.
+- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror.
 
 The constructions and the certificate for the second-best density are verified in Lean 4. Every computation is reproducible and was cross-checked by an independent implementation. This includes a check of the key degree proposition of Li's proof for 5·10⁶ ≤ N ≤ 10⁷.
 
@@ -34,7 +34,7 @@ Write c7(N) = #{n ≤ N : n ≡ 7 (mod 25)} = ⌊(N − 7)/25⌋ + 1, and C7, C1
 1. If A is valid and A ⊄ C7, then |A ∩ C7| ≤ (g1\* + o(1))N, where g1\* = (1/3 + 2/3·β∞)/25 = 0.0146697… and β∞ = 1 − ∏\_{p≥7}(1 − p⁻²). This constant is sharp.
 2. For N ∉ \[41, 81\], the maximisers in Theorem A are exactly C7 ∩ \[N\], together with C18 ∩ \[N\] when c18(N) = c7(N). For 41 ≤ N ≤ 81 there are also the maximisers {7, 41}, {32, 43}, {41, 43} and {32, 43, 57}, each in its own range of N.
 
-**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 30·N^0.81, so the second-best density λ\* equals 1/50 (Section 8).
+**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 30·N^0.81, so the second-best density λ\* equals 1/50 (Section 8). For N ≥ 10^23.6, every valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror (Theorem 8.9).
 
 Theorems B, C and D are new. Sawhney's note gives stability with an unspecified η and leaves open whether 18 mod 25 also attains the maximum. Li's proof of Theorem A, and the other all-N claims, give no stability constant and no description of the maximisers. The Lean formalisation in erdos-banger proves stability with η = 1/2000 beyond an ineffective N₀.
 
@@ -449,9 +449,27 @@ Taking k = ω\*(N) + 1 recovers Section 8.5. The script `explicitC_omega4.py` us
 
 The bound |A| ≤ |V ∩ \[N\]| decides C up to about 10¹³. Beyond that the refined argument decides it, with k between 8 and 11. The worst cell lies just past the range of the exact counts within V. So extending the sieve, or an explicit bound for integers with many prime factors in the classes ±ι\_p mod p², would lower C further.
 
+### 8.7 Third-order structure
+
+Write F′ = {n ≡ 7 (mod 25), n ≡ 3 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 1 (mod 4)} for the mirror image of F.
+
+**Theorem 8.9.** Let N ≥ 10^23.6. If A ⊆ \[N\] is valid, not contained in C7 or C18, and |A| ≥ (1/50 − 0.0008)N, then A ⊆ F or A ⊆ F′. The same holds with 0.0005 in place of 0.0008 for N ≥ 10^22.3.
+
+So near the second-best density there is no room to move. A near-extremal set is F or F′ with some elements removed; nothing can be added.
+
+**Lemma 8.10 (strict gap).** With β = 0.05114 and j = 0.01577, every admissible core K other than those of F and F′ has U(K) ≤ 1/50 − 0.0010542. The runner-up is the core of F with one cell of weight 1 removed, which costs exactly (1 − β)/900.
+
+*Proof.* `lamgap.c`, a variant of `lamcert.c`, finds this by enumerating all 51,223 admissible cores in exact integer arithmetic. `LamGap.lean` proves the statement in the Lean kernel, again with `decide` only. The argument is the closure argument of Proposition 8.6. If a core's closure is not the core of F or F′, the 64 × 64 check bounds it. If the closure is F's but the core is smaller, the core misses a cell of weight at least 1. ∎
+
+*Proof of Theorem 8.9.* The constants of Lemma 8.10 are at least β⁺ and j⁺ (Lemma 8.4). So Lemma 8.5 gives |A| ≤ U(K)N + E(N), where K is the core of A and E(N) is the error of Section 8.5. The script `thirdorder.py` checks on the grid of Section 8.5 that E(N) < (0.0010542 − δ)N for every N ≥ N₂(δ). It finds N₂ = 10^23.56 for δ = 0.0008 and N₂ = 10^22.27 for δ = 0.0005, with the tail beyond 10⁶⁰¹ handled as in Section 8.5. Then U(K) > 1/50 − 0.0010542, so K is the core of F or of F′; say F.
+
+Every type of A is forced by every type of this core. A C7 cell forced with every C18 cell ≡ 3 (mod 4) must be ≡ 1 (mod 4), because the cell with 3 | a forces nothing through 9. Symmetrically, a C18 cell must be ≡ 3 (mod 4). An R-type would have to be forced with the cells ≡ 1 and ≡ 3 (mod 4) that have 3 | a, through 4 alone, which no residue mod 4 allows. So every type of A is a type of F, and A ⊆ F. ∎
+
+The threshold is large for two reasons: the gap is small, and the error of Section 8.5 decays only like N^{−1/3+o(1)}. The ω-refinement of Section 8.6 does not transfer directly. It would only show that A lies in F apart from at most K\_k(N) exceptional elements.
+
 ## 9. Open problems
 
-1. **Third-order structure.** Describe the valid sets of size close to N/50 that are not inside one class. Is F, with its mirror and finite modifications, the only one? Proposition 8.6 suggests yes, since only those cores attain 1/50.
+1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 6) are small sets unrelated to F, so some lower bound on N is needed.
 2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of 40 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
 3. **A general witness-game theorem.** The method seems to apply whenever "f(a, b) has a square factor" admits a self-forcing residue class and the local game has a positive gap. A local survey suggests ab + 1 never cube-free (extremal class 57 or 68 mod 125) as the cleanest next case.
 4. **Formalisation.** The constructions (`Erdos848Constructions.lean`) and the certificate of Proposition 8.6 (`LamCert.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
@@ -479,7 +497,7 @@ Further independent checks:
 | --- | --- | --- |
 | Li's uniform-degree proposition, 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c` (exact H₇, H₁₈ for all b; 70 blocks of 1%, 56 min) | holds on every block; minimum margin 13.8% (threshold taken at the top of each block); brute-force cross-check at N = 20,000 |
 | Theorem D and the constructions | `Erdos848Constructions.lean`, Lean 4.36.0-rc2 with Mathlib | compiles; no `sorry`; only the standard axioms |
-| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); explicit C = 30: explicitC\_omega4.py, with exact counts to 10¹¹ from segomega.c (C = 92.4 with Rankin's bound alone: explicitC\_omega.py; C = 170 without the ω-refinement: explicitC.py) |
+| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); third-order gap: lamgap.c, LamGap.lean, thirdorder.py; explicit C = 30: explicitC\_omega4.py, with exact counts to 10¹¹ from segomega.c (C = 92.4 with Rankin's bound alone: explicitC\_omega.py; C = 170 without the ω-refinement: explicitC.py) |
 
 The full package (code, logs and certificates) accompanies this paper.
 
