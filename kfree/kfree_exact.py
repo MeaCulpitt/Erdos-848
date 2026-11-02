@@ -21,7 +21,8 @@ def roots_mod_pk(p, k):
 def setup(k, Nmax):
     q = 5**k; r = min(roots_mod_pk(5, k))
     bound = Nmax * Nmax + 1
-    ps = [p for p in primerange(2, int(bound ** (1 / k)) + 2) if p**k <= bound]
+    from sympy import integer_nthroot
+    ps = [p for p in primerange(2, integer_nthroot(bound, k)[0] + 2) if p**k <= bound]
     V = set()
     for p in ps:
         if p == 5 or p % 4 == 1:
