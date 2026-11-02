@@ -1,0 +1,13 @@
+log10 N = 8.0: cell bound 32.45, k = 1
+log10 N = 9.0: cell bound 50.26, k = 4
+log10 N = 10.0: cell bound 68.59, k = 6
+log10 N = 11.0: cell bound 58.87, k = 7
+log10 N = 12.0: cell bound 47.98, k = 7
+log10 N = 13.0: cell bound 37.21, k = 8
+log10 N = 15.0: cell bound 24.98, k = 10
+log10 N = 18.0: cell bound 12.29, k = 12
+log10 N = 20.0: cell bound 13.86, k = 14
+log10 N = 30.0: cell bound 1.34, k = 20
+log10 N = 100.0: cell bound 0.00, k = 50
+log10 N = 601.0: cell bound 0.00, k = 186
+C = 72.17  worst cell [10^9.82, 10^9.83], k = 6

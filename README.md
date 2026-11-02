@@ -9,7 +9,7 @@ This repository contains a second, independent proof for every N, together with 
 - **Theorem A** (Li; independent proof here). For every N, every valid A ⊆ [N] has |A| ≤ c7(N) = #{n ≤ N : n ≡ 7 mod 25}. This uses an explicit threshold N₀ = 6.7838·10⁶ and computation below it.
 - **Theorem B** (stability). For N ≥ N₀, a valid set not inside one class has at most (N − 7)/25 elements, and at most (0.029289 + o(1))N.
 - **Theorem C** (rigidity and extremisers). A valid set with one element outside C7 keeps asymptotically at most a fraction 0.3667… of C7, and this is sharp. The maximisers are exactly C7 (and C18 when it has the same size), plus four small sets for 41 ≤ N ≤ 81.
-- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 95·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
+- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 75·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
 
 ## Status
 
@@ -30,7 +30,7 @@ The arguments, code and certificates were developed with AI assistance (Anthropi
 | `margins/` | Exploration of the type-matrix game | `typemat.c`, `solve.py` |
 | `rigidity/` | Theorem C(2): exact maximisers | `nsc.py` (exact cliques not inside one class, N ≤ 1006), `sbrute.py` (independent S1–S4 brute force), `small31.txt`, `strict69.txt` |
 | `li_check/` | Independent check of Li's uniform-degree proposition for 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c`, `li1e7.txt`, `li_degree_check.md` |
-| `lambda_star/` | Section 8: second-best density 1/50 | `lamcert.c` (exhaustive exact certificate, 51,223 cores), `closed.py` (the 64 closed sets and 439 pairs), `jthr.py` (slack thresholds), `explicitC.py` + `explicitC.out` (explicit constant, C = 170), `explicitC_omega.py` + `explicitC_omega.out` (with the ω-refinement, C = 95), `vomega.c` (exact ω-counts in V), `lamgame.py` (525-type MILP), `bipflow2.py`, `wgame4.py` (general local witness game), notes `lambda_star.md` |
+| `lambda_star/` | Section 8: second-best density 1/50 | `lamcert.c` (exhaustive exact certificate, 51,223 cores), `closed.py` (the 64 closed sets and 439 pairs), `jthr.py` (slack thresholds), `explicitC.py` + `explicitC.out` (explicit constant, C = 170), `explicitC_omega.py` + `explicitC_omega.out` (ω-refinement with Rankin's bound, C ≤ 92.4), `omgrid.c` + `omega_envelope.py` + `omega_envelope_check.py` (rigorous ω-count envelope to 10¹⁸), `explicitC_omega2.py` + `explicitC_omega2.out` (C ≤ 72.2, so C = 75), `vomega.c` (exact ω-counts in V), `lamgame.py` (525-type MILP), `bipflow2.py`, `wgame4.py` (general local witness game), notes `lambda_star.md` |
 | `lean/` | Lean 4 proofs | `Erdos848Constructions.lean` (validity of C7, C18, F and the four small maximisers), `LamCert.lean` (Proposition 8.6 by kernel `decide`, including the equality case) |
 
 ## Reproducing the main checks
@@ -62,8 +62,9 @@ cd ../li_check && gcc -O3 -fopenmp -o fastli fastli.c -lm && ./fastli 10000000 5
 # Second-best density certificate (0.02 s) and its slack
 cd ../lambda_star && gcc -O2 -o lamcert lamcert.c && ./lamcert 52000 16900 && python3 jthr.py
 
-# Explicit constant: C = 170 without, C = 95 with the omega-refinement (about 30 minutes each)
-python3 explicitC.py && python3 explicitC_omega.py
+# Explicit constant: C = 170 without the omega-refinement, 92.4 with Rankin's bound, 75 with the envelope (about 30 minutes each)
+gcc -O2 -o omgrid omgrid.c -lm && ./omgrid 1000000000 > omgrid.txt && python3 omega_envelope.py
+python3 explicitC.py && python3 explicitC_omega.py && python3 explicitC_omega2.py
 ```
 
 ### Lean
