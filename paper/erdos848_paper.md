@@ -34,7 +34,7 @@ Write c7(N) = #{n ≤ N : n ≡ 7 (mod 25)} = ⌊(N − 7)/25⌋ + 1, and C7, C1
 1. If A is valid and A ⊄ C7, then |A ∩ C7| ≤ (g1\* + o(1))N, where g1\* = (1/3 + 2/3·β∞)/25 = 0.0146697… and β∞ = 1 − ∏\_{p≥7}(1 − p⁻²). This constant is sharp.
 2. For N ∉ \[41, 81\], the maximisers in Theorem A are exactly C7 ∩ \[N\], together with C18 ∩ \[N\] when c18(N) = c7(N). For 41 ≤ N ≤ 81 there are also the maximisers {7, 41}, {32, 43}, {41, 43} and {32, 43, 57}, each in its own range of N.
 
-**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 680·N^0.81, so the second-best density λ\* equals 1/50 (Section 8).
+**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 170·N^0.81, so the second-best density λ\* equals 1/50 (Section 8).
 
 Theorems B, C and D are new. Sawhney's note gives stability with an unspecified η and leaves open whether 18 mod 25 also attains the maximum. Li's proof of Theorem A, and the other all-N claims, give no stability constant and no description of the maximisers. The Lean formalisation in erdos-banger proves stability with η = 1/2000 beyond an ineffective N₀.
 
@@ -289,7 +289,7 @@ For instance, 32·43 + 1 = 3⁴·17, 32·57 + 1 = 5²·73 and 43·57 + 1 = 2²·
 
 Let λ\*(N) be the largest size of a valid A ⊆ \[N\] contained neither in C7 nor in C18.
 
-**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. In particular λ\*(N) ≤ N/50 + 680·N^0.81 for every N. The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
+**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. In particular λ\*(N) ≤ N/50 + 170·N^0.81 for every N. The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
 
 Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit.
 
@@ -332,21 +332,21 @@ This is a cruder form of Lemma 3.5 that needs no information about the target. S
 **Lemma 8.4 (joint estimate for R-targets).** Let t be a residue class mod 900 inside R, of density w\_t, and let b ≤ N be a witness that does not force t. Then
 
 ```latex
-\#\{a\in t\cap[N] : a\in V,\ ab+1 \text{ not squarefree}\} \le w_t\, j^{+} N + O(N^{0.8+o(1)}),\qquad j^{+} = \alpha^{+}\beta^{+} + \kappa + \tau \le 0.01551,
+\#\{a\in t\cap[N] : a\in V,\ ab+1 \text{ not squarefree}\} \le w_t\, j^{+} N + O(N^{0.8+o(1)}),\qquad j^{+} = \alpha^{+}\beta_{500} + \kappa + \tau + \tau_B \le 0.01577,
 ```
 
 where
 
 - α⁺ = Σ 2/p² over primes p ≡ 1 (mod 4), p ≥ 13;
-- β⁺ = Σ\_{q≥7} 1/q² = 0.051136 (in this section; it is at least the truncated β⁺ of Section 4);
+- β⁺ = Σ\_{q≥7} 1/q² = 0.051136 (in this section; it is at least the truncated β⁺ of Section 4), and β\_500 = Σ\_{7≤q≤500} 1/q² = 0.050863;
 - κ = Σ 1/p² over primes p ≡ 1 (mod 4), p ≥ 13;
-- τ = 2Σ 1/p² over primes p ≡ 1 (mod 4), p > 500, which is at most 0.00028.
+- τ = 2Σ 1/p² over primes p ≡ 1 (mod 4), p > 500, which is at most 0.00028; and τ\_B = Σ 1/q² over all primes q > 500, which is also at most 0.00028.
 
 *Proof.* Membership a ∈ V needs p² | a² + 1 for some p ≡ 1 (mod 4), p ≥ 13 (Lemma 2.1). Because b does not force t, non-squarefreeness of ab + 1 needs q² | ab + 1 for some q ≥ 7. Split into three parts.
 
-1. **p, q ≤ 500.** By CRT with mod 900, a pair p ≠ q fixes 2 classes mod 900p²q², contributing at most 2(w\_t N/(p²q²) + 1). A pair p = q needs a ≡ ±ι\_p and a ≡ −b⁻¹ (mod p²), at most one class, contributing w\_t N/p² + 1. Together these give at most w\_t(α⁺β⁺ + κ)N + O(1).
+1. **p, q ≤ 500.** By CRT with mod 900, a pair p ≠ q fixes 2 classes mod 900p²q², contributing at most 2(w\_t N/(p²q²) + 1). A pair p = q needs a ≡ ±ι\_p and a ≡ −b⁻¹ (mod p²), at most one class, contributing w\_t N/p² + 1. Together these give at most w\_t(α⁺β\_500 + κ)N + O(1).
 2. **p > 500.** Lemma 3.3 for 500 < p ≤ N^0.6 and Lemma 3.4 for p > N^0.6 give at most w\_t τ N + O(N^0.8 log N).
-3. **p ≤ 500 and q > 500.** For q ≤ N^0.6 the CRT terms stay inside w\_t α⁺β⁺ N, plus O(N^0.6) units. For q > N^0.6 use Lemma 8.3. ∎
+3. **q > 500.** Drop the condition on p. For 500 < q ≤ N^0.6 each prime fixes one class, contributing at most w\_t N/q² + 1, so these give at most w\_t τ\_B N + π(N^0.6). For q > N^0.6 use Lemma 8.3. ∎
 
 For a C-type target that b does not force, the same argument without the condition a ∈ V gives at most w\_t β⁺ N + O(N^{0.8+o(1)}), with β⁺ ≤ 0.05114.
 
@@ -388,7 +388,7 @@ This reduced check is formalised in `LamCert.lean` and checked by the Lean kerne
 
 The check fails with β = 0.10 and j = 0.03, so it is not vacuous. The bound survives up to j = 0.01721 (with β = 0.052) or β = 0.0556 (with j = 0.0169). A floating-point MILP over all 2⁵²⁵ type sets, run independently, gives the same value 1/50 with a matching dual bound. ∎
 
-**Proof of Theorem 8.1.** Since β⁺ ≤ 0.05114 < 0.052 and j⁺ ≤ 0.01551 < 0.0169, Lemma 8.5 and Proposition 8.6 give |A| ≤ N/50 + O(N^{0.8+o(1)}), taking Y = N^0.6. Section 8.5 chooses Y better and makes every term explicit. ∎
+**Proof of Theorem 8.1.** Since β⁺ ≤ 0.05114 < 0.052 and j⁺ ≤ 0.01577 < 0.0169, Lemma 8.5 and Proposition 8.6 give |A| ≤ N/50 + O(N^{0.8+o(1)}), taking Y = N^0.6. Section 8.5 chooses Y better and makes every term explicit. ∎
 
 ### 8.5 The explicit error term
 
@@ -398,7 +398,7 @@ Let r\_t be the number of residues mod 900 in the type t. These sum to 72 over t
 - **Other C-types, 7 ≤ q ≤ Y:** one class mod q² for each prime, so at most 72π(Y).
 - **Other C-types, q > Y:** a non-forced C-target lies in T\_b, so Lemma 3.5 applies. This gives 42·L\_C, where L\_C is the bound of Lemma 3.5 with b ≤ N.
 - **R-types, p, q ≤ 500:** 828(2n₁n₂ + n₁), where n₁ = 43 and n₂ = 92 count the primes in the two ranges.
-- **R-types, p ≤ 500 < q ≤ Y:** at most 1656·n₁·π(Y).
+- **R-types, 500 < q ≤ Y:** at most 828·π(Y), one residue error per prime q (the condition on p is dropped, as in Lemma 8.4).
 - **R-types, q > Y:** 483·L, where L = 2^{ω\*(N)+1}(2(N+1)/Y + (N²+1)/Y²) comes from Lemma 8.3, and ω\*(N) is the largest number of distinct prime factors of an integer ≤ N.
 - **R-types, 500 < p ≤ Y′:** at most 1656·π(Y′).
 - **R-types, p > Y′:** the bound of Lemma 3.4, counted once for all of R, because the types are disjoint.
@@ -407,11 +407,11 @@ Let E(N) be the minimum of this sum over Y and Y′. The script `explicitC.py` e
 
 | N | 10⁷ | 10¹³ | 10²⁰ | 10³⁰ | 10⁶⁰ | 10¹⁰⁰ |
 | --- | --- | --- | --- | --- | --- | --- |
-| E(N)/N | 210 | 3.6 | 0.034 | 3.5·10⁻⁵ | 9.5·10⁻¹⁴ | 1.8·10⁻²⁵ |
+| E(N)/N | 27 | 0.31 | 0.0030 | 2.4·10⁻⁶ | 4.1·10⁻¹⁵ | 1.1·10⁻²⁶ |
 
-The best Y is close to N^{3/4}, and E(N) = N^{2/3+o(1)}. The bound beats the trivial bound |A| ≤ N from about N = 10^14.9.
+The best Y lies between about N^0.72 and N^0.85, and E(N) = N^{2/3+o(1)}. The bound beats the trivial bound |A| ≤ N from about N = 10^11.7.
 
-So |A| ≤ N/50 + C·N^0.81 holds for every N, with C the largest value of min((49/50)N^0.19, E(N)/N^0.81). The grid gives C ≤ 677, attained near N = 10^14.9. Beyond 10⁶⁰¹, take Y = Y′ = N^{2/3} and use Robin's bound ω(n) ≤ 1.38402 ln n/ln ln n. This gives E(N) ≤ 1001·2^{ω\*(N)}N^{2/3}, so E(N)/N^0.81 is at most 4·10⁻⁴ and decreasing there. Hence C = 680 works in Theorem 8.1.
+So |A| ≤ N/50 + C·N^0.81 holds for every N, with C the largest value of min((49/50)N^0.19, E(N)/N^0.81). The grid gives C ≤ 167.5, attained near N = 10^11.75. Beyond 10⁶⁰¹, take Y = Y′ = N^{2/3} and use Robin's bound ω(n) ≤ 1.38402 ln n/ln ln n. This gives E(N) ≤ 1001·2^{ω\*(N)}N^{2/3}, so E(N)/N^0.81 is at most 4·10⁻⁴ and decreasing there. Hence C = 170 works in Theorem 8.1.
 
 The constant is large because the witness may have many prime factors, and because the large-prime count is crude. The exponent 0.81 can be replaced by any number above 2/3, at the cost of a larger C.
 
@@ -445,7 +445,7 @@ Further independent checks:
 | --- | --- | --- |
 | Li's uniform-degree proposition, 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c` (exact H₇, H₁₈ for all b; 70 blocks of 1%, 56 min) | holds on every block; minimum margin 13.8% (threshold taken at the top of each block); brute-force cross-check at N = 20,000 |
 | Theorem D and the constructions | `Erdos848Constructions.lean`, Lean 4.36.0-rc2 with Mathlib | compiles; no `sorry`; only the standard axioms |
-| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); explicit C = 680: explicitC.py |
+| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); explicit C = 170: explicitC.py |
 
 The full package (code, logs and certificates) accompanies this paper.
 

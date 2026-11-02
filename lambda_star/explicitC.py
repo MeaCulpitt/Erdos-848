@@ -8,7 +8,7 @@ Error accounting (r_t = residues mod 900 in type t; sum over C-types 72, over R-
   non-core C-types, q <= Y        : r_t per prime 7 <= q <= Y                 <= 72 pi(Y)
   non-core C-types, q > Y         : Lemma 3.5 per type                        <= 42 L_C
   R-types, p,q <= 500             : r_t (2 n1 n2 + n1)                        <= 828 (2 n1 n2 + n1)
-  R-types, p <= 500 < q <= Y      : 2 r_t per pair                            <= 1656 n1 pi(Y)
+  R-types, 500 < q <= Y           : r_t per prime q (p-condition dropped)     <= 828 pi(Y)
   R-types, q > Y                  : any-target lattice lemma per type         <= 483 L_any
   R-types, 500 < p <= Y'          : 2 r_t per prime                           <= 1656 pi(Y')
   R-types, p > Y'                 : Lemma 3.4 once over all of R (types disjoint)
@@ -66,7 +66,7 @@ def lnE(lN, a, b):
     T = [math.log(72),
          math.log(72) + lpY, math.log(42) + lLC,
          math.log(828*(2*n1*n2 + n1)),
-         math.log(1656*n1) + lpY,
+         math.log(828) + lpY,
          math.log(483) + lLany,
          math.log(1656) + lpYp, lnEP(lN, lYp)]
     return lse(T)

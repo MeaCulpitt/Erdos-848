@@ -81,7 +81,7 @@ def A (M : Finset Cell) : Finset Cell :=
 
 def D : ℕ := 1000000
 def BN : ℕ := 52000    -- β = 0.052 ≥ β⁺ = 0.05114
-def JN : ℕ := 16900    -- j = 0.0169 ≥ j⁺ = 0.01551
+def JN : ℕ := 16900    -- j = 0.0169 ≥ j⁺ = 0.01577
 
 def value (M7 M18 : Finset Cell) : ℕ :=
   (D - BN) * (W M7 + W M18) + BN * (W (A M18) + W (A M7)) + 23 * JN * W (A M7 ∩ A M18)

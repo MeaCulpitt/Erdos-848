@@ -9,7 +9,7 @@ This repository contains a second, independent proof for every N, together with 
 - **Theorem A** (Li; independent proof here). For every N, every valid A ⊆ [N] has |A| ≤ c7(N) = #{n ≤ N : n ≡ 7 mod 25}. This uses an explicit threshold N₀ = 6.7838·10⁶ and computation below it.
 - **Theorem B** (stability). For N ≥ N₀, a valid set not inside one class has at most (N − 7)/25 elements, and at most (0.029289 + o(1))N.
 - **Theorem C** (rigidity and extremisers). A valid set with one element outside C7 keeps asymptotically at most a fraction 0.3667… of C7, and this is sharp. The maximisers are exactly C7 (and C18 when it has the same size), plus four small sets for 41 ≤ N ≤ 81.
-- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 680·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
+- **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 170·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
 
 ## Status
 
@@ -62,7 +62,7 @@ cd ../li_check && gcc -O3 -fopenmp -o fastli fastli.c -lm && ./fastli 10000000 5
 # Second-best density certificate (0.02 s) and its slack
 cd ../lambda_star && gcc -O2 -o lamcert lamcert.c && ./lamcert 52000 16900 && python3 jthr.py
 
-# Explicit constant C = 680 (about 30 minutes)
+# Explicit constant C = 170 (about 30 minutes)
 python3 explicitC.py
 ```
 
