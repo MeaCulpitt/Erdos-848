@@ -34,7 +34,7 @@ Write c7(N) = #{n ≤ N : n ≡ 7 (mod 25)} = ⌊(N − 7)/25⌋ + 1, and C7, C1
 1. If A is valid and A ⊄ C7, then |A ∩ C7| ≤ (g1\* + o(1))N, where g1\* = (1/3 + 2/3·β∞)/25 = 0.0146697… and β∞ = 1 − ∏\_{p≥7}(1 − p⁻²). This constant is sharp.
 2. For N ∉ \[41, 81\], the maximisers in Theorem A are exactly C7 ∩ \[N\], together with C18 ∩ \[N\] when c18(N) = c7(N). For 41 ≤ N ≤ 81 there are also the maximisers {7, 41}, {32, 43}, {41, 43} and {32, 43, 57}, each in its own range of N.
 
-**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 75·N^0.81, so the second-best density λ\* equals 1/50 (Section 8).
+**Theorem D (a dense two-class set).** The set F = {n ≡ 7 (mod 25), n ≡ 1 (mod 4)} ∪ {n ≡ 18 (mod 25), n ≡ 3 (mod 4)} is valid. It has density 1/50 and meets both classes. Among sets defined by congruences mod 900, it is the densest valid set not inside one class. Moreover F is optimal: every valid A ⊆ \[N\] not inside C7 or C18 has |A| ≤ N/50 + 30·N^0.81, so the second-best density λ\* equals 1/50 (Section 8).
 
 Theorems B, C and D are new. Sawhney's note gives stability with an unspecified η and leaves open whether 18 mod 25 also attains the maximum. Li's proof of Theorem A, and the other all-N claims, give no stability constant and no description of the maximisers. The Lean formalisation in erdos-banger proves stability with η = 1/2000 beyond an ineffective N₀.
 
@@ -289,7 +289,7 @@ For instance, 32·43 + 1 = 3⁴·17, 32·57 + 1 = 5²·73 and 43·57 + 1 = 2²·
 
 Let λ\*(N) be the largest size of a valid A ⊆ \[N\] contained neither in C7 nor in C18.
 
-**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. In particular λ\*(N) ≤ N/50 + 75·N^0.81 for every N (Section 8.6). The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
+**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. In particular λ\*(N) ≤ N/50 + 30·N^0.81 for every N (Section 8.6). The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
 
 Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit.
 
@@ -411,7 +411,7 @@ Let E(N) be the minimum of this sum over Y and Y′. The script `explicitC.py` e
 
 The best Y lies between about N^0.72 and N^0.85, and E(N) = N^{2/3+o(1)}. The bound beats the trivial bound |A| ≤ N from about N = 10^11.7.
 
-So |A| ≤ N/50 + C·N^0.81 holds for every N, with C the largest value of min((49/50)N^0.19, E(N)/N^0.81). The grid gives C ≤ 167.5, attained near N = 10^11.75. Beyond 10⁶⁰¹, take Y = Y′ = N^{2/3} and use Robin's bound ω(n) ≤ 1.38402 ln n/ln ln n. This gives E(N) ≤ 1001·2^{ω\*(N)}N^{2/3}, so E(N)/N^0.81 is at most 4·10⁻⁴ and decreasing there. This gives C = 170. Section 8.6 lowers it to 75.
+So |A| ≤ N/50 + C·N^0.81 holds for every N, with C the largest value of min((49/50)N^0.19, E(N)/N^0.81). The grid gives C ≤ 167.5, attained near N = 10^11.75. Beyond 10⁶⁰¹, take Y = Y′ = N^{2/3} and use Robin's bound ω(n) ≤ 1.38402 ln n/ln ln n. This gives E(N) ≤ 1001·2^{ω\*(N)}N^{2/3}, so E(N)/N^0.81 is at most 4·10⁻⁴ and decreasing there. This gives C = 170. Section 8.6 lowers it to 30.
 
 The constant is large because the witness may have many prime factors, and because the large-prime count is crude. The exponent 0.81 can be replaced by any number above 2/3, at the cost of a larger C.
 
@@ -433,16 +433,21 @@ N_{k+1}(x) \le \sum_{\substack{m\le\sqrt{x}\\ \omega(m)=k}} P(x/m) + \frac{1}{k+
 
 *Proof.* Let n ≤ x have k + 1 prime-power factors. If the largest of them, q, exceeds √x, then n = qm with m < √x and ω(m) = k, and this representation is unique. Otherwise each of the k + 1 prime-power factors q is at most √x, and n/q has k prime factors and is at most x/q, so n is counted k + 1 times in the second sum. ∎
 
-The script `omega_envelope.py` starts from exact counts of N\_j at the points 10^{i/200} up to 10⁹ (`omgrid.c`), and uses P(y) ≤ π(y) + 2√y with Dusart's bound for π above that. It evaluates Lemma 8.8 on the same grid up to 10¹⁸, binning both sums and rounding every argument up to the next grid point. Since each N\_j is nondecreasing, this gives upper envelopes. As a check, the same computation started from exact counts at 10⁷ stays above the exact counts at every grid point up to 10⁹.
+The script `omega_envelope.py` (in its final form inside `explicitC_omega3.py`) starts from exact counts of N\_j at the points 10^{i/200} up to 10¹¹. These come from a segmented sieve, `segomega.c`, which reproduces the direct counts of `omgrid.c` up to 10⁹ exactly. Above that it uses P(y) ≤ π(y) + 2√y with Dusart's bound for π. It evaluates Lemma 8.8 on the same grid up to 10¹⁸, binning both sums and rounding every argument up to the next grid point. Since each N\_j is nondecreasing, this gives upper envelopes. As a check, the same computation started from exact counts at 10⁷ stays above the exact counts at every grid point up to 10⁹.
 
 Write K\_k(N) for the smaller of the Rankin and envelope bounds on #{n ≤ N : ω(n) ≥ k}, with K\_k(N) = 0 when k > ω\*(N). There are two cases.
 
 - **Case I: A′ is inside neither C7 nor C18.** Run the argument of Sections 8.2–8.4 on A′, choosing every witness in A′. Then ω(b) ≤ k − 1, so in Section 8.5 the factors 2^{ω\*(N)+1} and 2^{ω₁\*(N)} become 2^{k} and 2^{k−1}. Call the resulting error E\_k(N). Then |A| ≤ N/50 + E\_k(N) + K\_k(N).
 - **Case II: A′ ⊆ C7, say.** Since A ⊄ C7, some b ∈ A″ lies outside C7, and A \\ C7 ⊆ A″. A single cell outside C7 forces at most 12 of the 36 residues of C7 mod 36: one row of weight 9 and one column of weight 4, which overlap in one cell. So, as in Lemma 2.2, |A ∩ C7| ≤ g₁N + E\_II(N). Here g₁ = (1/3 + (2/3)β⁺)/25 = 0.014697 < 1/50, and E\_II(N) = 36 + 36π(Y) + L\_C, where L\_C is Lemma 3.5's bound with the worst-case factor 2^{ω₁\*(N)}. Then |A| ≤ N/50 + E\_II(N) + K\_k(N) − (1/50 − g₁)N.
 
-Taking k = ω\*(N) + 1 recovers Section 8.5. The script `explicitC_omega2.py` uses the grid of Section 8.5, refined to ratio 10^0.01 from 10⁵ to 10²⁵. For each cell it chooses k, Y and Y′ and checks both cases. It gives C ≤ 72.2, attained near N = 10^9.82 with k = 6. Hence C = 75 works in Theorem 8.1. Rankin's bound alone gives C ≤ 92.4 (`explicitC_omega.py`).
+Two further facts help at moderate N, both because every element of A lies in V.
 
-The envelope is still a few times the true count; started at 10⁷, it is 3–12 times too large at 10⁹ for the relevant k. The larger remaining gain would come from counting only the elements of V, which are the only elements a valid set can contain. Exact counts up to 10⁹ show that this makes the count about ten times smaller. Our estimate is that it would bring C to about 40, but it needs an explicit bound for integers with many prime factors in the classes ±ι\_p mod p².
+- **Counting inside V.** Let V\_P be the part of V that comes from primes p ≤ P = 10⁵, that is, the n with p² | n² + 1 for some such p. The sieve also counts the n ∈ V\_P with ω(n) ≥ k exactly, up to 10¹¹. The rest of V comes from primes p > P with p ≡ 1 (mod 4), and has at most 2NΣ\_{p>P} p⁻² + 2π(Y′) elements up to Y′, plus the bound of Lemma 3.4 beyond Y′. Inside V the count of elements with many prime factors is about fourteen times smaller than over all integers.
+- **The bound |A| ≤ |V ∩ \[N\]|.** This replaces the trivial bound |A| ≤ N. Up to 10¹¹ the sieve gives |V ∩ \[N\]| directly. Beyond that, inclusion–exclusion over the eleven primes p ≤ 100 with p = 5 or p ≡ 1 (mod 4) gives at most 0.10359N + 3¹¹; Lemma 3.3 covers 100 < p ≤ Y′, and Lemma 3.4 the primes beyond. At 10¹¹ this formula gives 1.0549·10¹⁰, against an exact count of 1.0531·10¹⁰.
+
+Taking k = ω\*(N) + 1 recovers Section 8.5. The script `explicitC_omega4.py` uses the grid of Section 8.5, refined to ratio 10^0.01 from 10⁵ to 10²⁵. For each cell it takes the better of two bounds. One is |A| ≤ |V ∩ \[N\]|. The other, for the best k, is the two cases above, using the smallest available bound on the elements with ω ≥ k. It gives C ≤ 29.9, attained near N = 10^13.33 with k = 8. Hence C = 30 works in Theorem 8.1. For comparison, Rankin's bound alone gives C ≤ 92.4 (`explicitC_omega.py`).
+
+The bound |A| ≤ |V ∩ \[N\]| decides C up to about 10¹³. Beyond that the refined argument decides it, with k between 8 and 11. The worst cell lies just past the range of the exact counts within V. So extending the sieve, or an explicit bound for integers with many prime factors in the classes ±ι\_p mod p², would lower C further.
 
 ## 9. Open problems
 
@@ -474,7 +479,7 @@ Further independent checks:
 | --- | --- | --- |
 | Li's uniform-degree proposition, 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c` (exact H₇, H₁₈ for all b; 70 blocks of 1%, 56 min) | holds on every block; minimum margin 13.8% (threshold taken at the top of each block); brute-force cross-check at N = 20,000 |
 | Theorem D and the constructions | `Erdos848Constructions.lean`, Lean 4.36.0-rc2 with Mathlib | compiles; no `sorry`; only the standard axioms |
-| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); explicit C = 75: explicitC\_omega2.py with omega\_envelope.py (C = 92.4 with Rankin's bound alone: explicitC\_omega.py; C = 170 without the ω-refinement: explicitC.py) |
+| Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); explicit C = 30: explicitC\_omega4.py, with exact counts to 10¹¹ from segomega.c (C = 92.4 with Rankin's bound alone: explicitC\_omega.py; C = 170 without the ω-refinement: explicitC.py) |
 
 The full package (code, logs and certificates) accompanies this paper.
 
