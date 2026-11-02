@@ -11,6 +11,7 @@ This repository contains a second, independent proof for every N, together with 
 - **Theorem C** (rigidity and extremisers). A valid set with one element outside C7 keeps asymptotically at most a fraction 0.3667… of C7, and this is sharp. The maximisers are exactly C7 (and C18 when it has the same size), plus four small sets for 41 ≤ N ≤ 81.
 - **Theorem D / 8.1** (second-best density). The densest valid set not inside one class has size N/50 + O(N^0.81), with an explicit constant: at most N/50 + 30·N^0.81 for every N. It is sharp up to lower-order terms: F has at least N/50 − 2 elements, where F = {7 mod 25, 1 mod 4} ∪ {18 mod 25, 3 mod 4}.
 - **Theorem 8.9** (third-order structure). For N ≥ 10^23.6, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror: near the second-best density, only deletions from F are possible.
+- **Theorem 9.1** (cube-free analogue). If ab + 1 is never cube-free on A ⊆ [N], then |A| ≤ #{n ≤ N : n ≡ 57 mod 125} for every N, with the maximisers listed exactly. See `cubefree/`.
 
 ## Status
 
@@ -32,6 +33,7 @@ The arguments, code and certificates were developed with AI assistance (Anthropi
 | `rigidity/` | Theorem C(2): exact maximisers | `nsc.py` (exact cliques not inside one class, N ≤ 1006), `sbrute.py` (independent S1–S4 brute force), `small31.txt`, `strict69.txt` |
 | `li_check/` | Independent check of Li's uniform-degree proposition for 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c`, `li1e7.txt`, `li_degree_check.md` |
 | `lambda_star/` | Section 8: second-best density 1/50 | `lamcert.c` (exhaustive exact certificate, 51,223 cores), `closed.py` (the 64 closed sets and 439 pairs), `jthr.py` (slack thresholds), `explicitC.py` + `explicitC.out` (explicit constant, C = 170), `explicitC_omega.py` + `explicitC_omega.out` (ω-refinement with Rankin's bound, C ≤ 92.4), `omgrid.c` + `omega_envelope.py` + `omega_envelope_check.py` (rigorous ω-count envelope to 10¹⁸), `explicitC_omega2.py` + `explicitC_omega2.out` (envelope from 10⁹, C ≤ 72.2), `segomega.c` + `seg1e11.txt` (exact ω-counts to 10¹¹, overall and in V), `explicitC_omega4.py` + `explicitC_omega4.out` (final: C ≤ 29.9, so C = 30), `vomega.c` (exact ω-counts in V), `lamgame.py` (525-type MILP), `bipflow2.py`, `wgame4.py` (general local witness game), notes `lambda_star.md` |
+| `cubefree/` | Theorem 9.1: the cube-free analogue | `cubeM.c` (exact one-witness bound), `cube_analytic.py`, `cube_maxsets.py`, `cube_small.py` |
 | `lean/` | Lean 4 proofs | `Erdos848Constructions.lean` (validity of C7, C18, F and the four small maximisers), `LamCert.lean` (Proposition 8.6 by kernel `decide`, including the equality case), `LamGap.lean` (the strict gap behind Theorem 8.9) |
 
 ## Reproducing the main checks

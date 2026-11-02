@@ -11,7 +11,7 @@ Our main new results describe valid sets beyond the maximum:
 - **Explicit stability.** For N ≥ 6.7838·10⁶, every valid set not inside one class has at most (N − 7)/25 elements, and at most 0.0293N asymptotically. This makes Sawhney's qualitative η explicit: η = 0.0016 at N = 10⁷, rising to about 0.0107 as N → ∞.
 - **Sharp rigidity.** One element outside 7 mod 25 leaves at most a fraction 0.3667… of that class. This is the sharp form of the degree estimate in Li's proof.
 - **Exact maximisers for every N.** They are the classes 7 and 18 mod 25, plus four small sets not inside one class when 41 ≤ N ≤ 81.
-- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror.
+- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. The same method also settles the cube-free analogue, ab + 1 never cube-free, for every N: the maximum is the class 57 mod 125 (Section 9).
 
 The constructions and the certificate for the second-best density are verified in Lean 4. Every computation is reproducible and was cross-checked by an independent implementation. This includes a check of the key degree proposition of Li's proof for 5·10⁶ ≤ N ≤ 10⁷.
 
@@ -467,11 +467,46 @@ Every type of A is forced by every type of this core. A C7 cell forced with ever
 
 The threshold is large for two reasons: the gap is small, and the error of Section 8.5 decays only like N^{−1/3+o(1)}. The ω-refinement of Section 8.6 does not transfer directly. It would only show that A lies in F apart from at most K\_k(N) exceptional elements.
 
-## 9. Open problems
+## 9. The cube-free analogue
+
+As a test of how general the method is, consider the same question with cubes in place of squares. Call A ⊆ \[N\] *cube-valid* if ab + 1 is not cube-free for all a, b ∈ A, including a = b. Write V₃ = {x : x² + 1 not cube-free}. Since 57² + 1 = 2·5³·13, the classes 57 and 68 mod 125 are cube-valid, playing the role of 7 and 18 mod 25. Write c57(N) = #{n ≤ N : n ≡ 57 (mod 125)}.
+
+**Theorem 9.1.** For every N, every cube-valid A ⊆ \[N\] has |A| ≤ c57(N). Equality holds exactly in the following cases:
+
+- A = C57 ∩ \[N\];
+- A = C68 ∩ \[N\], when c68(N) = c57(N);
+- for 193 ≤ N ≤ 306, also A = {182, 193};
+- for 239 ≤ N ≤ 306, also A = {57, 239} and A = {193, 239}.
+
+The exceptional sets work through 8 and 27: 182·193 + 1 = 3³·1301, 57·239 + 1 = 2³·13·131 and 193·239 + 1 = 2⁴·3·31². Locally the picture is the same as for 848. The densest congruence-defined cube-valid set not inside one class is {57 mod 125, 1 mod 8} ∪ {68 mod 125, 7 mod 8}, of density 1/500 (`wgame4.py`).
+
+The proof is much shorter than for 848, for two reasons. The local gap is far larger, so a single witness suffices and the full witness game is not needed. And a cube q³ > N² + 1 can never divide ab + 1, so no lattice lemma is needed either.
+
+**Lemma 9.2 (one witness).** Let A be cube-valid, and suppose some b ∈ A lies outside C57. Then
+
+```latex
+|A\cap C57| \le \frac{N}{125}\Big(\frac18+\frac1{27}+\beta_3\Big) + 2 + \pi\big((N^2+1)^{1/3}\big), \qquad \beta_3=\sum_{q\ge 7} q^{-3} \le 0.004726,
+```
+
+and the same holds for C68.
+
+*Proof.* Since b ∉ C57, 125 never divides ab + 1 for a ∈ C57. So some prime q ≠ 5 has q³ | ab + 1, which puts a in one class mod q³ (if q ∤ b). For q = 2 and q = 3 this is at most a fraction 1/8 or 1/27 of C57, at a cost of 1 each. For q ≥ 7, the class mod 125q³ contains at most N/(125q³) + 1 elements up to N. Also q³ ≤ ab + 1 ≤ N² + 1. ∎
+
+*Proof of Theorem 9.1.* Let A be cube-valid and inside neither C57 nor C68. Then A has elements outside each class, so Lemma 9.2 applies to both. The remaining elements lie in V₃ outside C57 ∪ C68, so each has p³ | x² + 1 for some p ≡ 1 (mod 4) with p ≥ 13. There are at most 2Nσ₃ + 2π((N²+1)^{1/3}) of them, where σ₃ = Σ p⁻³ over primes p ≡ 1 (mod 4) with p ≥ 13, so σ₃ ≤ 0.000756.
+
+- **Large N.** The total main term is 0.004178N against c57(N) > (N − 57)/125 ≈ 0.008N. Checking cells of ratio 1.01 with exact prime counts to 10⁸ and Rosser–Schoenfeld above (`cube_analytic.py`) gives |A| < c57(N) for all N ≥ 1.94·10⁶.
+- **700 ≤ N ≤ 2·10⁶.** Here `cubeM.c` computes the bound exactly. It finds the maximum over witnesses b ∈ V₃ ∖ C57 of #{a ∈ C57 ∩ \[N\] : ab + 1 not cube-free}, likewise for C68, and adds |V₃ ∩ \[N\]| − c57(N) − c68(N). All three are nondecreasing in N. On 20 cells of ratio 1.5 the bound stays below c57 at the lower end of each cell; at its largest it is 77% of it. A brute-force recomputation by factorisation agrees at N = 3000.
+- **N ≤ 700.** `cube_maxsets.py` lists all maximum cube-valid sets for every N by an exact clique search. An independent clique computation confirms the maximum c57(N) up to N = 40,000.
+
+So for N ≥ 700 every cube-valid set not inside one class has fewer than c57(N) elements, and the maximisers are the full classes. ∎
+
+The comparison is instructive. The method needs a self-forcing class, a positive local gap, and a way to count the large-prime events. For squares the first two were easy and the third was the main difficulty. For cubes all three are easy.
+
+## 10. Open problems
 
 1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 6) are small sets unrelated to F, so some lower bound on N is needed.
 2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of 40 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
-3. **A general witness-game theorem.** The method seems to apply whenever "f(a, b) has a square factor" admits a self-forcing residue class and the local game has a positive gap. A local survey suggests ab + 1 never cube-free (extremal class 57 or 68 mod 125) as the cleanest next case.
+3. **A general witness-game theorem.** Section 9 shows that the method carries over to ab + 1 never cube-free, where it becomes much simpler. Is there a general theorem? Suppose "f(a, b) has a k-th power factor" admits a self-forcing residue class and the local game has a positive gap. Is that class then extremal for all large N, with an effective threshold?
 4. **Formalisation.** The constructions (`Erdos848Constructions.lean`) and the certificate of Proposition 8.6 (`LamCert.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
 
 ## Appendix: verification and reproducibility

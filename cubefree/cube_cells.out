@@ -1,0 +1,21 @@
+[700, 1050]: bound 5 vs c57(N_lo) = 6  ok
+[1050, 1575]: bound 6 vs c57(N_lo) = 8  ok
+[1575, 2362]: bound 11 vs c57(N_lo) = 13  ok
+[2362, 3543]: bound 17 vs c57(N_lo) = 19  ok
+[3543, 5314]: bound 24 vs c57(N_lo) = 28  ok
+[5314, 7971]: bound 35 vs c57(N_lo) = 43  ok
+[7971, 11956]: bound 54 vs c57(N_lo) = 64  ok
+[11956, 17934]: bound 79 vs c57(N_lo) = 96  ok
+[17934, 26901]: bound 112 vs c57(N_lo) = 144  ok
+[26901, 40351]: bound 167 vs c57(N_lo) = 215  ok
+[40351, 60526]: bound 251 vs c57(N_lo) = 323  ok
+[60526, 90789]: bound 375 vs c57(N_lo) = 484  ok
+[90789, 136183]: bound 560 vs c57(N_lo) = 726  ok
+[136183, 204274]: bound 839 vs c57(N_lo) = 1090  ok
+[204274, 306411]: bound 1254 vs c57(N_lo) = 1634  ok
+[306411, 459616]: bound 1883 vs c57(N_lo) = 2451  ok
+[459616, 689424]: bound 2814 vs c57(N_lo) = 3677  ok
+[689424, 1034136]: bound 4224 vs c57(N_lo) = 5515  ok
+[1034136, 1551204]: bound 6330 vs c57(N_lo) = 8273  ok
+[1551204, 2000000]: bound 8152 vs c57(N_lo) = 12410  ok
+20 cells, 0 failures; covers 700 <= N <= 2,000,000
