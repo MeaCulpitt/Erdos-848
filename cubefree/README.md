@@ -7,5 +7,5 @@ Question: the largest A ⊆ [N] with ab + 1 never cube-free (a = b allowed). Ans
 | `cube_maxsets.py` | all maximum sets for every N ≤ 700 (exact clique search) | `python3 cube_maxsets.py 700` |
 | `cube_small.py` | maximum = c57(N) up to 40,000 (independent clique check at block ends) | `python3 cube_small.py 40000` |
 | `cubeM.c` | exact one-witness bound at a given N | `gcc -O2 -o cubeM cubeM.c && ./cubeM 2000000` |
-| `cube_cells.out` | 20 cells covering 700 ≤ N ≤ 2·10⁶, all below c57 | (driver in the paper's appendix) |
+| `cube_cells.py`, `cube_cells.out` | 20 cells covering 700 ≤ N ≤ 2·10⁶, all below c57 | `python3 cube_cells.py` (needs `cubeM`) |
 | `cube_analytic.py` | analytic bound, all N ≥ 1.94·10⁶ | `python3 cube_analytic.py` |
