@@ -13,21 +13,22 @@ while frontier:
         T=S & A([c])
         if T not in fam: fam.add(T); frontier.append(T)
 closed=sorted({A(S) for S in fam}, key=lambda s:(-sum(w[c] for c in s)))
-print(len(fam),"A-sets;",len(closed),"closed sets")
-W=lambda s:sum(w[c] for c in s)
-best=[]
-for b,j in [(0.052,0.0169)]:
-  for M7 in closed:
-    A7=A(M7) if M7 else ALL
-    for M18 in closed:
-      if not M18<=A7: continue
-      A18=A(M18) if M18 else ALL; AR=A7&A18
-      WC7=W(A18); WC18=W(A7)
-      if not ((WC18>0 or W(AR)>0) and (WC7>0 or W(AR)>0)): continue
-      v=W(M7)+W(M18)+b*(WC7-W(M7)+WC18-W(M18))+23*j*W(AR)
-      best.append((v,sorted(M7),sorted(M18)))
-best.sort(reverse=True); print(len(best),"closed pairs"); 
-for x in best[:6]: print(round(x[0],4), x[1], x[2])
-idx={c:i for i,c in enumerate(cells)}
-L=sorted({tuple(sorted(idx[c] for c in s)) for s in fam})
-print("LIST", " ,\n  ".join("{"+", ".join(map(str,s))+"}" if s else "∅" for s in L))
+if __name__=='__main__':
+    print(len(fam),"A-sets;",len(closed),"closed sets")
+    W=lambda s:sum(w[c] for c in s)
+    best=[]
+    for b,j in [(0.052,0.0169)]:
+      for M7 in closed:
+        A7=A(M7) if M7 else ALL
+        for M18 in closed:
+          if not M18<=A7: continue
+          A18=A(M18) if M18 else ALL; AR=A7&A18
+          WC7=W(A18); WC18=W(A7)
+          if not ((WC18>0 or W(AR)>0) and (WC7>0 or W(AR)>0)): continue
+          v=W(M7)+W(M18)+b*(WC7-W(M7)+WC18-W(M18))+23*j*W(AR)
+          best.append((v,sorted(M7),sorted(M18)))
+    best.sort(reverse=True); print(len(best),"closed pairs"); 
+    for x in best[:6]: print(round(x[0],4), x[1], x[2])
+    idx={c:i for i,c in enumerate(cells)}
+    L=sorted({tuple(sorted(idx[c] for c in s)) for s in fam})
+    print("LIST", " ,\n  ".join("{"+", ".join(map(str,s))+"}" if s else "∅" for s in L))
