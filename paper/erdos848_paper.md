@@ -40,7 +40,7 @@ Theorems B, C and D are new. Sawhney's note gives stability with an unspecified 
 
 **Method.** Each a lies in one of 63 *types*, given by its class mod 25 (C7, C18 or the rest R), mod 4 and mod 9. Whether p² | ab + 1 is forced for p ∈ {2, 3, 5} depends only on the types of a and b. Fix a valid A and pick one or two "witnesses" b ∈ A. Every other a ∈ A must make ab + 1 non-squarefree. Optimising the witness choice against every possible set of types gives a finite min–max problem with value V₂ = 0.0294059… < 1/25.
 
-Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal.
+Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal and, near 1/50, essentially unique. Section 9 treats the cube-free analogue, and Section 10 lists open problems.
 
 The arguments and code were developed with AI assistance and independently re-run (Appendix). They have not yet been reviewed by a human expert.
 
@@ -204,7 +204,7 @@ E(N_{hi}) \le \big(\tfrac1{25}-V_2\big)N_{lo} - 0.28 .
 
 This gives |A| ≤ N/25 − 0.28 = (N − 7)/25 < c7(N) throughout the cell. Prime counts up to 4·10⁹ are exact, and beyond that come from Rosser–Schoenfeld and Dusart bounds.
 
-Two independent implementations agree. The referee grid uses only (z\_A, z\_B) = (17, 13), and its smallest slack is +329.8, in the first cell \[6.7838·10⁶, 6.85·10⁶\]. The original grid covers \[10⁷, 10⁶⁰\]. It optimises the parameters per cell and has 2525 cells with no failures. Its slack, as a fraction of N, rises from 0.0016 at 10⁷ to 0.0106.
+Two independent implementations agree. The referee grid uses only (z\_A, z\_B) = (17, 13), and its smallest slack is +329.8, in the first cell \[6.7838·10⁶, 6.85·10⁶\]. The original grid covers \[10⁷, 10⁶⁰\]. It optimises the parameters per cell and has 2525 cells with no failures. Its slack, as a fraction of N, rises from 0.0016 at 10⁷ to 0.0106 at 10⁶⁰, and tends to 1/25 − 0.0292884 = 0.0107.
 
 **Proposition 5.1 (tail).** For N ≥ 10⁶⁰, Theorem 4.1 holds with E\_I(N) ≤ 1.02·10⁻⁸·N.
 
@@ -237,7 +237,7 @@ Each bound is correct because every element of A ∩ C\_t is compatible with the
 
 All four bounds are nondecreasing in N. So S(N) = max S\_i at a block end E\_k bounds every N ∈ (E\_{k−1}, E\_k\]. The check is S(E\_k) ≤ c7(E\_{k−1} + 1).
 
-With blocks of relative width 1%, this holds on all 794 blocks from 3806 to 10⁷. For example, F(10⁶) = 37,637 < c7 = 40,000, and F(10⁷) = 376,171 < 400,000. The counts H\_t(b, N) are computed exactly:
+With blocks of relative width 1%, this holds on all 794 blocks from 3806 to 10⁷. For example, S(10⁶) = 37,637 < c7 = 40,000, and S(10⁷) = 376,171 < 400,000. The counts H\_t(b, N) are computed exactly:
 
 - primes p ≤ (bN)^{1/3} by stepping through the class a ≡ −b⁻¹ (mod p²);
 - larger primes by enumerating ab + 1 = mp² over m, solving s² ≡ m⁻¹ (mod b) by CRT.
@@ -289,9 +289,9 @@ For instance, 32·43 + 1 = 3⁴·17, 32·57 + 1 = 5²·73 and 43·57 + 1 = 2²·
 
 Let λ\*(N) be the largest size of a valid A ⊆ \[N\] contained neither in C7 nor in C18.
 
-**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. In particular λ\*(N) ≤ N/50 + 30·N^0.81 for every N (Section 8.6). The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
+**Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. Moreover, by the refinement of Section 8.6, λ\*(N) ≤ N/50 + 30·N^0.81 for every N. The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
 
-Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit.
+Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit, Section 8.6 lowers the constant to 30, and Section 8.7 proves the third-order Theorem 8.9.
 
 ### 8.1 Sets inside C7 ∪ C18
 
@@ -329,7 +329,7 @@ Since c < 1/6, every case gives x + y ≤ 1/2. ∎
 
 This is a cruder form of Lemma 3.5 that needs no information about the target. Since 2^{ω(b)} = N^{o(1)}, with Y = N^0.6 it is N^{0.8+o(1)}.
 
-**Lemma 8.4 (joint estimate for R-targets).** Let t be a residue class mod 900 inside R, of density w\_t, and let b ≤ N be a witness that does not force t. Then
+**Lemma 8.4 (joint estimate for R-targets).** Let t be a residue class mod 900 inside R, of density w\_t (for a type made of r\_t such classes, add the bounds; each additive error term is then multiplied by r\_t, as in Section 8.5), and let b ≤ N be a witness that does not force t. Then
 
 ```latex
 \#\{a\in t\cap[N] : a\in V,\ ab+1 \text{ not squarefree}\} \le w_t\, j^{+} N + O(N^{0.8+o(1)}),\qquad j^{+} = \alpha^{+}\beta_{500} + \kappa + \tau + \tau_B \le 0.01577,
@@ -447,7 +447,7 @@ Two further facts help at moderate N, both because every element of A lies in V.
 
 Taking k = ω\*(N) + 1 recovers Section 8.5. The script `explicitC_omega4.py` uses the grid of Section 8.5, refined to ratio 10^0.01 from 10⁵ to 10²⁵. For each cell it takes the better of two bounds. One is |A| ≤ |V ∩ \[N\]|. The other, for the best k, is the two cases above, using the smallest available bound on the elements with ω ≥ k. It gives C ≤ 29.9, attained near N = 10^13.33 with k = 8. Hence C = 30 works in Theorem 8.1. For comparison, Rankin's bound alone gives C ≤ 92.4 (`explicitC_omega.py`).
 
-The bound |A| ≤ |V ∩ \[N\]| decides C up to about 10¹³. Beyond that the refined argument decides it, with k between 8 and 11. The worst cell lies just past the range of the exact counts within V. So extending the sieve, or an explicit bound for integers with many prime factors in the classes ±ι\_p mod p², would lower C further.
+The bound |A| ≤ |V ∩ \[N\]| decides C up to about 10¹³. Beyond that the refined argument decides it; where C is decided, about 10¹³ to 10¹⁸, k is between 8 and 11. The worst cell lies just past the range where the bound |A| ≤ |V ∩ \[N\]| decides C. So extending the sieve, or an explicit bound for integers with many prime factors in the classes ±ι\_p mod p², would lower C further.
 
 ### 8.7 Third-order structure
 
@@ -494,8 +494,8 @@ and the same holds for C68.
 
 *Proof of Theorem 9.1.* Let A be cube-valid and inside neither C57 nor C68. Then A has elements outside each class, so Lemma 9.2 applies to both. The remaining elements lie in V₃ outside C57 ∪ C68, so each has p³ | x² + 1 for some p ≡ 1 (mod 4) with p ≥ 13. There are at most 2Nσ₃ + 2π((N²+1)^{1/3}) of them, where σ₃ = Σ p⁻³ over primes p ≡ 1 (mod 4) with p ≥ 13, so σ₃ ≤ 0.000756.
 
-- **Large N.** The total main term is 0.004178N against c57(N) > (N − 57)/125 ≈ 0.008N. Checking cells of ratio 1.01 with exact prime counts to 10⁸ and Rosser–Schoenfeld above (`cube_analytic.py`) gives |A| < c57(N) for all N ≥ 1.94·10⁶.
-- **700 ≤ N ≤ 2·10⁶.** Here `cubeM.c` computes the bound exactly. It finds the maximum over witnesses b ∈ V₃ ∖ C57 of #{a ∈ C57 ∩ \[N\] : ab + 1 not cube-free}, likewise for C68, and adds |V₃ ∩ \[N\]| − c57(N) − c68(N). All three are nondecreasing in N. On 20 cells of ratio 1.5 the bound stays below c57 at the lower end of each cell; at its largest it is 77% of it. A brute-force recomputation by factorisation agrees at N = 3000.
+- **Large N.** The total main term is 0.004178N against c57(N) > (N − 57)/125 ≈ 0.008N. Checking cells of ratio 1.01 with exact prime counts to 10⁸ and Rosser–Schoenfeld above (`cube_analytic.py`) gives |A| < c57(N) for 1.94·10⁶ ≤ N ≤ 10⁴⁰. Beyond 10⁴⁰ the error term 4π((N²+1)^{1/3}) + 4 is far below (0.008 − 0.004178)N.
+- **700 ≤ N ≤ 2·10⁶.** Here `cubeM.c` computes the bound exactly. It finds the maximum over witnesses b ∈ V₃ ∖ C57 of #{a ∈ C57 ∩ \[N\] : ab + 1 not cube-free}, likewise for C68, and adds |V₃ ∩ \[N\]| − c57(N) − c68(N). All three are nondecreasing in N. On 20 cells of ratio 1.5 the bound, taken at the top of each cell, stays below c57 at the bottom of the cell. At its closest it reaches 89% of c57 (17 against 19 on \[2362, 3543\]). A brute-force recomputation by factorisation agrees at N = 3000.
 - **N ≤ 700.** `cube_maxsets.py` lists all maximum cube-valid sets for every N by an exact clique search. An independent clique computation confirms the maximum c57(N) up to N = 40,000.
 
 So for N ≥ 700 every cube-valid set not inside one class has fewer than c57(N) elements, and the maximisers are the full classes. ∎
@@ -504,14 +504,14 @@ The comparison is instructive. The method needs a self-forcing class, a positive
 
 ## 10. Open problems
 
-1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 6) are small sets unrelated to F, so some lower bound on N is needed.
-2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of 40 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
+1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 7, proof of Theorem C(2)) are small sets unrelated to F, so some lower bound on N is needed.
+2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of about 38 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
 3. **A general witness-game theorem.** Section 9 shows that the method carries over to ab + 1 never cube-free, where it becomes much simpler. Is there a general theorem? Suppose "f(a, b) has a k-th power factor" admits a self-forcing residue class and the local game has a positive gap. Is that class then extremal for all large N, with an effective threshold?
-4. **Formalisation.** The constructions (`Erdos848Constructions.lean`) and the certificate of Proposition 8.6 (`LamCert.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
+4. **Formalisation.** The constructions (`Erdos848Constructions.lean`), the certificate of Proposition 8.6 (`LamCert.lean`) and the strict gap of Lemma 8.10 (`LamGap.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
 
 ## Appendix: verification and reproducibility
 
-All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy, networkx and scipy. Each computational claim has at least two independent checks.
+All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy, networkx and scipy. Each computational claim for Theorems A–D has at least two independent checks. Theorem 9.1 rests on cube\_maxsets.py (all maximum sets, N ≤ 700), cube\_small.py (an independent clique check of the maximum up to 40,000), cubeM.c (the exact one-witness bound on 20 cells, 700 ≤ N ≤ 2·10⁶, cross-checked by brute-force factorisation at N = 3000) and cube\_analytic.py (N ≥ 1.94·10⁶; one implementation).
 
 | Claim | Primary computation | Independent check |
 | --- | --- | --- |
