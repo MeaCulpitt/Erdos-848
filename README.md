@@ -32,7 +32,7 @@ The arguments, code and certificates were developed with AI assistance (Anthropi
 | `lemma/` | The explicit threshold N₀: error terms, the witness game V₂, and the grid on [10⁷, 10⁶⁰] | `n0lemma.py`, `vk2.py`, `tmgrid.py` + `tmgrid.log` (2525 cells, 0 failures), `tail60.py`, `omegaV.c`; notes `README.md` |
 | `referee/` | Independent re-implementation | `bb.c` (exact integer branch-and-bound for V₂, all 16 parameter pairs: `bb_allpairs.out`), `cellsbig.py`/`cellsbig2.py` (grid from N₀ = 6.7838·10⁶), `brute.py`/`brute2.py` (brute-force tests of the Pell and lattice lemmas) |
 | `margins/` | Exploration of the type-matrix game | `typemat.c`, `solve.py` |
-| `rigidity/` | Theorem C(2): exact maximisers | `nsc.py` (exact cliques not inside one class, N ≤ 1006), `sbrute.py` (independent S1–S4 brute force), `strict1031_69.txt` (the strict case-bound run used in Section 6), `small31.txt`, `strict69.txt` |
+| `rigidity/` | Theorem C(2): exact maximisers | `nsc.py` (exact cliques not inside one class, N ≤ 1006), `sbrute.py` (independent S1–S4 brute force), `strict1031_3806.txt` and `strict69.txt` (the strict case-bound runs used in Section 6), `small31.txt` |
 | `li_check/` | Independent check of Li's uniform-degree proposition for 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c`, `li1e7.txt`, `li_degree_check.md` |
 | `lambda_star/` | Section 8: second-best density 1/50 | `lamcert.c` (exhaustive exact certificate, 51,223 cores), `closed.py` (the 64 closed sets and 439 pairs), `jthr.py` (slack thresholds), `explicitC.py` + `explicitC.out` (explicit constant, C = 170), `explicitC_omega.py` + `explicitC_omega.out` (ω-refinement with Rankin's bound, C ≤ 92.4), `omgrid.c` + `omega_envelope.py` + `omega_envelope_check.py` (rigorous ω-count envelope to 10¹⁸), `explicitC_omega2.py` + `explicitC_omega2.out` (envelope from 10⁹, C ≤ 72.2), `segomega.c` + `seg1e11.txt` (exact ω-counts to 10¹¹, overall and in V), `explicitC_omega4.py` + `explicitC_omega4.out` (final: C ≤ 29.9, so C = 30), `vomega.c` (exact ω-counts in V), `lamgame.py` (525-type MILP), `bipflow2.py`, `wgame4.py` (general local witness game), notes `lambda_star.md` |
 | `cubefree/` | Theorem 9.1: the cube-free analogue | `cubeM.c` (exact one-witness bound), `cube_analytic.py`, `cube_maxsets.py`, `cube_small.py` |
@@ -45,7 +45,7 @@ Requirements: gcc (with OpenMP), Python 3 with numpy, scipy, sympy, networkx and
 
 ```bash
 # Theorems A and C(2) for 1006 < N <= 6.9e6: case bounds strictly below c7 (about 30 min on 2 cores)
-cd computation && gcc -O3 -march=native -fopenmp -o fast848 fast848.c -lm && STRICT=1 ./fast848 6900000 1031
+cd computation && gcc -O3 -march=native -fopenmp -o fast848 fast848.c -lm && STRICT=1 ./fast848 3806 1031 && STRICT=1 ./fast848 6900000 3806
 
 # Cross-checks: non-strict run to 10^7, exact clique search for N <= 3806 (about 13 minutes)
 ./fast848 10000000 3806 && python3 e848b.py 3806

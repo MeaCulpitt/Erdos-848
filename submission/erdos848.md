@@ -218,7 +218,7 @@ Let $m(N)$ be the largest size of a valid $A \subseteq [N]$ not inside $C_7$ or 
 
 Each bound is correct because every element of $A \cap C_t$ is compatible with the chosen witness. In S2 an odd $R$-witness and odd $C$-elements remain. In S3 an even $C$-element of one class witnesses the other class.
 
-All four bounds are nondecreasing in $N$. So $S(N) = \max S_i$ at the end $E_k$ of a block bounds $m(N)$ for every $N \in (E_{k-1}, E_k]$, and it suffices that $S(E_k) < c_7(E_{k-1} + 1)$. We use blocks of width $\max(25, E_{k-1}/100)$. The check holds on all 859 blocks from 1006 to $6.9\cdot 10^{6}$. For example, $S(10^{6}) = 37{,}637 < c_7 = 40{,}000$. The counts $H_t(b, N)$ are computed exactly:
+All four bounds are nondecreasing in $N$. So $S(N) = \max S_i$ at the end $E_k$ of a block bounds $m(N)$ for every $N \in (E_{k-1}, E_k]$, and it suffices that $S(E_k) < c_7(E_{k-1} + 1)$. We use 103 blocks from 1006 to 3806 and 757 blocks of relative width 1% from 3806 to $6.9\cdot 10^{6}$, and the check holds on all 860. The smallest margin is 1, on the block $(4282, 4324]$; for example, $S(10^{6}) = 37{,}637 < c_7 = 40{,}000$. The counts $H_t(b, N)$ are computed exactly:
 
 - primes $p \le (bN)^{1/3}$ by stepping through the class $a \equiv -b^{-1} \pmod{p^2}$;
 - larger primes by enumerating $ab + 1 = mp^2$ over $m$, solving $s^2 \equiv m^{-1} \pmod{b}$ by CRT.
@@ -455,7 +455,7 @@ All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy
 | Claim | Primary computation | Independent check |
 | --- | --- | --- |
 | Theorem A and C(2), $N \le 1006$ | `nsc.py` (exact cliques by case) | maximum clique at $N \equiv 6 \pmod{25}$ up to 3806, `e848b.py`; maximal-clique enumeration for $N \le 106$ |
-| Theorem A and C(2), $1006 < N \le 6.9\cdot 10^{6}$ | `fast848.c` with `STRICT=1`, 859 blocks | `e848cases.c` (different algorithm) to $10^{6}$; numpy brute force `alledges.py`; `sbrute.py` (direct $d^2$ sieve) matches $S_1$–$S_4$ at all 168 edges $\le 20{,}000$ and on the tightest block one $N$ at a time; non-strict run to $10^{7}$ (794 blocks) |
+| Theorem A and C(2), $1006 < N \le 6.9\cdot 10^{6}$ | `fast848.c` with `STRICT=1`, 860 blocks | `e848cases.c` (different algorithm) to $10^{6}$; numpy brute force `alledges.py`; `sbrute.py` (direct $d^2$ sieve) matches $S_1$–$S_4$ at all 168 edges $\le 20{,}000$ and on the tightest block one $N$ at a time; non-strict run to $10^{7}$ (794 blocks) |
 | $V_2$ values | exact integer branch-and-bound, `bb.c`, all 16 parameter pairs | MILP, `vk2.py` (HiGHS) |
 | Lemma 3.5 constants $\lambda$, $c$ | `mconst2.py` | `mc.py` (brute-force $\rho$) |
 | Lemmas 3.4 and 3.5 | proofs above | brute force at $N \le 3\cdot 10^{5}$, `brute.py` / `brute2.py`: no violations, worst ratio actual/bound $0.026$ |

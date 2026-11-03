@@ -736,9 +736,10 @@ witnesses the other class.
 All four bounds are nondecreasing in \(N\). So \(S(N) = \max S_i\) at
 the end \(E_k\) of a block bounds \(m(N)\) for every
 \(N \in (E_{k-1}, E_k]\), and it suffices that
-\(S(E_k) < c_7(E_{k-1} + 1)\). We use blocks of width
-\(\max(25, E_{k-1}/100)\). The check holds on all 859 blocks from 1006
-to \(6.9\cdot 10^{6}\). For example,
+\(S(E_k) < c_7(E_{k-1} + 1)\). We use 103 blocks from 1006 to 3806 and
+757 blocks of relative width 1\% from 3806 to \(6.9\cdot 10^{6}\), and
+the check holds on all 860. The smallest margin is 1, on the block
+\((4282, 4324]\); for example,
 \(S(10^{6}) = 37{,}637 < c_7 = 40{,}000\). The counts \(H_t(b, N)\) are
 computed exactly:
 
@@ -1474,7 +1475,7 @@ Theorem A and C(2), \(N \le 1006\) & \texttt{nsc.py} (exact cliques by
 case) & maximum clique at \(N \equiv 6 \pmod{25}\) up to 3806,
 \texttt{e848b.py}; maximal-clique enumeration for \(N \le 106\) \\
 Theorem A and C(2), \(1006 < N \le 6.9\cdot 10^{6}\) &
-\texttt{fast848.c} with \texttt{STRICT=1}, 859 blocks &
+\texttt{fast848.c} with \texttt{STRICT=1}, 860 blocks &
 \texttt{e848cases.c} (different algorithm) to \(10^{6}\); numpy brute
 force \texttt{alledges.py}; \texttt{sbrute.py} (direct \(d^2\) sieve)
 matches \(S_1\)--\(S_4\) at all 168 edges \(\le 20{,}000\) and on the

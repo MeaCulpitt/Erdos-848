@@ -235,7 +235,7 @@ Let m(N) be the largest size of a valid A ⊆ \[N\] not inside C7 or C18. A vali
 
 Each bound is correct because every element of A ∩ C\_t is compatible with the chosen witness. In S2 an odd R-witness and odd C-elements remain. In S3 an even C-element of one class witnesses the other class.
 
-All four bounds are nondecreasing in N. So S(N) = max S\_i at the end E\_k of a block bounds m(N) for every N ∈ (E\_{k−1}, E\_k\], and it suffices that S(E\_k) < c7(E\_{k−1} + 1). We use blocks of width max(25, E\_{k−1}/100). The check holds on all 859 blocks from 1006 to 6.9·10⁶. For example, S(10⁶) = 37,637 < c7 = 40,000. The counts H\_t(b, N) are computed exactly:
+All four bounds are nondecreasing in N. So S(N) = max S\_i at the end E\_k of a block bounds m(N) for every N ∈ (E\_{k−1}, E\_k\], and it suffices that S(E\_k) < c7(E\_{k−1} + 1). We use 103 blocks from 1006 to 3806 and 757 blocks of relative width 1% from 3806 to 6.9·10⁶, and the check holds on all 860. The smallest margin is 1, on the block (4282, 4324\]; for example, S(10⁶) = 37,637 < c7 = 40,000. The counts H\_t(b, N) are computed exactly:
 
 - primes p ≤ (bN)^{1/3} by stepping through the class a ≡ −b⁻¹ (mod p²);
 - larger primes by enumerating ab + 1 = mp² over m, solving s² ≡ m⁻¹ (mod b) by CRT.
@@ -482,7 +482,7 @@ All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy
 | Claim | Primary computation | Independent check |
 | --- | --- | --- |
 | Theorem A and C(2), N ≤ 1006 | `nsc.py` (exact cliques by case) | maximum clique at N ≡ 6 (mod 25) up to 3806, `e848b.py`; maximal-clique enumeration for N ≤ 106 |
-| Theorem A and C(2), 1006 < N ≤ 6.9·10⁶ | `fast848.c` with `STRICT=1`, 859 blocks | `e848cases.c` (different algorithm) to 10⁶; numpy brute force `alledges.py`; `sbrute.py` (direct d² sieve) matches S₁–S₄ at all 168 edges ≤ 20,000 and on the tightest block one N at a time; non-strict run to 10⁷ (794 blocks) |
+| Theorem A and C(2), 1006 < N ≤ 6.9·10⁶ | `fast848.c` with `STRICT=1`, 860 blocks | `e848cases.c` (different algorithm) to 10⁶; numpy brute force `alledges.py`; `sbrute.py` (direct d² sieve) matches S₁–S₄ at all 168 edges ≤ 20,000 and on the tightest block one N at a time; non-strict run to 10⁷ (794 blocks) |
 | V₂ values | exact integer branch-and-bound, `bb.c`, all 16 parameter pairs | MILP, `vk2.py` (HiGHS) |
 | Lemma 3.5 constants λ, c | `mconst2.py` | `mc.py` (brute-force ρ) |
 | Lemmas 3.4 and 3.5 | proofs above | brute force at N ≤ 3·10⁵, `brute.py` / `brute2.py`: no violations, worst ratio actual/bound 0.026 |
