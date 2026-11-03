@@ -6,6 +6,7 @@
 | --- | --- |
 | `lam3_lower.py` | the lower-bound set {x} ∪ {a ∈ C7 : ax + 1 not squarefree}, x prime ≡ 18 (mod 25), ≡ 3 (mod 4); exact count for given N, x |
 | `coregame.py` | core game (Lemma 8.5) for types (slab, cell), solved exactly with OR-tools CP-SAT; objective coefficients rounded up |
+| `third.py` | unrefined core enumeration (64 closed sets): max U = 0.0186 over cores whose F(K) leaves C7, C18, F and F′ |
 | `third_cp.py` | the refined game: types split by membership in S_p^± = {a ≡ ±ι_p (mod p²)} for p in a given list |
 
 Results:
