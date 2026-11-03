@@ -1,0 +1,1562 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{newunicodechar}
+\usepackage{amssymb}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{²}{\ensuremath{^{2}}}
+\newunicodechar{³}{\ensuremath{^{3}}}
+\newunicodechar{·}{\ensuremath{\cdot}}
+\newunicodechar{¹}{\ensuremath{^{1}}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{ő}{\H{o}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{ι}{\ensuremath{\iota}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{…}{\ldots{}}
+\newunicodechar{′}{\ensuremath{'}}
+\newunicodechar{″}{\ensuremath{''}}
+\newunicodechar{⁰}{\ensuremath{^{0}}}
+\newunicodechar{⁴}{\ensuremath{^{4}}}
+\newunicodechar{⁵}{\ensuremath{^{5}}}
+\newunicodechar{⁶}{\ensuremath{^{6}}}
+\newunicodechar{⁷}{\ensuremath{^{7}}}
+\newunicodechar{⁸}{\ensuremath{^{8}}}
+\newunicodechar{⁹}{\ensuremath{^{9}}}
+\newunicodechar{⁺}{\ensuremath{^{+}}}
+\newunicodechar{⁻}{\ensuremath{^{-}}}
+\newunicodechar{₀}{\ensuremath{_{0}}}
+\newunicodechar{₁}{\ensuremath{_{1}}}
+\newunicodechar{₂}{\ensuremath{_{2}}}
+\newunicodechar{₃}{\ensuremath{_{3}}}
+\newunicodechar{₄}{\ensuremath{_{4}}}
+\newunicodechar{₅}{\ensuremath{_{5}}}
+\newunicodechar{₆}{\ensuremath{_{6}}}
+\newunicodechar{₇}{\ensuremath{_{7}}}
+\newunicodechar{₈}{\ensuremath{_{8}}}
+\newunicodechar{ℓ}{\ensuremath{\ell}}
+\newunicodechar{ℛ}{\ensuremath{\mathcal{R}}}
+\newunicodechar{→}{\ensuremath{\to}}
+\newunicodechar{↦}{\ensuremath{\mapsto}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∉}{\ensuremath{\notin}}
+\newunicodechar{∎}{\ensuremath{\blacksquare}}
+\newunicodechar{∏}{\ensuremath{\prod}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{∖}{\ensuremath{\setminus}}
+\newunicodechar{√}{\ensuremath{\surd}}
+\newunicodechar{∞}{\ensuremath{\infty}}
+\newunicodechar{∤}{\ensuremath{\nmid}}
+\newunicodechar{∥}{\ensuremath{\parallel}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{≢}{\ensuremath{\not\equiv}}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≥}{\ensuremath{\ge}}
+\newunicodechar{⊄}{\ensuremath{\not\subseteq}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⊔}{\ensuremath{\sqcup}}
+\newunicodechar{⌊}{\ensuremath{\lfloor}}
+\newunicodechar{⌋}{\ensuremath{\rfloor}}
+\newunicodechar{𝒞}{\ensuremath{\mathcal{C}}}
+\newunicodechar{𝒫}{\ensuremath{\mathcal{P}}}
+\newunicodechar{∣}{\ensuremath{\mid}}
+\newunicodechar{∗}{\ensuremath{\ast}}
+\newunicodechar{⋯}{\ensuremath{\cdots}}
+\newunicodechar{≪}{\ensuremath{\ll}}
+\newunicodechar{∼}{\ensuremath{\sim}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Stability, rigidity and exact extremisers for Erds Problem 848},
+  pdfauthor={Luke Culpitt (AI assisted)},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Stability, rigidity and exact extremisers for Erd\H{o}s Problem
+848}
+\author{Luke Culpitt (AI assisted)}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\subsection{Abstract}
+
+Erdős and Sárközy asked whether the largest A ⊆ \{1, \ldots, N\} with ab
++ 1 never squarefree is the residue class 7 mod 25. Sawhney proved this
+for large N, and recent computer-assisted work, notably Li's
+Lean-verified proof, extends it to every N. We give an independent proof
+for every N by a different method, with explicit threshold N₀ =
+6.7838·10⁶. It rests on a finite ``witness game'' on 63 residue types
+modulo 900, whose value 0.0294059\ldots{} is certified by exact integer
+branch-and-bound.
+
+Our main new results describe valid sets beyond the maximum:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Explicit stability.} For N ≥ 6.7838·10⁶, every valid set not
+  inside one class has at most (N − 7)/25 elements, and at most 0.0293N
+  asymptotically. This makes Sawhney's qualitative η explicit: η =
+  0.0016 at N = 10⁷, rising to about 0.0107 as N → ∞.
+\item
+  \textbf{Sharp rigidity.} One element outside 7 mod 25 leaves at most a
+  fraction 0.3667\ldots{} of that class. This is the sharp form of the
+  degree estimate in Li's proof.
+\item
+  \textbf{Exact maximisers for every N.} They are the classes 7 and 18
+  mod 25, plus four small sets not inside one class when 41 ≤ N ≤ 81.
+\item
+  \textbf{A two-class set of density 1/50.} It meets both classes, it
+  beats the natural ``one class plus one outsider'' configuration, and
+  it is optimal. Every valid set not inside one class has at most N/50 +
+  O(N\textsuperscript{0.81}) elements, so the second-best density is
+  exactly 1/50. Near that density F is rigid: for large N, a valid set
+  not inside one class with at least (1/50 − 0.0008)N elements lies
+  inside F or its mirror. A companion paper extends the method to ab + 1
+  never k-free, to ab + c never squarefree, and to the third density
+  (Section 9).
+\end{itemize}
+
+The constructions and the certificate for the second-best density are
+verified in Lean 4. Every computation is reproducible and was
+cross-checked by an independent implementation. This includes a check of
+the key degree proposition of Li's proof for 5·10⁶ ≤ N ≤ 10⁷.
+
+\subsection{1. Introduction}
+
+Call A ⊆ {[}N{]} = \{1, \ldots, N\} \textbf{valid} if ab + 1 is not
+squarefree for all a, b ∈ A, including a = b. Erdős and Sárközy asked
+whether the maximum of \textbar A\textbar{} over valid sets is attained
+by \{n ≤ N : n ≡ 7 (mod 25)\}
+(\href{https://www.erdosproblems.com/848}{Erdős Problem \#848}). This
+class is valid because 7² + 1 = 50, so 25 \textbar{} ab + 1 whenever a ≡
+b ≡ 7 (mod 25). The class 18 ≡ −7 works for the same reason.
+
+Van Doorn gave \textbar A\textbar{} ≤ (0.108\ldots{} + o(1))N, and
+Weisenberg improved the constant to about 0.105 by inclusion--exclusion.
+Early computations posted by StijnC already pointed to stability, and
+found small valid sets avoiding both classes, such as \{41, 70, 239,
+437\} at N = 606. Sawhney
+(\href{https://www.math.columbia.edu/~msawhney/Problem~848~.pdf}{note})
+proved the conjecture for N ≥ N₀, with N₀ not computed, and noted a
+qualitative stability property. Sawhney and Sellke discuss the problem
+in Section IV.1 of arXiv:2511.16072, and Alexeev, Mixon and Sawin treat
+the companion problem where ab is never squarefree (arXiv:2507.01928).
+As Alexeev pointed out, Erdős's original question has no restriction to
+large N. Later AI-assisted work on the forum, led by Sothanaphan, made
+N₀ explicit, reaching exp(1420)
+(\href{https://www.erdosproblems.com/forum/thread/848}{forum}). That is
+far beyond the range of computation.
+
+Since mid-2026 several unrefereed, AI-assisted all-N claims have
+appeared. Sothanaphan reached N₀ = 2.64·10¹⁷, and full claims came from
+Pitchford with Codex
+(\href{https://zenodo.org/records/21647629}{Zenodo}), A. C. Li (SSRN,
+with Lean; analytic range reportedly from 5·10⁶), Zanghi
+(\href{https://github.com/bzanghi/erdos-848}{GitHub}, N₀ = 5·10⁸) and
+Durfee
+(\href{https://github.com/AstroCat93/erdos-848-verification}{GitHub}, N₀
+= 4.2·10⁷). All of these follow Sawhney's case split, and most cover
+small N with colouring certificates. The argument here is independent of
+them. Its new ingredients are the type-matrix witness game, which gives
+N₀ = 6.78·10⁶, and Theorems B and C, which none of those claims state.
+
+Write c7(N) = \#\{n ≤ N : n ≡ 7 (mod 25)\} = ⌊(N − 7)/25⌋ + 1, and C7,
+C18 for the classes 7 and 18 mod 25.
+
+\textbf{Theorem A (Li; independent proof here).} For every N ≥ 1, every
+valid A ⊆ {[}N{]} has \textbar A\textbar{} ≤ c7(N).
+
+\textbf{Theorem B (stability).} Let N ≥ 6.7838·10⁶. If A ⊆ {[}N{]} is
+valid and not contained in C7 or C18, then \textbar A\textbar{} ≤ (N −
+7)/25 \textless{} c7(N). Moreover \textbar A\textbar{} ≤ (0.029289 +
+o(1))N. Equivalently, every valid set with more than about 0.0293N
+elements lies in one class.
+
+\textbf{Theorem C (rigidity and extremisers).}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If A is valid and A ⊄ C7, then \textbar A ∩ C7\textbar{} ≤ (g1* +
+  o(1))N, where g1* = (1/3 + 2/3·β∞)/25 = 0.0146697\ldots{} and β∞ = 1 −
+  ∏\textsubscript{p≥7}(1 − p⁻²). This constant is sharp.
+\item
+  For N ∉ {[}41, 81{]}, the maximisers in Theorem A are exactly C7 ∩
+  {[}N{]}, together with C18 ∩ {[}N{]} when c18(N) = c7(N). For 41 ≤ N ≤
+  81 there are also the maximisers \{7, 41\}, \{32, 43\}, \{41, 43\} and
+  \{32, 43, 57\}, each in its own range of N.
+\end{enumerate}
+
+\textbf{Theorem D (a dense two-class set).} The set F = \{n ≡ 7 (mod
+25), n ≡ 1 (mod 4)\} ∪ \{n ≡ 18 (mod 25), n ≡ 3 (mod 4)\} is valid. It
+has density 1/50 and meets both classes. Among sets defined by
+congruences mod 900, it is the densest valid set not inside one class.
+Moreover F is optimal: every valid A ⊆ {[}N{]} not inside C7 or C18 has
+\textbar A\textbar{} ≤ N/50 + 30·N\textsuperscript{0.81}, so the
+second-best density λ* equals 1/50 (Section 8). For N ≥
+10\textsuperscript{23.6}, every valid set not inside one class with at
+least (1/50 − 0.0008)N elements lies inside F or its mirror (Theorem
+8.9).
+
+Theorems B, C and D are new. Sawhney's note gives stability with an
+unspecified η and leaves open whether 18 mod 25 also attains the
+maximum. Li's proof of Theorem A, and the other all-N claims, give no
+stability constant and no description of the maximisers. The Lean
+formalisation in erdos-banger proves stability with η = 1/2000 beyond an
+ineffective N₀.
+
+\textbf{Method.} Each a lies in one of 63 \emph{types}, given by its
+class mod 25 (C7, C18 or the rest R), mod 4 and mod 9. Whether p²
+\textbar{} ab + 1 is forced for p ∈ \{2, 3, 5\} depends only on the
+types of a and b. Fix a valid A and pick one or two ``witnesses'' b ∈ A.
+Every other a ∈ A must make ab + 1 non-squarefree. Optimising the
+witness choice against every possible set of types gives a finite
+min--max problem with value V₂ = 0.0294059\ldots{} \textless{} 1/25.
+
+Sections 3--5 bound the error terms explicitly, giving Theorem A for N ≥
+6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves
+Theorems B and C and the first part of Theorem D, and Section 8 proves
+that F is optimal and, near 1/50, essentially unique. Section 9
+summarises further results from a companion paper, and Section 10 lists
+open problems.
+
+The arguments and code were developed with AI assistance and
+independently re-run (Appendix). They have not yet been reviewed by a
+human expert.
+
+\subsection{2. Local structure}
+
+Let V = \{x ≥ 1 : x² + 1 is not squarefree\}. Taking a = b shows that
+every valid set lies in V.
+
+\textbf{Lemma 2.1.} x ∈ V if and only if p² \textbar{} x² + 1 for some
+prime p ≡ 1 (mod 4). For p = 5 this means x ≡ 7 or 18 (mod 25). Hence C7
+∪ C18 ⊆ V, and x ∈ R lies in V iff p² \textbar{} x² + 1 for some prime p
+≡ 1 (mod 4) with p ≥ 13.
+
+\emph{Proof.} x² + 1 ≡ 1 or 2 (mod 4) and is never divisible by 3. An
+odd prime p divides x² + 1 only if −1 is a square mod p, that is, p ≡ 1
+(mod 4). The roots of x² ≡ −1 (mod 25) are 7 and 18. ∎
+
+\textbf{Types.} The \emph{type} of a is the triple (κ, μ, ν) where:
+
+\begin{itemize}
+\tightlist
+\item
+  κ ∈ \{C7, C18, R\} is the class of a mod 25;
+\item
+  μ ∈ \{E, 1, 3\} records a even, a ≡ 1 (mod 4) or a ≡ 3 (mod 4);
+\item
+  ν ∈ \{0, 1, 2, 4, 5, 7, 8\} records 3 \textbar{} a, or the unit class
+  of a mod 9.
+\end{itemize}
+
+This gives 3·3·7 = 63 types. Each is a union of residue classes mod 900.
+Type t has density w\textsubscript{t} = w(κ)·w(μ)·w(ν), where w(C7) =
+w(C18) = 1/25, w(R) = 23/25, w(E) = 1/2, w(1) = w(3) = 1/4, w(0) = 1/3,
+and w(ν) = 1/9 otherwise.
+
+\textbf{Forcing.} For q² ∈ \{4, 9, 25\}, say a witness type s
+\emph{forces} a target type t if q² \textbar{} ab + 1 for every a of
+type t and b of type s, for some such q. This happens exactly when one
+of the following holds:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Modulus & Forced when \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+25 & a, b both in C7, or both in C18 \\
+4 & a, b both odd, in different classes mod 4 \\
+9 & a, b both units mod 9, with ab ≡ 8 (mod 9) \\
+\end{longtable}
+
+When t is a C-type and s does not force t, no a of type t and b of type
+s has 4 \textbar{} ab + 1, 9 \textbar{} ab + 1 or 25 \textbar{} ab + 1.
+For 25, note that a ≡ 7 and 25 \textbar{} ab + 1 force b ≡ 7, and
+similarly for 18. So non-squarefreeness must then come from p² with p ≥
+7.
+
+\textbf{Lemma 2.2 (forced share).} If b ∉ C7, the C7-types forced by b
+have total density at most (1/25)(1 − (3/4)(8/9)) = (1/3)(1/25).
+
+\emph{Proof.} Forcing by 25 is impossible. Forcing by 4 removes at most
+one of the four classes mod 4, and forcing by 9 at most one of the nine
+classes mod 9. These conditions are independent. ∎
+
+The class 7 mod 25 is special because a single modulus (25) forces every
+pair inside it. Every other source of non-squarefreeness has density
+well below 1.
+
+\subsection{3. Counting lemmas}
+
+Throughout, U is a union of types and w\textsubscript{U} its density.
+Two kinds of event are counted:
+
+\begin{itemize}
+\tightlist
+\item
+  the \emph{B-event} p² \textbar{} ab + 1, for a fixed witness b and a
+  prime p ≥ 7 with p ∤ b;
+\item
+  the \emph{A-event} p² \textbar{} a² + 1, for a prime p ≡ 1 (mod 4)
+  with p ≥ 13.
+\end{itemize}
+
+The B-event fixes a in one class mod p², namely a ≡ −b⁻¹. The A-event
+fixes a in two classes, ±ι\textsubscript{p}.
+
+\textbf{Lemma 3.1 (discrepancy).} Let U = S × \{c\}, with S a set of
+residues mod 36 and c a class mod 25. Let q ≥ 1 be coprime to 30. Then
+for any residue r,
+
+\[\#\{a \le N : a \in U,\ a \equiv r \ (q)\} = \frac{|S|\,N}{900\,q} + \theta \cdot 19, \qquad |\theta| \le 1.\]
+
+The error is at most 38 for a union over C7 and C18, at most 57 for S ×
+R, and at most 3 for all of R. Write e\textsubscript{U} for the bound
+that applies to U.
+
+\emph{Proof.} Write a = a₀ + 25q·i. Since 25q is a unit mod 36, the
+condition a ∈ S (mod 36) holds for i in a set of \textbar S\textbar{}
+classes mod 36. A run of J consecutive i hits it J\textbar S\textbar/36
++ O(18) times, and J ≤ N/(25q) + 1. For R, write it as Z/25 minus the
+two C classes. ∎
+
+\textbf{Lemma 3.2 (small primes).} Let 𝒫 be a finite set of primes not
+dividing 30b, and let event p take r\textsubscript{p} classes mod p².
+Then
+
+\[\#\{a \le N,\ a\in U : \text{some event } p\in\mathcal P \text{ holds}\} = w_U N\Big(1-\prod_{p\in\mathcal P}\big(1-\tfrac{r_p}{p^2}\big)\Big) + \theta\, e_U \Big(1+\prod_{p\in\mathcal P}(1+r_p)\Big).\]
+
+\emph{Proof.} Take the complement and apply Möbius inversion over
+subsets of 𝒫. Each term is a union of ∏ r\textsubscript{p} classes, each
+counted by Lemma 3.1. ∎
+
+\textbf{Lemma 3.3 (medium primes).} For a single prime p, the count of a
+∈ U with the B-event exceeds w\textsubscript{U} N/p² by at most
+min(e\textsubscript{U}, 2N/(25p²) + 2, N/p² + 1). It exceeds it by at
+most 1 if p² \textgreater{} N. For the A-event on R the excess is at
+most min(6, 2(N/p² + 1)), and at most 1 if p² \textgreater{} 2N.
+
+\emph{Proof.} These are Lemma 3.1, then the count ignoring the mod-36
+condition, then the count ignoring U. A class mod p² \textgreater{} N
+meets {[}N{]} at most once. The roots satisfy ι + (p² − ι) = p², so at
+most one of them is ≤ N when p² \textgreater{} 2N. ∎
+
+\textbf{Lemma 3.4 (Pell bound for large primes in x² + 1).} Let M = (N²
++ 1)/Y² and m\textsubscript{j} = ((T\textsubscript{j} +
+T\textsubscript{j}⁻¹)/2)², where T\textsubscript{j} = (2N +
+1)\textsuperscript{1/(2j−1)}. Then
+
+\[\#\{x \le N,\ x\in R : p^2 \mid x^2+1 \text{ for a prime } p>Y\} \le \sum_{j\ge1} \#\{2\le m\le \min(M,m_j) : m \text{ admissible}\}.\]
+
+Here m is \emph{admissible} if m mod 8 ∈ \{1, 2, 5\}, 25 ∤ m, and m has
+no prime factor in \{3, 7, 11, 19, 23\}.
+
+\emph{Proof.} Write x² + 1 = mp². Then m \textless{} M, and m ≥ 2. The
+number m is not a square, since X² − Z² = −1 has no solution with X ≥ 1.
+Primes q ≡ 3 (mod 4) never divide x² + 1. Also x² + 1 ≡ 1, 2, 5 (mod 8)
+and p² ≡ 1 (mod 8), and 25 ∤ x² + 1 for x ∈ R.
+
+The positive solutions of X² − mZ² = −1 are η\textsuperscript{2j−1},
+where η is the fundamental unit of Z{[}√m{]}. From mZ² = X² + 1 with Z ≥
+1 we get η ≥ √(m−1) + √m. Also η\textsuperscript{2j−1} = x + √(x²+1) ≤
+2N + 1. So a j-th solution with x ≤ N needs √(m−1) + √m ≤
+T\textsubscript{j}, that is, m ≤ m\textsubscript{j}. The map x ↦ (m, j)
+is injective. ∎
+
+\textbf{Lemma 3.5 (lattice bound for large primes in ab + 1).} Fix b,
+and let T\textsubscript{b} be the C7 ∪ C18 classes a with 4 ∤ ab + 1, 9
+∤ ab + 1 and 25 ∤ ab + 1. Let ω₁(b) be the number of distinct primes ≥ 7
+dividing b. Then
+
+\[\#\{a\le N,\ a\in T_b : p^2\mid ab+1,\ p>Y\} \le 2^{\omega_1(b)}\Big[\frac{2\lambda(N+1)}{Y} + \frac{c\sqrt{bN+1}}{b} + \frac{\lambda(bN+1)}{Y^2} + c\Big].\]
+
+The constants (λ, c) depend only on the \{2, 3, 5\}-part of b; in all
+cases λ ≤ 0.5334 and c ≤ 18.94.
+
+\emph{Proof.} Write ab + 1 = ms² with s = p \textgreater{} Y. Then m
+\textless{} (bN + 1)/Y². Since s is coprime to 30, m mod 1800 lies in a
+set S\textsubscript{b} determined by b mod 1800. Also ms² ≡ 1 (mod b),
+so s lies in one of ρ\textsubscript{b}(m) classes mod b. Here
+ρ\textsubscript{b}(m) ≤ ρ\textsubscript{b₀}(m)·2\textsuperscript{ω₁(b)},
+with b₀ the \{2, 3, 5\}-part of b. So the count for a given m is at most
+ρ\textsubscript{b}(m)(√((bN+1)/m)/b + 1).
+
+The weight g(m) = ρ\textsubscript{b₀}(m)·1{[}m ∈ S\textsubscript{b}{]}
+is 1800-periodic. Computed exactly, its partial sums satisfy
+Σ\textsubscript{m≤x} g(m) ≤ λx + c.~Partial summation then gives Σ
+g(m)/√m ≤ 2λ√M + c.~∎
+
+\subsection{4. The type-matrix bound}
+
+Fix truncation points z\textsubscript{A}, z\textsubscript{B} and put
+
+\[\beta^{+} = 1-\prod_{7\le p\le z_B}\Big(1-\frac1{p^2}\Big) + \sum_{p>z_B}\frac1{p^2}, \qquad \alpha_s = 1-\prod_{\substack{13\le p\le z_A\\ p\equiv1\,(4)}}\Big(1-\frac2{p^2}\Big), \qquad \tau_A = 2\sum_{\substack{p>z_A\\ p\equiv1\,(4)}}\frac1{p^2}.\]
+
+The tails are evaluated exactly up to 10⁷, and beyond that by the bound
+Σ\textsubscript{p\textgreater x} p⁻² ≤ 2.51012/(x ln x), which follows
+from Rosser--Schoenfeld.
+
+\textbf{The witness game.} Let P be a set of types, and W ⊆ P with 1 ≤
+\textbar W\textbar{} ≤ 2. Define
+
+\[\mathrm{val}(P,W) = \sum_{\substack{t\in P\\ t \text{ a C-type}}} w_t\cdot\begin{cases}1 & \text{every } s\in W \text{ forces } t\\ \beta^{+} & \text{otherwise}\end{cases} \;+\; \sum_{\substack{t\in P\\ t\subseteq R}} w_t\,\alpha_s \;+\; \mathbf 1[P\cap R\neq\varnothing]\,\tfrac{23}{25}\tau_A,\]
+
+\[V_2 = \max_{P}\ \min_{W\subseteq P,\ 1\le|W|\le 2} \mathrm{val}(P,W),\]
+
+with the maximum over type sets P not contained in the C7-types and not
+contained in the C18-types.
+
+\textbf{Theorem 4.1.} If A ⊆ {[}N{]} is valid and not contained in C7 or
+C18, then \textbar A\textbar{} ≤ V₂·N + E\textsubscript{I}(N), where
+E\textsubscript{I} is the explicit error of Section 5.
+
+\emph{Proof.} Let P be the set of types met by A. P is not contained in
+one class, because the type determines the class. Choose W attaining the
+minimum, and for each s ∈ W pick b\textsubscript{s} ∈ A of type s. Each
+type t ∈ P is bounded as follows.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{C-types forced by every witness.} Use \textbar A ∩ t\textbar{}
+  ≤ \textbar t ∩ {[}N{]}\textbar{} = w\textsubscript{t} N + O(1), by
+  Lemma 3.1.
+\item
+  \textbf{Other C-types.} Assign each one to a witness s ∈ W that does
+  not force it, and let U\textsubscript{s} be the union of the types
+  assigned to s. By Section 2, every a ∈ A ∩ U\textsubscript{s} has p²
+  \textbar{} ab\textsubscript{s} + 1 for some prime p ≥ 7. Lemma 3.2
+  handles p ≤ z\textsubscript{B}, Lemma 3.3 handles z\textsubscript{B}
+  \textless{} p ≤ Y and Lemma 3.5 handles p \textgreater{} Y. Together
+  they give \textbar A ∩ U\textsubscript{s}\textbar{} ≤
+  w\textsubscript{Us}·β⁺·N + E\textsubscript{B}(N).
+\item
+  \textbf{R-types.} Use A ∩ t ⊆ V ∩ t. By Lemma 2.1 the count is bounded
+  by A-events for primes p ≥ 13. Lemma 3.2 on the union of the R-types
+  in P handles p ≤ z\textsubscript{A}. Lemmas 3.3 and 3.4, applied over
+  all of R, handle p \textgreater{} z\textsubscript{A}.
+\end{enumerate}
+
+Summing gives val(P, W)·N plus the error terms. ∎
+
+\textbf{Value of the game.} The game is a 0--1 problem over 2⁶³ type
+sets. It was solved by a mixed-integer program (HiGHS; Q. Huangfu and J.
+A. J. Hall, Math. Prog. Comp. 10 (2018), 119--142), and independently by
+an exact branch-and-bound in integer arithmetic. The inputs were scaled
+by 10¹⁵ and rounded up, so the certified value is an upper bound. For
+every one of the 16 pairs (z\textsubscript{A}, z\textsubscript{B}) ∈
+\{17, 29, 37, 41\} × \{13, 17, 19, 23\}, the worst P is the set of all
+63 types, and
+
+\[V_2 = \tfrac{2}{25}\beta^{+} + \tfrac{23}{25}(\alpha_s+\tau_A).\]
+
+At (z\textsubscript{A}, z\textsubscript{B}) = (17, 13) this is V₂ ≤
+0.0294059212, certified with 1,339,011 branch-and-bound nodes. The
+smallest of the 16 values is V₂(41, 23) ≤ 0.0292884.
+
+The value is easy to see for P = all types. Take one witness of type
+(C7, E, 0) and one of type (C18, E, 0). A witness that is even and
+divisible by 3 never forces by 4 or 9, so each C-class gets density β⁺,
+from the witness in the other class. The content of the certificate is
+that no adversarial choice of P does better than this.
+
+Since 1/25 − 0.0294059 = 0.0105941 \textgreater{} 0, Theorem A follows
+for every N with E\textsubscript{I}(N) ≤ 0.0105941N − 0.28. Section 5
+makes this explicit.
+
+\subsection{5. The explicit threshold}
+
+\textbf{The error term.} Let k\textsubscript{A} and k\textsubscript{B}
+be the numbers of primes in the small-prime ranges of Lemma 3.2: primes
+p ≡ 1 (mod 4) with 13 ≤ p ≤ z\textsubscript{A}, and primes with 7 ≤ p ≤
+z\textsubscript{B}. Then
+
+\[E_I(N) = 2\cdot 38\,(1+2^{k_B}) + 38 + 57\,(1+3^{k_A}) + E_A(N) + 2E_B(N),\]
+
+\[E_A(N)=\min_Y\Big[\sum_{z_A<p\le Y}\text{(Lemma 3.3 excess)} + \text{(Lemma 3.4)}\Big],\qquad E_B(N)=\max_{b\le N}\min_Y\Big[\sum_{z_B<p\le Y}\text{(Lemma 3.3 excess)} + \text{(Lemma 3.5)}\Big].\]
+
+The maximum over b runs over the 2-, 3- and 5-profile of b and over k =
+ω₁(b). Here ω₁(b) = k forces b ≥ b₀·7·11···p\textsubscript{k}, which
+tames the factor 2\textsuperscript{k}.
+
+\textbf{The ω-refinement.} Near N₀ the factor 2\textsuperscript{ω₁(b)}
+is the bottleneck, so witnesses with many prime factors are avoided. Let
+K\textsubscript{k}(N) = \#\{b ≤ N : b ∈ V, ω₁(b) ≥ k\}, computed exactly
+(K₅(10⁷) = 672). Split A = A′ ⊔ A″, where A″ is the elements with ω₁ ≥
+k₀.
+
+\begin{itemize}
+\tightlist
+\item
+  If A′ is not inside one class, apply Theorem 4.1 to A′ with witnesses
+  from A′. Then \textbar A\textbar{} ≤ V₂N + E\textsubscript{I}(N; ω₁
+  \textless{} k₀) + K\textsubscript{k₀}(N).
+\item
+  Otherwise, say A′ ⊆ C7 and A ⊄ C7. Use one witness b ∈ A″
+  \textbackslash{} C7. Lemma 2.2 gives \textbar A ∩ C7\textbar{} ≤ g₁N +
+  E\textsubscript{II}(N), with g₁ = (1/3 + (2/3)β⁺)/25 ≈ 0.01469, and
+  \textbar A \textbackslash{} C7\textbar{} ≤ K\textsubscript{k₀}(N).
+\end{itemize}
+
+The second case has much smaller density, so it never binds.
+
+\textbf{Grid certification.} For fixed parameters (z\textsubscript{A},
+z\textsubscript{B}, k₀, Y), every term of E is nondecreasing in N. So it
+suffices to cover {[}N₀, 10⁶⁰{]} by cells {[}N\textsubscript{lo},
+N\textsubscript{hi}{]} with ratio 1.01 below 10¹³ and 1.1 above, and to
+check for each cell that
+
+\[E(N_{hi}) \le \big(\tfrac1{25}-V_2\big)N_{lo} - 0.28 .\]
+
+This gives \textbar A\textbar{} ≤ N/25 − 0.28 = (N − 7)/25 \textless{}
+c7(N) throughout the cell. Prime counts up to 4·10⁹ are exact, and
+beyond that come from Rosser--Schoenfeld and Dusart bounds.
+
+Two independent implementations agree. The referee grid uses only
+(z\textsubscript{A}, z\textsubscript{B}) = (17, 13), and its smallest
+slack is +329.8, in the first cell {[}6.7838·10⁶, 6.85·10⁶{]}. The
+original grid covers {[}10⁷, 10⁶⁰{]}. It optimises the parameters per
+cell and has 2525 cells with no failures. Its slack, as a fraction of N,
+rises from 0.0016 at 10⁷ to 0.0106 at 10⁶⁰, and tends to 1/25 −
+0.0292884 = 0.0107.
+
+\textbf{Proposition 5.1 (tail).} For N ≥ 10⁶⁰, Theorem 4.1 holds with
+E\textsubscript{I}(N) ≤ 1.02·10⁻⁸·N.
+
+\emph{Proof.} Take (z\textsubscript{A}, z\textsubscript{B}) = (17, 13),
+Y = N\textsuperscript{2/3} and no ω-refinement. Let L = ln N. The terms
+are bounded as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  the inclusion--exclusion constant is 1292;
+\item
+  Lemma 3.3 on the A side is at most 6π(√(2N)) +
+  π(N\textsuperscript{2/3});
+\item
+  Lemma 3.4 is at most (1 + 10⁻⁴)N\textsuperscript{2/3}·J, where J = (1
+  + ln(2N+1)/ln(1+√2))/2 = O(L);
+\item
+  Lemma 3.3 on the B side is at most 38π(√N) +
+  π(N\textsuperscript{2/3});
+\item
+  Lemma 3.5 is at most 2\textsuperscript{k}·(1.067N\textsuperscript{2/3}
+  + 20√N).
+\end{itemize}
+
+Robin's bound ω(n) ≤ 1.38402·ln n/ln ln n gives 2\textsuperscript{k} ≤
+N\textsuperscript{0.95933/ln~L} ≤ N\textsuperscript{0.1947}. The prime
+counts use π(x) \textless{} 1.25506x/ln x. Each term divided by N
+decreases for N ≥ 10⁶⁰, and the total at N = 10⁶⁰ is 1.02·10⁻⁸·N. ∎
+
+\textbf{Corollary 5.2.} Theorem A holds for all N ≥ 6.7838·10⁶, and
+every valid set not inside one class has \textbar A\textbar{} ≤ (N −
+7)/25. (Sawhney suggested on the forum that large-sieve methods should
+bring N₀ down to about 10⁶. The witness game reaches the same order by a
+different route.)
+
+\subsection{6. Small N}
+
+\textbf{N ≤ 3806: exact clique search.} Valid sets are exactly the
+cliques in the graph on V ∩ {[}N{]} with edges \{a, b\} where ab + 1 is
+not squarefree. At N = 3806 this graph has 397 vertices and 36,248
+edges. The clique number is nondecreasing in N, and c7 is constant on
+each block (6 + 25k, 31 + 25k{]}. So it suffices to compute the clique
+number at N ≡ 6 (mod 25). It equals c7(N) at every such N ≤ 3806.
+
+\textbf{3806 ≤ N ≤ 10⁷: case bounds.} Let H\textsubscript{t}(b, N) =
+\#\{a ∈ V ∩ C\textsubscript{t}, a ≤ N : ab + 1 not squarefree\} for t ∈
+\{7, 18\}, and let H\textsubscript{odd}(b, N) count the odd such a in C7
+∪ C18. Let v\textsubscript{R}(N) = \textbar V ∩ R ∩ {[}N{]}\textbar, and
+v\textsubscript{R}\textsuperscript{odd}(N) its odd part. Every valid A
+not inside C7 or C18 falls into exactly one of four cases.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Case
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Condition on A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Bound on \textbar A\textbar{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+S1 & A ∩ R contains an even b & v\textsubscript{R} + max over even b ∈ V
+∩ R of {[}H₇(b) + H₁₈(b){]} \\
+S2 & A ∩ R ≠ ∅ and all odd; A ∩ (C7 ∪ C18) all odd &
+v\textsubscript{R}\textsuperscript{odd} + max over odd b ∈ V ∩ R of
+H\textsubscript{odd}(b) \\
+S3 & A ∩ R ≠ ∅ and all odd; an even b′ ∈ C7 ∪ C18 &
+v\textsubscript{R}\textsuperscript{odd} + max of H₇(b) over odd b ∈ R,
+plus max of H₁₈(b′) over even b′ ∈ C7 (or the same with 7 and 18
+swapped) \\
+S4 & A ∩ R = ∅, A meets C7 and C18 & max of H₇(b′) over b′ ∈ C18, plus
+max of H₁₈(b) over b ∈ C7 \\
+\end{longtable}
+
+Each bound is correct because every element of A ∩ C\textsubscript{t} is
+compatible with the chosen witness. In S2 an odd R-witness and odd
+C-elements remain. In S3 an even C-element of one class witnesses the
+other class.
+
+All four bounds are nondecreasing in N. So S(N) = max S\textsubscript{i}
+at a block end E\textsubscript{k} bounds every N ∈
+(E\textsubscript{k−1}, E\textsubscript{k}{]}. The check is
+S(E\textsubscript{k}) ≤ c7(E\textsubscript{k−1} + 1).
+
+With blocks of relative width 1\%, this holds on all 794 blocks from
+3806 to 10⁷. For example, S(10⁶) = 37,637 \textless{} c7 = 40,000, and
+S(10⁷) = 376,171 \textless{} 400,000. The counts H\textsubscript{t}(b,
+N) are computed exactly:
+
+\begin{itemize}
+\tightlist
+\item
+  primes p ≤ (bN)\textsuperscript{1/3} by stepping through the class a ≡
+  −b⁻¹ (mod p²);
+\item
+  larger primes by enumerating ab + 1 = mp² over m, solving s² ≡ m⁻¹
+  (mod b) by CRT.
+\end{itemize}
+
+Together with Corollary 5.2, whose range starts at 6.7838·10⁶
+\textless{} 10⁷, this proves Theorem A for every N.
+
+\subsection{7. Stability, rigidity and the extremisers}
+
+\textbf{Proof of Theorem B.} The first bound is Corollary 5.2. For the
+asymptotic bound, apply Theorem 4.1 with (z\textsubscript{A},
+z\textsubscript{B}) = (41, 23), where V₂ ≤ 0.0292884. The argument of
+Proposition 5.1 gives E\textsubscript{I}(N) = o(N) for any fixed
+parameters. ∎
+
+Theorem B implies a robust form. If N ≥ 6.7838·10⁶ and
+\textbar A\textbar{} \textgreater{} (N − 7)/25, then A ⊆ C7 or A ⊆ C18,
+so A is one full class with some elements removed. Nothing outside the
+class can be added. Sawhney's note gives this with an unspecified η.
+Here η can be taken to be 0.0016 at N = 10⁷, rising to about 0.0107 as N
+→ ∞.
+
+\textbf{Proof of Theorem C(1), upper bound.} Pick b ∈ A \textbackslash{}
+C7. Then A ∩ C7 is contained in \{a ∈ C7 : ab + 1 not squarefree\}. By
+Lemma 2.2 the forced share s satisfies s ≤ 1/3. On the remaining types
+only primes p ≥ 7 contribute, and Lemmas 3.2, 3.3 and 3.5 bound them by
+(1 − s)β⁺N/25 plus an error. The bound s + (1 − s)β⁺ increases with s,
+so
+
+\[|A\cap C_7| \le \tfrac1{25}\big(\tfrac13+\tfrac23\beta^{+}\big)N + 38\,(1+2^{k_B}) + 38 + E_B(N).\]
+
+This holds for every N. Letting z\textsubscript{B} → ∞ gives the limsup
+bound g1*. ∎
+
+\textbf{Sharpness.} Let q be a prime with q ≡ 18 (mod 25), q ≡ 1 (mod 4)
+and q ≡ 1 (mod 9). Put A\textsubscript{q}(N) = \{q\} ∪ \{a ∈ C7 ∩
+{[}N{]} : aq + 1 not squarefree\}. This set is valid:
+
+\begin{itemize}
+\tightlist
+\item
+  pairs inside C7 have 25 \textbar{} ab + 1;
+\item
+  the pair (q, q) has 25 \textbar{} q² + 1;
+\item
+  the pairs (a, q) are valid by definition.
+\end{itemize}
+
+The forced share is exactly 1/3, from a ≡ 3 (mod 4) or a ≡ 8 (mod 9). On
+the other cells, the events p² \textbar{} aq + 1 for p ≥ 7, p ≠ q are
+independent of the cell by CRT. The squarefree sieve for a linear form
+gives density β(q) = 1 − ∏\textsubscript{p≥7,~p≠q}(1 − p⁻²). So
+\textbar A\textsubscript{q}(N)\textbar/N → (1/3 + (2/3)β(q))/25, which
+tends to g1* as q → ∞. ∎
+
+\textbf{Relation to Li's proof.} Li's ``uniform mixed degree''
+proposition says that for N ≥ 5·10⁶, every b ∈ V outside C7 ∪ C18 has
+more than N/50 + N/525 ≈ 0.0219N squarefree neighbours in C7 ∩ {[}N{]},
+and likewise in C18 ∩ {[}N{]}. Theorem C(1) is the sharp form of this.
+The squarefree degree is c7(N) − H₇(b), so the worst case is
+asymptotically (1/25 − g1*)N ≈ 0.0253N, and no constant above 1/25 − g1*
+is possible. Computing H₇ and H₁₈ exactly for every b ≤ 10⁷ confirms
+Li's proposition on all of 5·10⁶ ≤ N ≤ 10⁷, with a margin of at least
+13.8\%. Each 1\% block is checked conservatively: the largest H at the
+top of the block, against the class size at the bottom and Li's
+threshold at the top. There max H₇(b)/N stays at 0.01468, matching g1*.
+
+\textbf{Proof of Theorem C(2).} A valid set inside C7 has at most c7(N)
+elements, with equality only for C7 ∩ {[}N{]}. The same holds for C18.
+So it suffices to compare c7(N) with m(N), the largest size of a valid
+set not inside one class. The function m is nondecreasing and c7 is
+constant on blocks.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{N ≤ 1006.} Compute m(N) exactly as a maximum over cliques that
+  contain an R-vertex or meet both C7 and C18. Then m(N) \textless{}
+  c7(N) except for 41 ≤ N ≤ 81, where m = c7. Enumerating all maximal
+  cliques for 7 ≤ N ≤ 106 gives exactly the sets in the table below.
+\item
+  \textbf{1006 \textless{} N ≤ 3806.} The case bounds S1--S4 are
+  strictly below c7 on every block.
+\item
+  \textbf{3806 \textless{} N ≤ 6.9·10⁶.} The case bounds are strictly
+  below c7 on all 757 blocks. The smallest block margin is 1, on (4282,
+  4324{]}. Checked one N at a time, the margin there is at least 2.
+\item
+  \textbf{N ≥ 6.7838·10⁶.} This is Theorem B.
+\end{enumerate}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+N & c7(N) & Extra maximisers \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+41--42 & 2 & \{7, 41\} \\
+43--56 & 2 & \{7, 41\}, \{32, 43\}, \{41, 43\} \\
+57--81 & 3 & \{32, 43, 57\} \\
+\end{longtable}
+
+For instance, 32·43 + 1 = 3⁴·17, 32·57 + 1 = 5²·73 and 43·57 + 1 =
+2²·613, and 25 divides 32² + 1, 43² + 1 and 57² + 1. ∎
+
+\textbf{Proof of Theorem D.} If a, b ∈ F lie in the same class mod 25,
+then 25 \textbar{} ab + 1. If a ≡ 7 and b ≡ 18 (mod 25), then a ≡ 1 and
+b ≡ 3 (mod 4), so ab + 1 ≡ 0 (mod 4). The case a = b is covered by the
+first case. F meets both classes, for example 57 ∈ C7 and 43 ∈ C18, and
+has density 2·(1/25)(1/4) = 1/50. Maximality among congruence-defined
+sets comes from an exact maximum-clique computation on the forcing graph
+mod 900. Its value is 1/50, attained by F up to symmetry. The upper
+bound for λ* is Theorem 8.1. Validity of F, of C7 and C18, and of the
+four exceptional maximisers is checked in Lean 4
+(\texttt{Erdos848Constructions.lean}). ∎
+
+\subsection{8. The second-best density}
+
+Let λ*(N) be the largest size of a valid A ⊆ {[}N{]} contained neither
+in C7 nor in C18.
+
+\textbf{Theorem 8.1.} For every N, λ*(N) ≤ N/50 + E(N), where E(N) =
+N\textsuperscript{2/3+o(1)} is the explicit function of Section 8.5.
+Moreover, by the refinement of Section 8.6, λ*(N) ≤ N/50 +
+30·N\textsuperscript{0.81} for every N. The set F of Theorem D gives
+λ*(N) ≥ N/50 − 2. Hence λ*(N)/N → 1/50.
+
+Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short
+argument. Sections 8.2--8.4 prove the general case: a counting lemma,
+then an all-witness version of the game of Section 4, then an exact
+certificate. Section 8.5 makes every constant explicit, Section 8.6
+lowers the constant to 30, and Section 8.7 proves the third-order
+Theorem 8.9.
+
+\subsubsection{8.1 Sets inside C7 ∪ C18}
+
+\textbf{Proposition 8.2.} Let A ⊆ {[}N{]} be valid, A ⊆ C7 ∪ C18, and
+suppose A meets both classes. Then \textbar A\textbar{} ≤ N/50 +
+O(N\textsuperscript{0.81}).
+
+\emph{Proof.} Put X = A ∩ C7 and Y = A ∩ C18, and let x, y be their
+sizes relative to N/25. For a ∈ X and b ∈ Y we have ab + 1 ≡ 7·18 + 1 ≡
+2 (mod 25). So ab + 1 is non-squarefree only if:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\arabic{enumi})}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    a and b are odd with ab ≡ 3 (mod 4), or
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\Alph{enumi})}
+  \setcounter{enumi}{16}
+  \tightlist
+  \item
+    9 \textbar{} ab + 1, or p² \textbar{} ab + 1 for some prime p ≥ 7.
+  \end{enumerate}
+\end{itemize}
+
+For fixed b, let Comp\textsubscript{Q}(b) be the set of a ∈ C7 ∩ {[}N{]}
+satisfying (Q). The condition 9 \textbar{} ab + 1 picks out one class
+mod 9, and p² \textbar{} ab + 1 one class mod p². Lemma 8.3 handles p
+\textgreater{} N\textsuperscript{0.6}. So Comp\textsubscript{Q}(b) has
+relative size at most
+
+\[c = \frac19 + \sum_{p\ge 7}\frac1{p^2} = 0.16225\ldots < \frac16,\]
+
+up to O(N\textsuperscript{0.8+o(1)}), and by CRT it meets each class mod
+4 proportionally. Split X and Y by residue mod 4 into even, 1 and 3
+parts. A pair not forced by 4 lies in Comp\textsubscript{Q} of its
+partner. A case analysis on which odd classes each side meets gives:
+
+\begin{itemize}
+\tightlist
+\item
+  one side has no odd element: x + y ≤ 2c;
+\item
+  one side meets both odd classes: x + y ≤ max(2c, 1/4 + 3c/2);
+\item
+  both sides meet the same single odd class: x + y ≤ 3c/2;
+\item
+  they meet opposite single odd classes (the shape of F): x + y ≤ 1/2 if
+  neither side has an even element, and otherwise x + y ≤ max(1/4 +
+  3c/2, 2c).
+\end{itemize}
+
+Since c \textless{} 1/6, every case gives x + y ≤ 1/2. ∎
+
+\subsubsection{8.2 Counting with an arbitrary target}
+
+\textbf{Lemma 8.3 (large primes, any target).} For 1 ≤ b ≤ N and Y ≥ 1,
+
+\[\#\{a\le N : q^2\mid ab+1 \text{ for some prime } q>Y\} \le 2^{\omega(b)+1}\Big(\frac{2(N+1)}{Y}+\frac{N^2+1}{Y^2}\Big).\]
+
+\emph{Proof.} Write ab + 1 = mq². Then 1 ≤ m \textless{} (bN + 1)/Y²,
+and ms² ≡ 1 (mod b) with s = q. So s is a square root of m⁻¹ mod b.
+There are at most 2\textsuperscript{ω(b)+1} of these: two for each odd
+prime power, at most four for a power of 2. Also s ≤ √((bN + 1)/m). So
+each m contributes at most 2\textsuperscript{ω(b)+1}(√((bN + 1)/m)/b +
+1). Summing over m \textless{} M = (bN + 1)/Y², and using Σ
+m\textsuperscript{−1/2} ≤ 2√M, gives 2\textsuperscript{ω(b)+1}(2(bN +
+1)/(bY) + M). This is at most the bound stated, since 1 ≤ b ≤ N. ∎
+
+This is a cruder form of Lemma 3.5 that needs no information about the
+target. Since 2\textsuperscript{ω(b)} = N\textsuperscript{o(1)}, with Y
+= N\textsuperscript{0.6} it is N\textsuperscript{0.8+o(1)}.
+
+\textbf{Lemma 8.4 (joint estimate for R-targets).} Let t be a residue
+class mod 900 inside R, of density w\textsubscript{t} (for a type made
+of r\textsubscript{t} such classes, add the bounds; each additive error
+term is then multiplied by r\textsubscript{t}, as in Section 8.5), and
+let b ≤ N be a witness that does not force t. Then
+
+\[\#\{a\in t\cap[N] : a\in V,\ ab+1 \text{ not squarefree}\} \le w_t\, j^{+} N + O(N^{0.8+o(1)}),\qquad j^{+} = \alpha^{+}\beta_{500} + \kappa + \tau + \tau_B \le 0.01577,\]
+
+where
+
+\begin{itemize}
+\tightlist
+\item
+  α⁺ = Σ 2/p² over primes p ≡ 1 (mod 4), p ≥ 13;
+\item
+  β⁺ = Σ\textsubscript{q≥7} 1/q² = 0.051136 (in this section; it is at
+  least the truncated β⁺ of Section 4), and β\textsubscript{500} =
+  Σ\textsubscript{7≤q≤500} 1/q² = 0.050863;
+\item
+  κ = Σ 1/p² over primes p ≡ 1 (mod 4), p ≥ 13;
+\item
+  τ = 2Σ 1/p² over primes p ≡ 1 (mod 4), p \textgreater{} 500, which is
+  at most 0.00028; and τ\textsubscript{B} = Σ 1/q² over all primes q
+  \textgreater{} 500, which is also at most 0.00028.
+\end{itemize}
+
+\emph{Proof.} Membership a ∈ V needs p² \textbar{} a² + 1 for some p ≡ 1
+(mod 4), p ≥ 13 (Lemma 2.1). Because b does not force t,
+non-squarefreeness of ab + 1 needs q² \textbar{} ab + 1 for some q ≥ 7.
+Split into three parts.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{p, q ≤ 500.} By CRT with mod 900, a pair p ≠ q fixes 2 classes
+  mod 900p²q², contributing at most 2(w\textsubscript{t} N/(p²q²) + 1).
+  A pair p = q needs a ≡ ±ι\textsubscript{p} and a ≡ −b⁻¹ (mod p²), at
+  most one class, contributing w\textsubscript{t} N/p² + 1. Together
+  these give at most w\textsubscript{t}(α⁺β\textsubscript{500} + κ)N +
+  O(1).
+\item
+  \textbf{p \textgreater{} 500.} Lemma 3.3 for 500 \textless{} p ≤
+  N\textsuperscript{0.6} and Lemma 3.4 for p \textgreater{}
+  N\textsuperscript{0.6} give at most w\textsubscript{t} τ N +
+  O(N\textsuperscript{0.8} log N).
+\item
+  \textbf{q \textgreater{} 500.} Drop the condition on p.~For 500
+  \textless{} q ≤ N\textsuperscript{0.6} each prime fixes one class,
+  contributing at most w\textsubscript{t} N/q² + 1, so these give at
+  most w\textsubscript{t} τ\textsubscript{B} N +
+  π(N\textsuperscript{0.6}). For q \textgreater{} N\textsuperscript{0.6}
+  use Lemma 8.3. ∎
+\end{enumerate}
+
+For a C-type target that b does not force, the same argument without the
+condition a ∈ V gives at most w\textsubscript{t} β⁺ N +
+O(N\textsuperscript{0.8+o(1)}), with β⁺ ≤ 0.05114.
+
+\subsubsection{8.3 The all-witness game and its core}
+
+Use 525 types t: a mod 25, a mod 4 (even, 1 or 3), and a mod 9 with 3
+\textbar{} a merged. Let P be the set of types met by a valid A not
+inside one class, and choose a witness b\textsubscript{s} ∈ A of each
+type s ∈ P. Every a ∈ A ∩ t is compatible with every witness, so
+\textbar A ∩ t\textbar{} ≤ min over s ∈ P of the bound for witness
+b\textsubscript{s}. The possible bounds are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Forced C-target:} w\textsubscript{t} N + O(1).
+\item
+  \textbf{Non-forced C-target:} w\textsubscript{t} β⁺ N +
+  O(N\textsuperscript{0.8+o(1)}).
+\item
+  \textbf{R-target:} w\textsubscript{t} j⁺ N +
+  O(N\textsuperscript{0.8+o(1)}). An R-type never forces itself: a² ≡ −1
+  has no solution mod 4 or mod 9, and mod 25 only in C7 or C18. So each
+  R-type in P can use its own witness.
+\end{itemize}
+
+\textbf{Lemma 8.5 (core reduction).} Let K be the set of types in P
+forced by every type in P, and let F(K) be the set of types forcing
+every member of K. Then K consists of C-types, P ⊆ F(K), and
+
+\[|A| \le \Big(w(K) + \beta\, w\big(\mathcal C\cap F(K)\setminus K\big) + j\, w\big(\mathcal R\cap F(K)\big)\Big)N + O(N^{0.8+o(1)}) =: U(K)\,N + O(N^{0.8+o(1)}),\]
+
+for any β ≥ β⁺ and j ≥ j⁺. Here 𝒞 and ℛ are the C-types and the R-types.
+
+\emph{Proof.} Forcing is symmetric, so every s ∈ P forces every member
+of K, giving P ⊆ F(K). A non-core C-type in P is not forced by some s ∈
+P, and an R-type in P uses its own witness. Sum the bounds above over t
+∈ P. ∎
+
+\subsubsection{8.4 The certificate}
+
+A C-type is forced by a type outside its own class only through 4 or 9,
+never 25, since 7·18 + 1 ≡ 2 (mod 25) and 7r + 1 ≢ 0 for r ∈ R. So
+forcing between a core and the rest depends only on cells mod 36: 21
+cells per class.
+
+A core is a pair (M₇, M₁₈) of cell sets with every cross pair forced.
+Each half is automatically internally forced, by 25. U(K) is then a
+function of three sets of cells:
+
+\begin{itemize}
+\tightlist
+\item
+  the cells forced with all of M₁₈ (the C7 part of F(K));
+\item
+  the cells forced with all of M₇ (the C18 part);
+\item
+  the cells forced with all of M₇ ∪ M₁₈ (the R part, in each of the 23
+  classes of R).
+\end{itemize}
+
+\textbf{Proposition 8.6.} With β = 0.052 and j = 0.0169, U(K) ≤ 1/50 for
+every core K for which F(K) contains a type outside C7 and a type
+outside C18. Equality holds only for the core of F and its mirror image.
+
+\emph{Proof.} Write A(M) for the set of cells forced with every cell of
+M. The program \texttt{lamcert.c} enumerates all 51,223 such cores and
+evaluates 900·U in exact integer arithmetic.
+
+A much smaller check suffices. Replacing M by its closure A(A(M)) does
+not change A(M), because A(A(A(M))) = A(M), and it does not lower U,
+because the closure contains M. So both halves of the core may be taken
+closed. Only 64 sets of cells have the form A(M), and they give 439
+admissible pairs.
+
+This reduced check is formalised in \texttt{LamCert.lean} and checked by
+the Lean kernel (\texttt{decide}, with no \texttt{native\_decide}). The
+file also proves the closure argument, the equality case, and that the
+forcing relation on cells is exactly divisibility of ab + 1 by 4 or 9.
+
+The check fails with β = 0.10 and j = 0.03, so it is not vacuous. The
+bound survives up to j = 0.01721 (with β = 0.052) or β = 0.0556 (with j
+= 0.0169). A floating-point MILP over all 2⁵²⁵ type sets, run
+independently, gives the same value 1/50 with a matching dual bound. ∎
+
+\textbf{Proof of Theorem 8.1.} Since β⁺ ≤ 0.05114 \textless{} 0.052 and
+j⁺ ≤ 0.01577 \textless{} 0.0169, Lemma 8.5 and Proposition 8.6 give
+\textbar A\textbar{} ≤ N/50 + O(N\textsuperscript{0.8+o(1)}), taking Y =
+N\textsuperscript{0.6}. Section 8.5 chooses Y better and makes every
+term explicit. ∎
+
+\subsubsection{8.5 The explicit error term}
+
+Let r\textsubscript{t} be the number of residues mod 900 in the type t.
+These sum to 72 over the 42 C-types, and to 828 over the 483 R-types.
+Fix a cut-off Y for the primes q in ab + 1, and Y′ for the primes p in
+a² + 1. Going through the proofs of Lemmas 8.3--8.5, the error is at
+most the sum of these terms:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Core C-types:} \textbar t ∩ {[}N{]}\textbar{} ≤
+  w\textsubscript{t} N + r\textsubscript{t}, so 72 in total.
+\item
+  \textbf{Other C-types, 7 ≤ q ≤ Y:} one class mod q² for each prime, so
+  at most 72π(Y).
+\item
+  \textbf{Other C-types, q \textgreater{} Y:} a non-forced C-target lies
+  in T\textsubscript{b}, so Lemma 3.5 applies. This gives
+  42·L\textsubscript{C}, where L\textsubscript{C} is the bound of Lemma
+  3.5 with b ≤ N.
+\item
+  \textbf{R-types, p, q ≤ 500:} 828(2n₁n₂ + n₁), where n₁ = 43 and n₂ =
+  92 count the primes in the two ranges.
+\item
+  \textbf{R-types, 500 \textless{} q ≤ Y:} at most 828·π(Y), one residue
+  error per prime q (the condition on p is dropped, as in Lemma 8.4).
+\item
+  \textbf{R-types, q \textgreater{} Y:} 483·L, where L =
+  2\textsuperscript{ω*(N)+1}(2(N+1)/Y + (N²+1)/Y²) comes from Lemma 8.3,
+  and ω*(N) is the largest number of distinct prime factors of an
+  integer ≤ N.
+\item
+  \textbf{R-types, 500 \textless{} p ≤ Y′:} at most 1656·π(Y′).
+\item
+  \textbf{R-types, p \textgreater{} Y′:} the bound of Lemma 3.4, counted
+  once for all of R, because the types are disjoint.
+\end{itemize}
+
+Let E(N) be the minimum of this sum over Y and Y′. The script
+\texttt{explicitC.py} evaluates E on cells of ratio
+10\textsuperscript{0.1} up to N = 10⁶⁰¹, refined to ratio
+10\textsuperscript{0.01} between 10¹⁰ and 10²⁵. It uses exact prime
+counts below 10⁷ and π(x) \textless{} 1.25506x/ln x above. For fixed Y
+and Y′ every term is nondecreasing in N, so each cell is checked at its
+upper end. Some values:
+
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+N & 10⁷ & 10¹³ & 10²⁰ & 10³⁰ & 10⁶⁰ & 10¹⁰⁰ \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+E(N)/N & 27 & 0.31 & 0.0030 & 2.4·10⁻⁶ & 4.1·10⁻¹⁵ & 1.1·10⁻²⁶ \\
+\end{longtable}
+
+The best Y lies between about N\textsuperscript{0.72} and
+N\textsuperscript{0.85}, and E(N) = N\textsuperscript{2/3+o(1)}. The
+bound beats the trivial bound \textbar A\textbar{} ≤ N from about N =
+10\textsuperscript{11.7}.
+
+So \textbar A\textbar{} ≤ N/50 + C·N\textsuperscript{0.81} holds for
+every N, with C the largest value of min((49/50)N\textsuperscript{0.19},
+E(N)/N\textsuperscript{0.81}). The grid gives C ≤ 167.5, attained near N
+= 10\textsuperscript{11.75}. Beyond 10⁶⁰¹, take Y = Y′ =
+N\textsuperscript{2/3} and use Robin's bound ω(n) ≤ 1.38402 ln n/ln ln
+n.~This gives E(N) ≤
+1001·2\textsuperscript{ω*(N)}N\textsuperscript{2/3}, so
+E(N)/N\textsuperscript{0.81} is at most 4·10⁻⁴ and decreasing there.
+This gives C = 170. Section 8.6 lowers it to 30.
+
+The constant is large because the witness may have many prime factors,
+and because the large-prime count is crude. The exponent 0.81 can be
+replaced by any number above 2/3, at the cost of a larger C.
+
+\subsubsection{8.6 Witnesses with many prime factors}
+
+The factor 2\textsuperscript{ω(b)} in Lemmas 3.5 and 8.3 is paid for the
+worst possible witness. As in the ω-refinement of Section 5, it can be
+avoided by setting aside the elements with many prime factors. Fix k ≥
+1, let A″ be the elements of A with at least k distinct prime factors,
+and let A′ = A \textbackslash{} A″.
+
+\textbf{Lemma 8.7 (Rankin).} For every z ≥ 1, \#\{n ≤ N : ω(n) ≥ k\} ≤
+z\textsuperscript{−k}·N·exp((z − 1)S(N)), where S(N) =
+Σ\textsubscript{p≤N} 1/p \textless{} log log N + B + 1/log² N and B =
+0.26150\ldots{} is the Meissel--Mertens constant.
+
+\emph{Proof.} Since z\textsuperscript{ω(n)} =
+Σ\textsubscript{d~\textbar~n,~d~squarefree} (z −
+1)\textsuperscript{ω(d)}, we get Σ\textsubscript{n≤N}
+z\textsuperscript{ω(n)} ≤ N·∏\textsubscript{p≤N}(1 + (z − 1)/p) ≤
+N·exp((z − 1)S(N)). Divide by z\textsuperscript{k}. The bound on S(N) is
+Rosser and Schoenfeld's. ∎
+
+For N ≤ 10¹⁸ a sharper bound comes from Hardy and Ramanujan's induction,
+run numerically. Write N\textsubscript{j}(x) = \#\{n ≤ x : ω(n) = j\}
+and P(y) for the number of prime powers up to y.
+
+\textbf{Lemma 8.8.} For x ≥ 1 and k ≥ 1,
+
+\[N_{k+1}(x) \le \sum_{\substack{m\le\sqrt{x}\\ \omega(m)=k}} P(x/m) + \frac{1}{k+1}\sum_{\substack{q\le\sqrt{x}\\ q \text{ a prime power}}} N_k(x/q).\]
+
+\emph{Proof.} Let n ≤ x have k + 1 prime-power factors. If the largest
+of them, q, exceeds √x, then n = qm with m \textless{} √x and ω(m) = k,
+and this representation is unique. Otherwise each of the k + 1
+prime-power factors q is at most √x, and n/q has k prime factors and is
+at most x/q, so n is counted k + 1 times in the second sum. ∎
+
+The script \texttt{omega\_envelope.py} (in its final form inside
+\texttt{explicitC\_omega3.py}) starts from exact counts of
+N\textsubscript{j} at the points 10\textsuperscript{i/200} up to 10¹¹.
+These come from a segmented sieve, \texttt{segomega.c}, which reproduces
+the direct counts of \texttt{omgrid.c} up to 10⁹ exactly. Above that it
+uses P(y) ≤ π(y) + 2√y with Dusart's bound for π. It evaluates Lemma 8.8
+on the same grid up to 10¹⁸, binning both sums and rounding every
+argument up to the next grid point. Since each N\textsubscript{j} is
+nondecreasing, this gives upper envelopes. As a check, the same
+computation started from exact counts at 10⁷ stays above the exact
+counts at every grid point up to 10⁹.
+
+Write K\textsubscript{k}(N) for the smaller of the Rankin and envelope
+bounds on \#\{n ≤ N : ω(n) ≥ k\}, with K\textsubscript{k}(N) = 0 when k
+\textgreater{} ω*(N). There are two cases.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Case I: A′ is inside neither C7 nor C18.} Run the argument of
+  Sections 8.2--8.4 on A′, choosing every witness in A′. Then ω(b) ≤ k −
+  1, so in Section 8.5 the factors 2\textsuperscript{ω*(N)+1} and
+  2\textsuperscript{ω₁*(N)} become 2\textsuperscript{k} and
+  2\textsuperscript{k−1}. Call the resulting error
+  E\textsubscript{k}(N). Then \textbar A\textbar{} ≤ N/50 +
+  E\textsubscript{k}(N) + K\textsubscript{k}(N).
+\item
+  \textbf{Case II: A′ ⊆ C7, say.} Since A ⊄ C7, some b ∈ A″ lies outside
+  C7, and A \textbackslash{} C7 ⊆ A″. A single cell outside C7 forces at
+  most 12 of the 36 residues of C7 mod 36: one row of weight 9 and one
+  column of weight 4, which overlap in one cell. So, as in Lemma 2.2,
+  \textbar A ∩ C7\textbar{} ≤ g₁N + E\textsubscript{II}(N). Here g₁ =
+  (1/3 + (2/3)β⁺)/25 = 0.014697 \textless{} 1/50, and
+  E\textsubscript{II}(N) = 36 + 36π(Y) + L\textsubscript{C}, where
+  L\textsubscript{C} is Lemma 3.5's bound with the worst-case factor
+  2\textsuperscript{ω₁*(N)}. Then \textbar A\textbar{} ≤ N/50 +
+  E\textsubscript{II}(N) + K\textsubscript{k}(N) − (1/50 − g₁)N.
+\end{itemize}
+
+Two further facts help at moderate N, both because every element of A
+lies in V.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Counting inside V.} Let V\textsubscript{P} be the part of V
+  that comes from primes p ≤ P = 10⁵, that is, the n with p² \textbar{}
+  n² + 1 for some such p.~The sieve also counts the n ∈
+  V\textsubscript{P} with ω(n) ≥ k exactly, up to 10¹¹. The rest of V
+  comes from primes p \textgreater{} P with p ≡ 1 (mod 4), and has at
+  most 2NΣ\textsubscript{p\textgreater P} p⁻² + 2π(Y′) elements up to
+  Y′, plus the bound of Lemma 3.4 beyond Y′. Inside V the count of
+  elements with many prime factors is about fourteen times smaller than
+  over all integers.
+\item
+  \textbf{The bound \textbar A\textbar{} ≤ \textbar V ∩
+  {[}N{]}\textbar.} This replaces the trivial bound \textbar A\textbar{}
+  ≤ N. Up to 10¹¹ the sieve gives \textbar V ∩ {[}N{]}\textbar{}
+  directly. Beyond that, inclusion--exclusion over the eleven primes p ≤
+  100 with p = 5 or p ≡ 1 (mod 4) gives at most 0.10359N + 3¹¹; Lemma
+  3.3 covers 100 \textless{} p ≤ Y′, and Lemma 3.4 the primes beyond. At
+  10¹¹ this formula gives 1.0549·10¹⁰, against an exact count of
+  1.0531·10¹⁰.
+\end{itemize}
+
+Taking k = ω*(N) + 1 recovers Section 8.5. The script
+\texttt{explicitC\_omega4.py} uses the grid of Section 8.5, refined to
+ratio 10\textsuperscript{0.01} from 10⁵ to 10²⁵. For each cell it takes
+the better of two bounds. One is \textbar A\textbar{} ≤ \textbar V ∩
+{[}N{]}\textbar. The other, for the best k, is the two cases above,
+using the smallest available bound on the elements with ω ≥ k. It gives
+C ≤ 29.9, attained near N = 10\textsuperscript{13.33} with k = 8. Hence
+C = 30 works in Theorem 8.1. For comparison, Rankin's bound alone gives
+C ≤ 92.4 (\texttt{explicitC\_omega.py}).
+
+The bound \textbar A\textbar{} ≤ \textbar V ∩ {[}N{]}\textbar{} decides
+C up to about 10¹³. Beyond that the refined argument decides it; where C
+is decided, about 10¹³ to 10¹⁸, k is between 8 and 11. The worst cell
+lies just past the range where the bound \textbar A\textbar{} ≤
+\textbar V ∩ {[}N{]}\textbar{} decides C. So extending the sieve, or an
+explicit bound for integers with many prime factors in the classes
+±ι\textsubscript{p} mod p², would lower C further.
+
+\subsubsection{8.7 Third-order structure}
+
+Write F′ = \{n ≡ 7 (mod 25), n ≡ 3 (mod 4)\} ∪ \{n ≡ 18 (mod 25), n ≡ 1
+(mod 4)\} for the mirror image of F.
+
+\textbf{Theorem 8.9.} Let N ≥ 10\textsuperscript{23.6}. If A ⊆ {[}N{]}
+is valid, not contained in C7 or C18, and \textbar A\textbar{} ≥ (1/50 −
+0.0008)N, then A ⊆ F or A ⊆ F′. The same holds with 0.0005 in place of
+0.0008 for N ≥ 10\textsuperscript{22.3}.
+
+So near the second-best density there is no room to move. A
+near-extremal set is F or F′ with some elements removed; nothing can be
+added.
+
+\textbf{Lemma 8.10 (strict gap).} With β = 0.05114 and j = 0.01577,
+every admissible core K other than those of F and F′ has U(K) ≤ 1/50 −
+0.0010542. The runner-up is the core of F with one cell of weight 1
+removed, which costs exactly (1 − β)/900.
+
+\emph{Proof.} \texttt{lamgap.c}, a variant of \texttt{lamcert.c}, finds
+this by enumerating all 51,223 admissible cores in exact integer
+arithmetic. \texttt{LamGap.lean} proves the statement in the Lean
+kernel, again with \texttt{decide} only. The argument is the closure
+argument of Proposition 8.6. If a core's closure is not the core of F or
+F′, the 64 × 64 check bounds it. If the closure is F's but the core is
+smaller, the core misses a cell of weight at least 1. ∎
+
+\emph{Proof of Theorem 8.9.} The constants of Lemma 8.10 are at least β⁺
+and j⁺ (Lemma 8.4). So Lemma 8.5 gives \textbar A\textbar{} ≤ U(K)N +
+E(N), where K is the core of A and E(N) is the error of Section 8.5. The
+script \texttt{thirdorder.py} checks on the grid of Section 8.5 that
+E(N) \textless{} (0.0010542 − δ)N for every N ≥ N₂(δ). It finds N₂ =
+10\textsuperscript{23.56} for δ = 0.0008 and N₂ =
+10\textsuperscript{22.27} for δ = 0.0005, with the tail beyond 10⁶⁰¹
+handled as in Section 8.5. Then U(K) \textgreater{} 1/50 − 0.0010542, so
+K is the core of F or of F′; say F.
+
+Every type of A is forced by every type of this core. A C7 cell forced
+with every C18 cell ≡ 3 (mod 4) must be ≡ 1 (mod 4), because the cell
+with 3 \textbar{} a forces nothing through 9. Symmetrically, a C18 cell
+must be ≡ 3 (mod 4). An R-type would have to be forced with the cells ≡
+1 and ≡ 3 (mod 4) that have 3 \textbar{} a, through 4 alone, which no
+residue mod 4 allows. So every type of A is a type of F, and A ⊆ F. ∎
+
+The threshold is large for two reasons: the gap is small, and the error
+of Section 8.5 decays only like N\textsuperscript{−1/3+o(1)}. The
+ω-refinement of Section 8.6 does not transfer directly. It would only
+show that A lies in F apart from at most K\textsubscript{k}(N)
+exceptional elements.
+
+\subsection{9. Further results}
+
+A companion paper {[}14{]} tests how far the method reaches. It proves
+counting lemmas for ab + c with any squarefree c, and uses them in three
+directions:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Higher powers.} For ab + 1 never k-free, the maximum is a
+  class mod 5\textsuperscript{k} for every k ≥ 3 and large N, with an
+  explicit threshold. For 3 ≤ k ≤ 100 this holds for every N, with two
+  small exceptions; for cubes the maximisers are listed for every N.
+\item
+  \textbf{Other forms.} For ab + c never squarefree, the maximum for
+  large N is a root class of x² + c ≡ 0 (mod p²), for 49 squarefree c ≤
+  100.
+\item
+  \textbf{The third density.} The densest valid set not inside C7, C18,
+  F or F′ has density between 1/25 − 1/(4π²) = 0.01467 and 0.01491, so
+  for large N, Theorem 8.9 holds with 0.0192 replaced by 0.01491.
+\end{itemize}
+
+\subsection{10. Open problems}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Third-order structure.} Theorem 8.9 settles this for N ≥
+  10\textsuperscript{23.6}: a valid set not inside one class with at
+  least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this
+  hold for much smaller N, with an explicit δ? The exact maximisers for
+  N ≤ 1006 (Section 7, proof of Theorem C(2)) are small sets unrelated
+  to F, so some lower bound on N is needed.
+\item
+  \textbf{Sharper large-prime counts.} Brute force shows that Lemmas 3.4
+  and 3.5 overestimate by a factor of about 38 or more (worst ratio
+  0.026). Averaging ρ\textsubscript{b}(m) over short ranges of m, using
+  explicit Burgess- or Weil-type bounds, should lower N₀ substantially,
+  make the ω-refinement unnecessary, and shrink the constant C of
+  Theorem 8.1.
+\item
+  \textbf{A general witness-game theorem.} The companion paper {[}14{]}
+  carries the method to higher powers and to ab + c for many c, each by
+  a separate computation. Is there a single theorem: a self-forcing
+  class plus a positive local gap implies extremality for all large N,
+  with an effective threshold? The companion paper also asks for the
+  exact third density, conjectured to be 1/25 − 1/(4π²).
+\item
+  \textbf{Formalisation.} The constructions
+  (\texttt{Erdos848Constructions.lean}), the certificate of Proposition
+  8.6 (\texttt{LamCert.lean}) and the strict gap of Lemma 8.10
+  (\texttt{LamGap.lean}) are verified in Lean. Natural next targets are
+  Proposition 8.2, which is short, and the counting lemmas of Section 3.
+\end{enumerate}
+
+\subsection{Appendix: verification and reproducibility}
+
+All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with
+numpy, sympy, networkx and scipy. Each computational claim for Theorems
+A--D has at least two independent checks.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Claim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Primary computation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Independent check
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Theorem A, N ≤ 3806 & max clique at N ≡ 6 (mod 25), \texttt{e848b.py}
+(776 s) & \texttt{nsc.py}: exact cliques for N ≤ 1006, plus case bounds
+S1--S4 strictly below c7 for 1006 \textless{} N ≤ 3806
+(\texttt{fast848.c} started at N = 31) \\
+Theorem A, 3806 ≤ N ≤ 10⁷ & \texttt{fast848.c}, 794 blocks (47 min) &
+\texttt{e848cases.c} (different algorithm) to 10⁶; numpy brute force
+\texttt{alledges.py}; \texttt{sbrute.py} (direct d² sieve) matches
+S1--S4 at all 168 edges ≤ 20,000 \\
+V₂ values & MILP, \texttt{vk2.py} (HiGHS) & exact integer
+branch-and-bound, \texttt{bb.c}, all 16 parameter pairs \\
+Lemma 3.5 constants λ, c & \texttt{mconst2.py} & \texttt{mc.py}
+(brute-force ρ) \\
+Lemmas 3.4 and 3.5 & proofs above & brute force at N ≤ 3·10⁵,
+\texttt{brute.py} / \texttt{brute2.py}: no violations, worst ratio
+actual/bound 0.026 \\
+Grid, N ≥ 6.7838·10⁶ & \texttt{tmgrid.py}, 2525 cells on {[}10⁷,
+10⁶⁰{]}; the referee grid alone covers {[}6.7838·10⁶, 10⁷{]} & referee
+\texttt{cellsbig.py} / \texttt{cellsbig2.py}, (17, 13) only, to 10⁶⁰ \\
+ω-counts K\textsubscript{k}(N) & \texttt{omegaV.c} & \texttt{kom.c} \\
+Proposition 5.1 & closed form above & \texttt{tail60.py} \\
+Theorem C(2), N ≤ 1006 & \texttt{nsc.py} (exact cliques by case) &
+maximal-clique enumeration for N ≤ 106 \\
+Theorem C(2), 3806 \textless{} N ≤ 6.9·10⁶ & \texttt{fast848.c}, strict
+comparison (29 min, 2 cores) & \texttt{sbrute.py} on the tightest block,
+one N at a time \\
+\end{longtable}
+
+Further independent checks:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Claim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Computation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Result
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Li's uniform-degree proposition, 5·10⁶ ≤ N ≤ 10⁷ & \texttt{fastli.c}
+(exact H₇, H₁₈ for all b; 70 blocks of 1\%, 56 min) & holds on every
+block; minimum margin 13.8\% (threshold taken at the top of each block);
+brute-force cross-check at N = 20,000 \\
+Theorem D and the constructions & \texttt{Erdos848Constructions.lean},
+Lean 4.36.0-rc2 with Mathlib & compiles; no \texttt{sorry}; only the
+standard axioms \\
+Densest congruence-defined set not inside one class & \texttt{wgame4.py}
+(exact cliques mod 900) & 1/50, attained by F; exact integer certificate
+of the full game: lamcert.c (51,223 cores); kernel-checked reduced
+certificate: LamCert.lean (64 closed sets, 439 pairs); third-order gap:
+lamgap.c, LamGap.lean, thirdorder.py; explicit C = 30:
+explicitC\textsubscript{omega4}.py, with exact counts to 10¹¹ from
+segomega.c (C = 92.4 with Rankin's bound alone:
+explicitC\textsubscript{omega}.py; C = 170 without the ω-refinement:
+explicitC.py) \\
+\end{longtable}
+
+The full package (code, logs and certificates) accompanies this paper.
+
+\subsection{References}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  T. F. Bloom, \href{https://www.erdosproblems.com/848}{Erdős Problem
+  \#848}, erdosproblems.com, and the
+  \href{https://www.erdosproblems.com/forum/thread/848}{discussion
+  thread}.
+\item
+  M. Sawhney,
+  \href{https://www.math.columbia.edu/~msawhney/Problem~848~.pdf}{Problem
+  848}, note.
+\item
+  W. van Doorn, upper bound (0.108\ldots{} + o(1))N, as recorded at
+  reference 1.
+\item
+  J. B. Rosser and L. Schoenfeld, Approximate formulas for some
+  functions of prime numbers, Illinois J. Math. 6 (1962), 64--94.
+\item
+  G. Robin, Estimation de la fonction de Tchebychef θ sur le k-ième
+  nombre premier et grandes valeurs de la fonction ω(n) nombre de
+  diviseurs premiers de n, Acta Arith. 42 (1983), no. 4, 367--389,
+  doi:10.4064/aa-42-4-367-389.
+\item
+  P. Dusart, Inégalités explicites pour ψ(X), θ(X), π(X) et les nombres
+  premiers, C. R. Math. Rep.~Acad. Sci. Canada 21 (1999), no. 2, 53--59.
+  This is the source of π(x) ≤ (x/ln x)(1 + 1/ln x + 2.51/ln² x) for x ≥
+  355991.
+\item
+  B. Alexeev, D. G. Mixon and W. Sawin,
+  \href{https://arxiv.org/abs/2507.01928}{The independence and clique
+  cover numbers of the squarefree graph} (2025), for the companion
+  problem where ab is never squarefree.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  A. C. Li, \emph{The Exact Extremal Bound in Erdős Problem 848}, August
+  2026
+  (\href{https://papers.ssrn.com/sol3/papers.cfm?abstract~id~=7230480}{SSRN
+  7230480};
+  \href{https://github.com/crabsatellite/erdos-848-squarefree-product}{code
+  and Lean}). Uses a Hall-matching reformulation relative to C7, a
+  prefix colouring for N ≤ 5·10⁶, and case-wise pivot estimates beyond
+  that. Claims a complete Lean 4 verification.
+\item
+  N. Sothanaphan, explicit threshold N₀ = 2.64·10¹⁷ for Sawhney's
+  theorem (2026), as cited in reference 8.
+\item
+  I. Pitchford (with OpenAI Codex),
+  \href{https://zenodo.org/records/21647629}{Candidate
+  certificate-backed all-N determination for Erdős Problem 848}, Zenodo,
+  July 2026.
+\item
+  B. Zanghi, \href{https://github.com/bzanghi/erdos-848}{erdos-848}, and
+  N. Durfee,
+  \href{https://github.com/AstroCat93/erdos-848-verification}{erdos-848-verification},
+  GitHub, 2026.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\tightlist
+\item
+  R. Jung et al.,
+  \href{https://github.com/The-Obstacle-Is-The-Way/erdos-banger}{erdos-banger},
+  Lean 4 formalisation of Sawhney's stability theorem for Problem 848 (η
+  = 1/2000, ineffective N₀), January 2026.
+\item
+  M. Sawhney and M. Sellke, in \emph{Early science acceleration
+  experiments with GPT-5},
+  \href{https://arxiv.org/abs/2511.16072}{arXiv:2511.16072}, Section
+  IV.1 (Problem 848).
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{13}
+\tightlist
+\item
+  L. Culpitt, \emph{The witness game beyond Erdős Problem 848: higher
+  powers, ab + c, and the third density}, companion paper (2026); code
+  in the repository
+  \href{https://github.com/MeaCulpitt/Erdos-848}{Erdos-848}.
+\end{enumerate}
+
+\subsection{Acknowledgements}
+
+The argument, code and certificates were developed with AI assistance
+(Claude) and checked by independent re-implementation. Every computation
+above can be re-run from the accompanying package. We thank the
+contributors to the forum thread for Problem 848, especially W. van
+Doorn, D. Weisenberg, StijnC, B. Alexeev, M. Sawhney and N. Sothanaphan,
+whose comments shaped this work. We welcome expert review, especially of
+Sections 3--5 and 8.
+
+\end{document}

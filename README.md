@@ -2,7 +2,7 @@
 
 [Erdős Problem 848](https://www.erdosproblems.com/848) asks whether the largest A ⊆ {1, …, N} with ab + 1 never squarefree (for all a, b ∈ A, including a = b) is the residue class 7 mod 25. Sawhney proved this for all sufficiently large N, with no explicit threshold. Several all-N proofs followed in 2026, among them A. C. Li's, which comes with a Lean formalisation ([SSRN 7230480](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7230480)). None of these, including this one, has yet been refereed.
 
-This repository contains a second, independent proof for every N, together with new structural results, and all the code, certificates and logs needed to check them. The paper is [`paper/erdos848_paper.md`](paper/erdos848_paper.md).
+This repository contains a second, independent proof for every N, together with new structural results, and all the code, certificates and logs needed to check them. The paper is [`paper/erdos848_paper.md`](paper/erdos848_paper.md) (PDF: [`submission/erdos848.pdf`](submission/erdos848.pdf)). A companion paper, [`paper/witness_game_beyond_848.md`](paper/witness_game_beyond_848.md) (PDF: [`submission/witness_game_beyond_848.pdf`](submission/witness_game_beyond_848.pdf)), carries the method to higher powers, to ab + c never squarefree, and to the third density.
 
 ## Results
 
@@ -26,7 +26,8 @@ The arguments, code and certificates were developed with AI assistance (Anthropi
 
 | Folder | What it checks | Main files |
 | --- | --- | --- |
-| `paper/` | The paper | `erdos848_paper.md` |
+| `paper/` | The paper and the companion paper | `erdos848_paper.md`, `witness_game_beyond_848.md` |
+| `submission/` | LaTeX sources and PDFs of both papers (pdflatex; `build.py` regenerates them from the Markdown) | `erdos848.tex`, `witness_game_beyond_848.tex` |
 | `computation/` | Theorem A for N ≤ 10⁷ (Sawhney's cases S1–S4, exact counts) and exact clique search for N ≤ 3806 | `fast848.c`, `e848cases.c`, `e848b.py`, logs `r1e7_fast.txt`, `r848.txt`; brute-force cross-checks `xcheck.py`, `exhaust.py`, `alledges.py`, `spfcheck.py` |
 | `lemma/` | The explicit threshold N₀: error terms, the witness game V₂, and the grid on [10⁷, 10⁶⁰] | `n0lemma.py`, `vk2.py`, `tmgrid.py` + `tmgrid.log` (2525 cells, 0 failures), `tail60.py`, `omegaV.c`; notes `README.md` |
 | `referee/` | Independent re-implementation | `bb.c` (exact integer branch-and-bound for V₂, all 16 parameter pairs: `bb_allpairs.out`), `cellsbig.py`/`cellsbig2.py` (grid from N₀ = 6.7838·10⁶), `brute.py`/`brute2.py` (brute-force tests of the Pell and lattice lemmas) |

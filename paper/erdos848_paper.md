@@ -11,7 +11,7 @@ Our main new results describe valid sets beyond the maximum:
 - **Explicit stability.** For N ≥ 6.7838·10⁶, every valid set not inside one class has at most (N − 7)/25 elements, and at most 0.0293N asymptotically. This makes Sawhney's qualitative η explicit: η = 0.0016 at N = 10⁷, rising to about 0.0107 as N → ∞.
 - **Sharp rigidity.** One element outside 7 mod 25 leaves at most a fraction 0.3667… of that class. This is the sharp form of the degree estimate in Li's proof.
 - **Exact maximisers for every N.** They are the classes 7 and 18 mod 25, plus four small sets not inside one class when 41 ≤ N ≤ 81.
-- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. One level further down, the third density lies between 1/25 − 1/(4π²) = 0.01467 and 0.01491 (Section 8.8). The same method settles the k-free analogues, ab + 1 never k-free, for every k ≥ 3 and large N, and completely for k ≤ 100: the maximum is a class mod 5^k, for example 57 mod 125 when k = 3 (Section 9). It also settles ab + c never squarefree for large N, for 49 squarefree c ≤ 100: the maximum is a root class of x² + c ≡ 0 (mod p²), and for 33 of these c the second-best density is determined as well.
+- **A two-class set of density 1/50.** It meets both classes, it beats the natural "one class plus one outsider" configuration, and it is optimal. Every valid set not inside one class has at most N/50 + O(N^0.81) elements, so the second-best density is exactly 1/50. Near that density F is rigid: for large N, a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. A companion paper extends the method to ab + 1 never k-free, to ab + c never squarefree, and to the third density (Section 9).
 
 The constructions and the certificate for the second-best density are verified in Lean 4. Every computation is reproducible and was cross-checked by an independent implementation. This includes a check of the key degree proposition of Li's proof for 5·10⁶ ≤ N ≤ 10⁷.
 
@@ -40,7 +40,7 @@ Theorems B, C and D are new. Sawhney's note gives stability with an unspecified 
 
 **Method.** Each a lies in one of 63 *types*, given by its class mod 25 (C7, C18 or the rest R), mod 4 and mod 9. Whether p² | ab + 1 is forced for p ∈ {2, 3, 5} depends only on the types of a and b. Fix a valid A and pick one or two "witnesses" b ∈ A. Every other a ∈ A must make ab + 1 non-squarefree. Optimising the witness choice against every possible set of types gives a finite min–max problem with value V₂ = 0.0294059… < 1/25.
 
-Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal and, near 1/50, essentially unique. Section 9 treats the cube-free analogue, and Section 10 lists open problems.
+Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal and, near 1/50, essentially unique. Section 9 summarises further results from a companion paper, and Section 10 lists open problems.
 
 The arguments and code were developed with AI assistance and independently re-run (Appendix). They have not yet been reviewed by a human expert.
 
@@ -291,7 +291,7 @@ Let λ\*(N) be the largest size of a valid A ⊆ \[N\] contained neither in C7 n
 
 **Theorem 8.1.** For every N, λ\*(N) ≤ N/50 + E(N), where E(N) = N^{2/3+o(1)} is the explicit function of Section 8.5. Moreover, by the refinement of Section 8.6, λ\*(N) ≤ N/50 + 30·N^0.81 for every N. The set F of Theorem D gives λ\*(N) ≥ N/50 − 2. Hence λ\*(N)/N → 1/50.
 
-Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit, Section 8.6 lowers the constant to 30, Section 8.7 proves the third-order Theorem 8.9, and Section 8.8 brackets the third density.
+Section 8.1 proves the theorem for sets inside C7 ∪ C18 by a short argument. Sections 8.2–8.4 prove the general case: a counting lemma, then an all-witness version of the game of Section 4, then an exact certificate. Section 8.5 makes every constant explicit, Section 8.6 lowers the constant to 30, and Section 8.7 proves the third-order Theorem 8.9.
 
 ### 8.1 Sets inside C7 ∪ C18
 
@@ -467,141 +467,28 @@ Every type of A is forced by every type of this core. A C7 cell forced with ever
 
 The threshold is large for two reasons: the gap is small, and the error of Section 8.5 decays only like N^{−1/3+o(1)}. The ω-refinement of Section 8.6 does not transfer directly. It would only show that A lies in F apart from at most K\_k(N) exceptional elements.
 
-### 8.8 The third density
+## 9. Further results
 
-Let λ₃(N) be the largest size of a valid A ⊆ \[N\] contained in none of C7, C18, F and F′.
+A companion paper \[14\] tests how far the method reaches. It proves counting lemmas for ab + c with any squarefree c, and uses them in three directions:
 
-**Theorem 8.11.** (1) lim inf λ₃(N)/N ≥ 1/25 − 1/(4π²) = 0.0146697…. (2) lim sup λ₃(N)/N ≤ 0.014910.
-
-So for all large N, a valid set with more than 0.01491N elements lies inside C7, C18, F or F′. This sharpens the density 1/50 − 0.0008 = 0.0192 of Theorem 8.9 to 0.01491, though without an explicit threshold for N.
-
-*Proof of (1).* Take a prime x > 3 with x ≡ 18 (mod 25) and x ≡ 3 (mod 4), and let A = {x} ∪ {a ∈ C7 ∩ \[N\] : ax + 1 not squarefree}. Pairs inside C7 are forced by 25, x² + 1 ≡ 0 (mod 25), and pairs with x hold by definition, so A is valid. It contains x ∈ C18 and elements of C7 that are ≡ 1 and ≡ 3 (mod 4), so it lies in none of the four sets.
-
-For a ∈ C7 we have ax + 1 ≡ 2 (mod 25), so 25 never divides ax + 1. The modulus 4 divides it for one class of a mod 4, 9 for one class mod 9, and p² for one class mod p² when p ≥ 7 and p ≠ x; x² never does. So the a ∈ C7 with ax + 1 squarefree have density
-
-(1/25)·(3/4)·(8/9)·∏\_{p≥7, p≠x} (1 − p⁻²) = (1/(4π²))·(1 − x⁻²)⁻¹,
-
-using ∏\_{p≥7}(1 − p⁻²) = 75/(8π²). Hence |A|/N → 1/25 − (1/(4π²))(1 − x⁻²)⁻¹, and letting x → ∞ gives (1). (`lam3_lower.py` checks the count: 0.014671 at N = 2·10⁷, x = 100043.) ∎
-
-This is the "one class plus one outsider" configuration behind g₁ in Section 8.6. The outsider forces exactly a third of C7 (Lemma 2.2), and the other two thirds survive only where ax + 1 picks up a square factor by chance.
-
-*Proof of (2).* Refine the game of Section 8.3 by the self-forcing classes S\_p^± = {a ≡ ±ι\_p (mod p²)} for p = 13 and 17. A type now records its class mod 25, its cell mod 36 and its membership in S₁₃^± and S₁₇^±. Two elements of the same S\_p^σ are forced. An element of S\_p^σ and one outside it never have p² | ab + 1, since ab ≡ −1 (mod p²) would put the second element in S\_p^σ too.
-
-This removes most of κ from the R-types. An R-type outside all four classes lies in V only through a prime p ≥ 29, and its joint constant drops from j⁺ = 0.0158 to 0.0050. For a single witness, the luck density is also taken as the exact CRT value 1 − ∏(1 − q⁻²) over 7 ≤ q ≤ 10⁷, with 1/(p² − 2) in place of 1/p² for p = 13, 17, plus the union bound beyond 10⁷. This is valid asymptotically.
-
-The core reduction (Lemma 8.5) applies unchanged. Maximising U(K) over cores whose F(K) has a type outside each of C7, C18, F and F′ is a finite problem on 225 slabs × 21 cells. `third_cp.py` solves it to optimality with OR-tools CP-SAT, rounding every coefficient up, and finds 0.0149093. The error terms are those of Sections 8.2–8.5 with modulus 900·169·289, and all are o(N). ∎
-
-The optimal core is the class-plus-outsider core: twelve cells of one class, all forced by a single cell. So the game identifies the right configuration, and the gap of 0.00024 to the construction has two sources. Most of it comes from R-elements of the outsider's cell that lie in V through primes p ≥ 29. This part shrinks as more classes S\_p are split off: the bound is 0.0149645 with S₁₃ alone. The rest, β/900 ≈ 0.000056, is the outsider cell itself, which the game charges at rate β although the construction has a single element there.
-
-**Conjecture.** λ₃ = 1/25 − 1/(4π²).
-
-## 9. The cube-free analogue
-
-As a test of how general the method is, consider the same question with cubes in place of squares. Call A ⊆ \[N\] *cube-valid* if ab + 1 is not cube-free for all a, b ∈ A, including a = b. Write V₃ = {x : x² + 1 not cube-free}. Since 57² + 1 = 2·5³·13, the classes 57 and 68 mod 125 are cube-valid, playing the role of 7 and 18 mod 25. Write c57(N) = #{n ≤ N : n ≡ 57 (mod 125)}.
-
-**Theorem 9.1.** For every N, every cube-valid A ⊆ \[N\] has |A| ≤ c57(N). Equality holds exactly in the following cases:
-
-- A = C57 ∩ \[N\];
-- A = C68 ∩ \[N\], when c68(N) = c57(N);
-- for 193 ≤ N ≤ 306, also A = {182, 193};
-- for 239 ≤ N ≤ 306, also A = {57, 239} and A = {193, 239}.
-
-The exceptional sets work through 8 and 27: 182·193 + 1 = 3³·1301, 57·239 + 1 = 2³·13·131 and 193·239 + 1 = 2⁴·3·31². Locally the picture is the same as for 848. The densest congruence-defined cube-valid set not inside one class is {57 mod 125, 1 mod 8} ∪ {68 mod 125, 7 mod 8}, of density 1/500 (`wgame4.py`).
-
-The proof is much shorter than for 848, for two reasons. The local gap is far larger, so a single witness suffices and the full witness game is not needed. And a cube q³ > N² + 1 can never divide ab + 1, so no lattice lemma is needed either.
-
-**Lemma 9.2 (one witness).** Let A be cube-valid, and suppose some b ∈ A lies outside C57. Then
-
-```latex
-|A\cap C57| \le \frac{N}{125}\Big(\frac18+\frac1{27}+\beta_3\Big) + 2 + \pi\big((N^2+1)^{1/3}\big), \qquad \beta_3=\sum_{q\ge 7} q^{-3} \le 0.004726,
-```
-
-and the same holds for C68.
-
-*Proof.* Since b ∉ C57, 125 never divides ab + 1 for a ∈ C57. So some prime q ≠ 5 has q³ | ab + 1, which puts a in one class mod q³ (if q ∤ b). For q = 2 and q = 3 this is at most a fraction 1/8 or 1/27 of C57, at a cost of 1 each. For q ≥ 7, the class mod 125q³ contains at most N/(125q³) + 1 elements up to N. Also q³ ≤ ab + 1 ≤ N² + 1. ∎
-
-*Proof of Theorem 9.1.* Let A be cube-valid and inside neither C57 nor C68. Then A has elements outside each class, so Lemma 9.2 applies to both. The remaining elements lie in V₃ outside C57 ∪ C68, so each has p³ | x² + 1 for some p ≡ 1 (mod 4) with p ≥ 13. There are at most 2Nσ₃ + 2π((N²+1)^{1/3}) of them, where σ₃ = Σ p⁻³ over primes p ≡ 1 (mod 4) with p ≥ 13, so σ₃ ≤ 0.000756.
-
-- **Large N.** The total main term is 0.004178N against c57(N) > (N − 57)/125 ≈ 0.008N. Checking cells of ratio 1.01 with exact prime counts to 10⁸ and Rosser–Schoenfeld above (`cube_analytic.py`) gives |A| < c57(N) for 1.94·10⁶ ≤ N ≤ 10⁴⁰. Beyond 10⁴⁰ the error term 4π((N²+1)^{1/3}) + 4 is far below (0.008 − 0.004178)N.
-- **700 ≤ N ≤ 2·10⁶.** Here `cubeM.c` computes the bound exactly. It finds the maximum over witnesses b ∈ V₃ ∖ C57 of #{a ∈ C57 ∩ \[N\] : ab + 1 not cube-free}, likewise for C68, and adds |V₃ ∩ \[N\]| − c57(N) − c68(N). All three are nondecreasing in N. On 20 cells of ratio 1.5 the bound, taken at the top of each cell, stays below c57 at the bottom of the cell. At its closest it reaches 89% of c57 (17 against 19 on \[2362, 3543\]). A brute-force recomputation by factorisation agrees at N = 3000.
-- **N ≤ 700.** `cube_maxsets.py` lists all maximum cube-valid sets for every N by an exact clique search. An independent clique computation confirms the maximum c57(N) up to N = 40,000.
-
-So for N ≥ 700 every cube-valid set not inside one class has fewer than c57(N) elements, and the maximisers are the full classes. ∎
-
-The comparison is instructive. The method needs a self-forcing class, a positive local gap, and a way to count the large-prime events. For squares the first two were easy and the third was the main difficulty. For cubes all three are easy.
-
-### Higher powers
-
-The same argument works for every k ≥ 3. Call A ⊆ \[N\] *k-valid* if ab + 1 is never k-free, for all a, b ∈ A including a = b. Let q = 5^k, let r\_k be the smaller root of x² ≡ −1 (mod q), and write c\_k(N) = #{n ≤ N : n ≡ r\_k (mod q)}. For example, r₃ = 57, r₄ = 182, r₅ = r₆ = 1068 and r₇ = 32318.
-
-**Theorem 9.3.**
-
-1. For every k ≥ 3 there is an explicit N\_k such that for N ≥ N\_k, every k-valid A ⊆ \[N\] not inside one of the classes ±r\_k (mod q) has fewer than c\_k(N) elements. So for N ≥ N\_k the maximum is c\_k(N), and only the full classes attain it. Here N\_k/5^k is about 15,400 for k = 3, 555 for k = 4, at most 214 for k ≥ 5, and at most 60 for k ≥ 40.
-2. For 3 ≤ k ≤ 100 the maximum is c\_k(N) for every N, and only the full classes attain it, with exactly two exceptions. For k = 3 and 193 ≤ N ≤ 306, the mixed sets of Theorem 9.1 also attain it. For k = 4 and 239 ≤ N ≤ 806, the set {239} also attains the maximum 1, because 239² + 1 = 2·13⁴.
-
-*Proof of part 1.* Lemma 9.2 holds with 2^k, 3^k and p^k in place of 8, 27 and p³. A witness outside C\_{r\_k} forces at most a fraction Z\_k = 2^{−k} + 3^{−k} + Σ\_{p≥7} p^{−k} of that class, plus one element for each prime p with p^k ≤ N² + 1. The rest of V\_k has at most 2Nσ\_k + 2π((N²+1)^{1/k}) elements, where σ\_k = Σ p^{−k} over primes p ≡ 1 (mod 4) with p ≥ 13. The main term 2Z\_k + 2qσ\_k is largest at k = 3, where it is 0.52, and it falls to 0.21 at k = 4 and 0.09 at k = 5.
-
-For 3 ≤ k ≤ 40, `kfree_analytic.py` finds N\_k by checking cells of ratio 1.01. For k > 40 and N = λq with λ ≥ 60, the requirement reduces to λ(1 − 10⁻¹¹) − 1 > 4π(25.01·λ^{0.05}) + 4. This holds because the right side is at most 52 for λ ≤ 10⁴, and grows only like λ^{0.05}. ∎
-
-*Proof of part 2.* Below N\_k the vertex set V\_k ∩ \[N\_k\] can be listed directly, as the roots of x² ≡ −1 (mod p^k) for the few primes with p^k ≤ N\_k² + 1. Testing an edge only needs those same primes. The vertex set is small: 1,143 vertices for k = 4, 432 for k = 5, and between 90 and 155 for 9 ≤ k ≤ 100. Above k = 30 there are no vertices outside the two classes at all.
-
-For 5 ≤ k ≤ 100, `kfree_exact.py` enumerates all maximum cliques at every vertex value up to N\_k; the graph is constant between consecutive vertices. For k = 4 it does this up to 30,000 and then checks the one-witness bound on 14 cells up to N\_4, where the bound is at most a third of c₄. The case k = 3 is Theorem 9.1.
-
-The graphs are not trivial: for k = 5 there are 844 edges between the two classes and 5 extra vertices. An independent brute force, factorising x² + 1 and ab + 1 directly, reproduces every maximum set for k = 4 up to 3000 and k = 5 up to 20,000. ∎
-
-So the extremal answer is the same for every k ≥ 3: the class r\_k mod 5^k, with occasional small exceptions at the start. Part 2 cannot be checked for all k at once, because whether a stray vertex such as 239 falls below the second element of the class depends on the particular roots. For 5 ≤ k ≤ 100 none does. The exceptions are not confined to c\_k(N) ≤ 1: for k = 3 they occur where c₃(N) = 2. But they do not recur. Let μ\_k(N) be the size of the largest k-valid set in \[N\] not inside one class. For every 5 ≤ k ≤ 300 and every N ≤ N\_k, μ\_k(N) ≤ c\_k(N) − 3; the closest approach is k = 5 and N = 13,568, where a mixed pair faces a class of 5 (margin.py). For 12 ≤ k ≤ 300 there is no mixed set at all below N\_k: V\_k ∩ \[N\_k\] consists of the two classes, with no edge between them.
-
-### Other forms: ab + c
-
-Now replace 1 by a fixed squarefree c ≥ 1. Call A ⊆ \[N\] *c-valid* if ab + c is not squarefree for all a, b ∈ A, including a = b. A *root class* is a class x mod p² with x² + c ≡ 0 (mod p²). It is self-forcing, because aa′ + c ≡ x² + c ≡ 0 for a, a′ in the class.
-
-For p = 2, root classes exist exactly when c ≡ 3 (mod 4): they are 1 and 3 mod 4. For odd p ∤ c, they exist exactly when −c is a square mod p, and then there are two classes mod p². Let p\_c be the least prime with root classes, so p₁ = 5. The root classes mod p\_c² are the natural candidates for the maximum. They have density 1/4 if p\_c = 2 and 1/p\_c² otherwise.
-
-The game of Section 8 carries over with three changes:
-
-- The forcing layers are 4, 9 and p\_c², or 25 when p\_c ≤ 5. Every other prime is a luck prime.
-- A luck prime q dividing c has q² | ab + c only when q divides exactly one of a and b, with density 1/q against a witness divisible by q. So types also record whether q | a. An element's own type is then always a witness without this q-term.
-- As in Section 8.8, types are split by membership in the root classes of the least luck prime that has them.
-
-The core reduction is unchanged. Computing the maximum cliques and maximising U over admissible cores is again a finite problem, which CP-SAT solves to optimality (`general_c/game_gen.py`).
-
-**Theorem 9.4 (computer-assisted).** Let c ≤ 100 be squarefree with p\_c ≤ 7 and c ∉ {10, 13}; there are 49 such c. Then the maximum cliques of the game are exactly the two root classes mod p\_c². Every c-valid A ⊆ \[N\] not inside one of them has at most (V\_c + o(1))N elements, where V\_c is computed and V\_c < 1/p\_c² (or < 1/4). Hence for all large N the maximum c-valid set is a root class mod p\_c², and only the full root classes attain it.
-
-For 33 of these c, a congruence-defined c-valid set has density exactly V\_c, so V\_c is the second-best density:
-
-| max density | second-best density | c |
-| --- | --- | --- |
-| 1/4 (classes mod 4) | 1/9 | 3, 11, 23, 47, 51, 59, 71, 83, 87, 95 |
-| 1/4 | 1/18 | 43, 67, 79 |
-| 1/9 (classes mod 9) | 1/12 | 2, 14, 26, 38, 62, 74, 86 |
-| 1/9 | 1/18 | 5, 17, 29, 41, 53, 65, 89 |
-| 1/25 (classes mod 25) | 1/50 | 1 |
-| 1/25 | 3/100 | 6, 34, 46 |
-| 1/49 (classes mod 49) | 3/196 | 82 |
-| 1/49 | 1/98 | 97 |
-
-For the other 16 values of c (7, 15, 19, 21, 31, 33, 35, 39, 55, 61, 66, 69, 73, 77, 91, 94), the best congruence set and V\_c still differ, so the second-best density is only bracketed (`general_c/gen_k1.jsonl`).
-
-*On the proof.* The finite part is the CP-SAT computation, with objective coefficients rounded up. The analytic part is the asymptotic argument of Sections 8.2–8.5 with c in place of 1. The lattice lemma (Lemma 8.3) and its joint form (Lemma 8.4) go through verbatim for q² | ab + c. The large-prime count for p² | x² + c replaces Pell's equation by x² − mp² = −c, which still has N^{o(1)} solutions up to N for each m. All error terms are o(N). We have not made them explicit, so Theorem 9.4 gives no explicit threshold for N.
-
-Exact clique computations agree with the root class for every N up to 400–800 for c = 2, 3, 6, 10, 13, 21 and 34. Two cases remain open. For c = 10 and 13 the class is mod 49 and the game with one split prime falls just short (V₁₃ = 0.020465 against 1/49 = 0.020408); a second split prime should settle them but exceeds our computing budget. For the ten c ≤ 100 with p\_c ≥ 11 (22, 30, 37, 42, 57, 58, 70, 78, 85, 93) the model has p\_c² slabs, and we have not run it.
-
-So the conditions isolated in Section 9 — a self-forcing class, a positive local gap and control of the large-prime events — are not special to x² + 1. Where the game can be run, they settle the problem for ab + c.
+- **Higher powers.** For ab + 1 never k-free, the maximum is a class mod 5^k for every k ≥ 3 and large N, with an explicit threshold. For 3 ≤ k ≤ 100 this holds for every N, with two small exceptions; for cubes the maximisers are listed for every N.
+- **Other forms.** For ab + c never squarefree, the maximum for large N is a root class of x² + c ≡ 0 (mod p²), for 49 squarefree c ≤ 100.
+- **The third density.** The densest valid set not inside C7, C18, F or F′ has density between 1/25 − 1/(4π²) = 0.01467 and 0.01491, so for large N, Theorem 8.9 holds with 0.0192 replaced by 0.01491.
 
 ## 10. Open problems
 
-1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 7, proof of Theorem C(2)) are small sets unrelated to F, so some lower bound on N is needed. One level further down, is the third density λ₃ equal to 1/25 − 1/(4π²), the value of one class plus one outsider (Theorem 8.11)?
+1. **Third-order structure.** Theorem 8.9 settles this for N ≥ 10^23.6: a valid set not inside one class with at least (1/50 − 0.0008)N elements lies inside F or its mirror. Does this hold for much smaller N, with an explicit δ? The exact maximisers for N ≤ 1006 (Section 7, proof of Theorem C(2)) are small sets unrelated to F, so some lower bound on N is needed.
 2. **Sharper large-prime counts.** Brute force shows that Lemmas 3.4 and 3.5 overestimate by a factor of about 38 or more (worst ratio 0.026). Averaging ρ\_b(m) over short ranges of m, using explicit Burgess- or Weil-type bounds, should lower N₀ substantially, make the ω-refinement unnecessary, and shrink the constant C of Theorem 8.1.
-3. **A general witness-game theorem.** Section 9 shows that the method carries over to ab + 1 never k-free for every k ≥ 3, completely for k ≤ 100. Two questions remain. Does part 2 of Theorem 9.3 hold for every k? The k = 3 exceptions occur where c₃(N) = 2, but for 5 ≤ k ≤ 300 no mixed set comes within 3 of c\_k(N), and for 12 ≤ k ≤ 300 none exists below N\_k. For large k a mixed set below N\_k needs 13^k or 17^k to divide x² + 1 or ab + 1 with x, a, b below about 60·5^k, which heuristically happens for only finitely many k. Theorem 9.4 does the same for ab + c, for 49 squarefree c ≤ 100. Is the root class mod p\_c² extremal for every c, including c = 10, 13 and those with p\_c ≥ 11, and is there a proof that does not need a computation for each c? Effective thresholds for Theorem 9.4 would also be worth having.
+3. **A general witness-game theorem.** The companion paper \[14\] carries the method to higher powers and to ab + c for many c, each by a separate computation. Is there a single theorem: a self-forcing class plus a positive local gap implies extremality for all large N, with an effective threshold? The companion paper also asks for the exact third density, conjectured to be 1/25 − 1/(4π²).
 4. **Formalisation.** The constructions (`Erdos848Constructions.lean`), the certificate of Proposition 8.6 (`LamCert.lean`) and the strict gap of Lemma 8.10 (`LamGap.lean`) are verified in Lean. Natural next targets are Proposition 8.2, which is short, and the counting lemmas of Section 3.
 
 ## Appendix: verification and reproducibility
 
-All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy, networkx and scipy. Each computational claim for Theorems A–D has at least two independent checks. Theorem 9.1 rests on cube\_maxsets.py (all maximum sets, N ≤ 700), cube\_small.py (an independent clique check of the maximum up to 40,000), cubeM.c (the exact one-witness bound on 20 cells, 700 ≤ N ≤ 2·10⁶, cross-checked by brute-force factorisation at N = 3000) and cube\_analytic.py (N ≥ 1.94·10⁶; one implementation).
+All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy, networkx and scipy. Each computational claim for Theorems A–D has at least two independent checks.
 
 | Claim | Primary computation | Independent check |
 | --- | --- | --- |
-| Theorem A, N ≤ 3806 | max clique at N ≡ 6 (mod 25), `e848b.py` (776 s) | `nsc.py exact cliques for N ≤ 1006, plus case bounds S1–S4 strictly below c7 for 1006 < N ≤ 3806 (fast848.c started at N = 31)` |
+| Theorem A, N ≤ 3806 | max clique at N ≡ 6 (mod 25), `e848b.py` (776 s) | `nsc.py`: exact cliques for N ≤ 1006, plus case bounds S1–S4 strictly below c7 for 1006 < N ≤ 3806 (`fast848.c` started at N = 31) |
 | Theorem A, 3806 ≤ N ≤ 10⁷ | `fast848.c`, 794 blocks (47 min) | `e848cases.c` (different algorithm) to 10⁶; numpy brute force `alledges.py`; `sbrute.py` (direct d² sieve) matches S1–S4 at all 168 edges ≤ 20,000 |
 | V₂ values | MILP, `vk2.py` (HiGHS) | exact integer branch-and-bound, `bb.c`, all 16 parameter pairs |
 | Lemma 3.5 constants λ, c | `mconst2.py` | `mc.py` (brute-force ρ) |
@@ -619,8 +506,6 @@ Further independent checks:
 | Li's uniform-degree proposition, 5·10⁶ ≤ N ≤ 10⁷ | `fastli.c` (exact H₇, H₁₈ for all b; 70 blocks of 1%, 56 min) | holds on every block; minimum margin 13.8% (threshold taken at the top of each block); brute-force cross-check at N = 20,000 |
 | Theorem D and the constructions | `Erdos848Constructions.lean`, Lean 4.36.0-rc2 with Mathlib | compiles; no `sorry`; only the standard axioms |
 | Densest congruence-defined set not inside one class | `wgame4.py` (exact cliques mod 900) | 1/50, attained by F; exact integer certificate of the full game: lamcert.c (51,223 cores); kernel-checked reduced certificate: LamCert.lean (64 closed sets, 439 pairs); third-order gap: lamgap.c, LamGap.lean, thirdorder.py; explicit C = 30: explicitC\_omega4.py, with exact counts to 10¹¹ from segomega.c (C = 92.4 with Rankin's bound alone: explicitC\_omega.py; C = 170 without the ω-refinement: explicitC.py) |
-| Theorem 8.11 (third density) | lower bound: lam3\_lower.py (exact count); upper bound: third\_cp.py (CP-SAT, 225 slabs, coefficients rounded up) | 0.014671 at N = 2·10⁷; max U = 0.0149093, OPTIMAL; the unrefined core enumeration (third.py) gives the weaker 0.0186 |
-| Theorem 9.4 (ab + c) | general\_c/game\_gen.py (CP-SAT), all squarefree c ≤ 100 with p\_c ≤ 7; reproduces V₁ = 1/50 | class extremal for 49 values; exact clique search (brute\_c.py) agrees for c = 2, 3, 6, 10, 13, 21, 34 up to N = 400–800 |
 
 The full package (code, logs and certificates) accompanies this paper.
 
@@ -641,6 +526,8 @@ The full package (code, logs and certificates) accompanies this paper.
 
 12. R. Jung et al., [erdos-banger](https://github.com/The-Obstacle-Is-The-Way/erdos-banger), Lean 4 formalisation of Sawhney's stability theorem for Problem 848 (η = 1/2000, ineffective N₀), January 2026.
 13. M. Sawhney and M. Sellke, in *Early science acceleration experiments with GPT-5*, [arXiv:2511.16072](https://arxiv.org/abs/2511.16072), Section IV.1 (Problem 848).
+
+14) L. Culpitt, *The witness game beyond Erdős Problem 848: higher powers, ab + c, and the third density*, companion paper (2026); code in the repository [Erdos-848](https://github.com/MeaCulpitt/Erdos-848).
 
 ## Acknowledgements
 
