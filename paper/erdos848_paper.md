@@ -40,7 +40,7 @@ Theorems B, C and D are new. Sawhney's note gives stability with an unspecified 
 
 **Method.** Each a lies in one of 63 *types*, given by its class mod 25 (C7, C18 or the rest R), mod 4 and mod 9. Whether p² | ab + 1 is forced for p ∈ {2, 3, 5} depends only on the types of a and b. Fix a valid A and pick one or two "witnesses" b ∈ A. Every other a ∈ A must make ab + 1 non-squarefree. Optimising the witness choice against every possible set of types gives a finite min–max problem with value V₂ = 0.0294059… < 1/25.
 
-Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by computation. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal and, near 1/50, essentially unique. Section 9 summarises further results from a companion paper, and Section 10 lists open problems.
+Sections 3–5 bound the error terms explicitly, giving Theorem A for N ≥ 6.7838·10⁶. Section 6 covers smaller N by one computation, which also gives the exact maximisers. Section 7 proves Theorems B and C and the first part of Theorem D, and Section 8 proves that F is optimal and, near 1/50, essentially unique. Section 9 summarises further results from a companion paper, and Section 10 lists open problems.
 
 The arguments and code were developed with AI assistance and independently re-run (Appendix). They have not yet been reviewed by a human expert.
 
@@ -163,13 +163,13 @@ with the maximum over type sets P not contained in the C7-types and not containe
 
 Summing gives val(P, W)·N plus the error terms. ∎
 
-**Value of the game.** The game is a 0–1 problem over 2⁶³ type sets. It was solved by a mixed-integer program (HiGHS; Q. Huangfu and J. A. J. Hall, Math. Prog. Comp. 10 (2018), 119–142), and independently by an exact branch-and-bound in integer arithmetic. The inputs were scaled by 10¹⁵ and rounded up, so the certified value is an upper bound. For every one of the 16 pairs (z\_A, z\_B) ∈ {17, 29, 37, 41} × {13, 17, 19, 23}, the worst P is the set of all 63 types, and
+**Value of the game.** The game is a 0–1 problem over 2⁶³ type sets. At (z\_A, z\_B) = (17, 13) we solved it by an exact branch-and-bound in integer arithmetic, with inputs scaled by 10¹⁵ and rounded up, so the certified value is an upper bound. A mixed-integer program (HiGHS; Q. Huangfu and J. A. J. Hall, Math. Prog. Comp. 10 (2018), 119–142) gives the same optimum. The worst P is the set of all 63 types, so
 
 ```latex
-V_2 = \tfrac{2}{25}\beta^{+} + \tfrac{23}{25}(\alpha_s+\tau_A).
+V_2 = \tfrac{2}{25}\beta^{+} + \tfrac{23}{25}(\alpha_s+\tau_A) \le 0.0294059212,
 ```
 
-At (z\_A, z\_B) = (17, 13) this is V₂ ≤ 0.0294059212, certified with 1,339,011 branch-and-bound nodes. The smallest of the 16 values is V₂(41, 23) ≤ 0.0292884.
+certified with 1,339,011 branch-and-bound nodes. The same formula holds at every pair (z\_A, z\_B) ∈ {17, 29, 37, 41} × {13, 17, 19, 23}; only (41, 23), where V₂ ≤ 0.0292884, is used again (Theorem B).
 
 The value is easy to see for P = all types. Take one witness of type (C7, E, 0) and one of type (C18, E, 0). A witness that is even and divisible by 3 never forces by 4 or 9, so each C-class gets density β⁺, from the witness in the other class. The content of the certificate is that no adversarial choice of P does better than this.
 
@@ -196,15 +196,13 @@ The maximum over b runs over the 2-, 3- and 5-profile of b and over k = ω₁(b)
 
 The second case has much smaller density, so it never binds.
 
-**Grid certification.** For fixed parameters (z\_A, z\_B, k₀, Y), every term of E is nondecreasing in N. So it suffices to cover \[N₀, 10⁶⁰\] by cells \[N\_lo, N\_hi\] with ratio 1.01 below 10¹³ and 1.1 above, and to check for each cell that
+**Grid certification.** Fix (z\_A, z\_B) = (17, 13). For fixed (k₀, Y), every term of E is nondecreasing in N. So it suffices to cover \[N₀, 10⁶⁰\] by cells \[N\_lo, N\_hi\], of ratio 1.01 below 10¹³ and 1.1 above, and to check for each cell that
 
 ```latex
 E(N_{hi}) \le \big(\tfrac1{25}-V_2\big)N_{lo} - 0.28 .
 ```
 
-This gives |A| ≤ N/25 − 0.28 = (N − 7)/25 < c7(N) throughout the cell. Prime counts up to 4·10⁹ are exact, and beyond that come from Rosser–Schoenfeld and Dusart bounds.
-
-Two independent implementations agree. The referee grid uses only (z\_A, z\_B) = (17, 13), and its smallest slack is +329.8, in the first cell \[6.7838·10⁶, 6.85·10⁶\]. The original grid covers \[10⁷, 10⁶⁰\]. It optimises the parameters per cell and has 2525 cells with no failures. Its slack, as a fraction of N, rises from 0.0016 at 10⁷ to 0.0106 at 10⁶⁰, and tends to 1/25 − 0.0292884 = 0.0107.
+This gives |A| ≤ N/25 − 0.28 = (N − 7)/25 < c7(N) throughout the cell. The ω-refinement (k₀ = 5) is needed only below 10⁸. Prime counts up to 10⁷ are exact, and beyond that come from the Rosser–Schoenfeld and Dusart bounds. Every cell passes. The smallest slack is +329.8, in the first cell \[6.7838·10⁶, 6.85·10⁶\]. As a fraction of N the slack is 0.0016 at 10⁷, 0.0053 at 10⁸ and 0.0106 at 10⁶⁰, approaching 1/25 − V₂ = 0.010594. A second implementation, which optimises the parameters in each cell, agrees on \[10⁷, 10⁶⁰\].
 
 **Proposition 5.1 (tail).** For N ≥ 10⁶⁰, Theorem 4.1 holds with E\_I(N) ≤ 1.02·10⁻⁸·N.
 
@@ -222,9 +220,11 @@ Robin's bound ω(n) ≤ 1.38402·ln n/ln ln n gives 2^k ≤ N^{0.95933/ln L} ≤
 
 ## 6. Small N
 
-**N ≤ 3806: exact clique search.** Valid sets are exactly the cliques in the graph on V ∩ \[N\] with edges {a, b} where ab + 1 is not squarefree. At N = 3806 this graph has 397 vertices and 36,248 edges. The clique number is nondecreasing in N, and c7 is constant on each block (6 + 25k, 31 + 25k\]. So it suffices to compute the clique number at N ≡ 6 (mod 25). It equals c7(N) at every such N ≤ 3806.
+Let m(N) be the largest size of a valid A ⊆ \[N\] not inside C7 or C18. A valid set inside one class has at most c7(N) elements, so Theorem A at N says m(N) ≤ c7(N). The function m is nondecreasing, and c7 is constant on each block (6 + 25k, 31 + 25k\]. One computation serves both Theorem A and Theorem C(2).
 
-**3806 ≤ N ≤ 10⁷: case bounds.** Let H\_t(b, N) = #{a ∈ V ∩ C\_t, a ≤ N : ab + 1 not squarefree} for t ∈ {7, 18}, and let H\_odd(b, N) count the odd such a in C7 ∪ C18. Let v\_R(N) = |V ∩ R ∩ \[N\]|, and v\_R^odd(N) its odd part. Every valid A not inside C7 or C18 falls into exactly one of four cases.
+**N ≤ 1006: exact cliques.** Valid sets are exactly the cliques in the graph on V ∩ \[N\] with edges {a, b} where ab + 1 is not squarefree. We compute m(N) at each N ≡ 6 (mod 25) as a maximum over cliques that contain an R-vertex or meet both C7 and C18. Then m(N) ≤ c7(N) throughout, with equality only for 41 ≤ N ≤ 81.
+
+**1006 < N ≤ 6.9·10⁶: case bounds.** Let H\_t(b, N) = #{a ∈ V ∩ C\_t, a ≤ N : ab + 1 not squarefree} for t ∈ {7, 18}, and let H\_odd(b, N) count the odd such a in C7 ∪ C18. Let v\_R(N) = |V ∩ R ∩ \[N\]|, and v\_R^odd(N) its odd part. Every valid A not inside C7 or C18 falls into one of four cases.
 
 | Case | Condition on A | Bound on \|A\| |
 | --- | --- | --- |
@@ -235,14 +235,12 @@ Robin's bound ω(n) ≤ 1.38402·ln n/ln ln n gives 2^k ≤ N^{0.95933/ln L} ≤
 
 Each bound is correct because every element of A ∩ C\_t is compatible with the chosen witness. In S2 an odd R-witness and odd C-elements remain. In S3 an even C-element of one class witnesses the other class.
 
-All four bounds are nondecreasing in N. So S(N) = max S\_i at a block end E\_k bounds every N ∈ (E\_{k−1}, E\_k\]. The check is S(E\_k) ≤ c7(E\_{k−1} + 1).
-
-With blocks of relative width 1%, this holds on all 794 blocks from 3806 to 10⁷. For example, S(10⁶) = 37,637 < c7 = 40,000, and S(10⁷) = 376,171 < 400,000. The counts H\_t(b, N) are computed exactly:
+All four bounds are nondecreasing in N. So S(N) = max S\_i at the end E\_k of a block bounds m(N) for every N ∈ (E\_{k−1}, E\_k\], and it suffices that S(E\_k) < c7(E\_{k−1} + 1). We use blocks of width max(25, E\_{k−1}/100). The check holds on all 859 blocks from 1006 to 6.9·10⁶. For example, S(10⁶) = 37,637 < c7 = 40,000. The counts H\_t(b, N) are computed exactly:
 
 - primes p ≤ (bN)^{1/3} by stepping through the class a ≡ −b⁻¹ (mod p²);
 - larger primes by enumerating ab + 1 = mp² over m, solving s² ≡ m⁻¹ (mod b) by CRT.
 
-Together with Corollary 5.2, whose range starts at 6.7838·10⁶ < 10⁷, this proves Theorem A for every N.
+**Proof of Theorem A.** For N ≤ 6.9·10⁶ this is the computation above, and for N ≥ 6.7838·10⁶ it is Corollary 5.2. ∎
 
 ## 7. Stability, rigidity and the extremisers
 
@@ -268,12 +266,7 @@ The forced share is exactly 1/3, from a ≡ 3 (mod 4) or a ≡ 8 (mod 9). On the
 
 **Relation to Li's proof.** Li's "uniform mixed degree" proposition says that for N ≥ 5·10⁶, every b ∈ V outside C7 ∪ C18 has more than N/50 + N/525 ≈ 0.0219N squarefree neighbours in C7 ∩ \[N\], and likewise in C18 ∩ \[N\]. Theorem C(1) is the sharp form of this. The squarefree degree is c7(N) − H₇(b), so the worst case is asymptotically (1/25 − g1\*)N ≈ 0.0253N, and no constant above 1/25 − g1\* is possible. Computing H₇ and H₁₈ exactly for every b ≤ 10⁷ confirms Li's proposition on all of 5·10⁶ ≤ N ≤ 10⁷, with a margin of at least 13.8%. Each 1% block is checked conservatively: the largest H at the top of the block, against the class size at the bottom and Li's threshold at the top. There max H₇(b)/N stays at 0.01468, matching g1\*.
 
-**Proof of Theorem C(2).** A valid set inside C7 has at most c7(N) elements, with equality only for C7 ∩ \[N\]. The same holds for C18. So it suffices to compare c7(N) with m(N), the largest size of a valid set not inside one class. The function m is nondecreasing and c7 is constant on blocks.
-
-1. **N ≤ 1006.** Compute m(N) exactly as a maximum over cliques that contain an R-vertex or meet both C7 and C18. Then m(N) < c7(N) except for 41 ≤ N ≤ 81, where m = c7. Enumerating all maximal cliques for 7 ≤ N ≤ 106 gives exactly the sets in the table below.
-2. **1006 < N ≤ 3806.** The case bounds S1–S4 are strictly below c7 on every block.
-3. **3806 < N ≤ 6.9·10⁶.** The case bounds are strictly below c7 on all 757 blocks. The smallest block margin is 1, on (4282, 4324\]. Checked one N at a time, the margin there is at least 2.
-4. **N ≥ 6.7838·10⁶.** This is Theorem B.
+**Proof of Theorem C(2).** A valid set inside C7 has at most c7(N) elements, with equality only for C7 ∩ \[N\], and the same holds for C18. So it suffices to show m(N) < c7(N) for N ∉ \[41, 81\], and to list the sets attaining m = c7 inside \[41, 81\]. Section 6 gives m(N) < c7(N) for every N ≤ 6.9·10⁶ outside \[41, 81\], and Theorem B gives it for N ≥ 6.7838·10⁶. Enumerating all maximal cliques for 7 ≤ N ≤ 106 gives exactly the sets in the table below.
 
 | N | c7(N) | Extra maximisers |
 | --- | --- | --- |
@@ -488,16 +481,14 @@ All code is plain C (gcc -O3, optionally -fopenmp) or Python 3 with numpy, sympy
 
 | Claim | Primary computation | Independent check |
 | --- | --- | --- |
-| Theorem A, N ≤ 3806 | max clique at N ≡ 6 (mod 25), `e848b.py` (776 s) | `nsc.py`: exact cliques for N ≤ 1006, plus case bounds S1–S4 strictly below c7 for 1006 < N ≤ 3806 (`fast848.c` started at N = 31) |
-| Theorem A, 3806 ≤ N ≤ 10⁷ | `fast848.c`, 794 blocks (47 min) | `e848cases.c` (different algorithm) to 10⁶; numpy brute force `alledges.py`; `sbrute.py` (direct d² sieve) matches S1–S4 at all 168 edges ≤ 20,000 |
-| V₂ values | MILP, `vk2.py` (HiGHS) | exact integer branch-and-bound, `bb.c`, all 16 parameter pairs |
+| Theorem A and C(2), N ≤ 1006 | `nsc.py` (exact cliques by case) | maximum clique at N ≡ 6 (mod 25) up to 3806, `e848b.py`; maximal-clique enumeration for N ≤ 106 |
+| Theorem A and C(2), 1006 < N ≤ 6.9·10⁶ | `fast848.c` with `STRICT=1`, 859 blocks | `e848cases.c` (different algorithm) to 10⁶; numpy brute force `alledges.py`; `sbrute.py` (direct d² sieve) matches S₁–S₄ at all 168 edges ≤ 20,000 and on the tightest block one N at a time; non-strict run to 10⁷ (794 blocks) |
+| V₂ values | exact integer branch-and-bound, `bb.c`, all 16 parameter pairs | MILP, `vk2.py` (HiGHS) |
 | Lemma 3.5 constants λ, c | `mconst2.py` | `mc.py` (brute-force ρ) |
 | Lemmas 3.4 and 3.5 | proofs above | brute force at N ≤ 3·10⁵, `brute.py` / `brute2.py`: no violations, worst ratio actual/bound 0.026 |
-| Grid, N ≥ 6.7838·10⁶ | `tmgrid.py`, 2525 cells on \[10⁷, 10⁶⁰\]; the referee grid alone covers \[6.7838·10⁶, 10⁷\] | referee `cellsbig.py` / `cellsbig2.py`, (17, 13) only, to 10⁶⁰ |
+| Grid, N ≥ 6.7838·10⁶ | `cellsbig.py` / `cellsbig2.py`, (17, 13), \[6.7838·10⁶, 10⁶⁰\] | `tmgrid.py`, parameters optimised per cell, 2525 cells on \[10⁷, 10⁶⁰\] |
 | ω-counts K\_k(N) | `omegaV.c` | `kom.c` |
 | Proposition 5.1 | closed form above | `tail60.py` |
-| Theorem C(2), N ≤ 1006 | `nsc.py` (exact cliques by case) | maximal-clique enumeration for N ≤ 106 |
-| Theorem C(2), 3806 < N ≤ 6.9·10⁶ | `fast848.c`, strict comparison (29 min, 2 cores) | `sbrute.py` on the tightest block, one N at a time |
 
 Further independent checks:
 

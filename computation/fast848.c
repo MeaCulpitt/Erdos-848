@@ -137,10 +137,10 @@ int main(int argc,char**argv){
     u32*L=GM+8*k;
     u64 S1=vR+L[0],S2=vRo+L[1],S3=vRo+((L[2]+L[3])>(L[4]+L[5])?(L[2]+L[3]):(L[4]+L[5])),S4=L[6]+L[7];
     u64 F=S1; if(S2>F)F=S2; if(S3>F)F=S3; if(S4>F)F=S4;
-    u64 c7N=N>=7?(N-7)/25+1:0; u64 lo=(k==0)?N:E[k-1]+1; u64 c7lo=lo>=7?(lo-7)/25+1:0; int good=F<=c7lo;
+    u64 c7N=N>=7?(N-7)/25+1:0; u64 lo=(k==0)?N:E[k-1]+1; u64 c7lo=lo>=7?(lo-7)/25+1:0; int good=getenv("STRICT")?F<c7lo:F<=c7lo;
     if(verbose||k==0||k==K-1||!good||k%40==0)
       printf("N=%lu c7(N)=%lu c7(lo)=%lu  S1=%lu S2=%lu S3=%lu S4=%lu  F=%lu  %s\n",N,c7N,c7lo,S1,S2,S3,S4,F,good?"ok":"FAIL");
     if(!good&&ok){ok=0;firstfail=N;} }
-  if(ok) printf("CERTIFIED: case bounds <= c7 on every block up to N=%lu\n",X); else printf("first failing block ends at N=%lu\n",firstfail);
+  if(ok) printf("CERTIFIED: case bounds %s c7 on every block up to N=%lu\n",getenv("STRICT")?"<":"<=",X); else printf("first failing block ends at N=%lu\n",firstfail);
   return 0;
 }
